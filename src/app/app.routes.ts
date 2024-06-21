@@ -24,6 +24,13 @@ export const routes: Routes = [
             (m) => m.ProductListComponent
           ),
       },
+      {
+        path: 'add-product',
+        loadComponent: () =>
+          import('./pages/add-edit-product/add-edit-product.component').then(
+            (m) => m.AddEditProductComponent
+          ),
+      },
     ],
   },
 ];

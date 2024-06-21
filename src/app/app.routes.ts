@@ -14,13 +14,13 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/prodcut-list',
+        redirectTo: '/prodcuts',
         pathMatch: 'full',
       },
       {
-        path: 'product-list',
+        path: 'products',
         loadComponent: () =>
-          import('./pages/product-list/product-list.component').then(
+          import('./pages/products/products.component').then(
             (m) => m.ProductListComponent
           ),
       },

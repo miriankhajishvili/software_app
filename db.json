@@ -5,8 +5,360 @@
       "productName": "Shampoo",
       "price": 10,
       "amount": 1
-
+    },
+    {
+      "id": "2",
+      "productName": "Conditioner",
+      "price": 12,
+      "amount": 2
+    },
+    {
+      "id": "3",
+      "productName": "Body Wash",
+      "price": 8,
+      "amount": 3
+    },
+    {
+      "id": "4",
+      "productName": "Toothpaste",
+      "price": 5,
+      "amount": 4
+    },
+    {
+      "id": "5",
+      "productName": "Hand Soap",
+      "price": 3,
+      "amount": 5
+    },
+    {
+      "id": "6",
+      "productName": "Lotion",
+      "price": 15,
+      "amount": 1
+    },
+    {
+      "id": "7",
+      "productName": "Face Wash",
+      "price": 9,
+      "amount": 2
+    },
+    {
+      "id": "8",
+      "productName": "Shaving Cream",
+      "price": 7,
+      "amount": 3
+    },
+    {
+      "id": "9",
+      "productName": "Deodorant",
+      "price": 6,
+      "amount": 4
+    },
+    {
+      "id": "10",
+      "productName": "Hair Gel",
+      "price": 11,
+      "amount": 5
+    },
+    {
+      "id": "11",
+      "productName": "Mouthwash",
+      "price": 13,
+      "amount": 1
+    },
+    {
+      "id": "12",
+      "productName": "Sunscreen",
+      "price": 14,
+      "amount": 2
+    },
+    {
+      "id": "13",
+      "productName": "Lip Balm",
+      "price": 4,
+      "amount": 3
+    },
+    {
+      "id": "14",
+      "productName": "Hand Sanitizer",
+      "price": 2,
+      "amount": 4
+    },
+    {
+      "id": "15",
+      "productName": "Foot Cream",
+      "price": 10,
+      "amount": 5
+    },
+    {
+      "id": "16",
+      "productName": "Perfume",
+      "price": 20,
+      "amount": 1
+    },
+    {
+      "id": "17",
+      "productName": "Body Scrub",
+      "price": 18,
+      "amount": 2
+    },
+    {
+      "id": "18",
+      "productName": "Bath Salts",
+      "price": 16,
+      "amount": 3
+    },
+    {
+      "id": "19",
+      "productName": "Face Mask",
+      "price": 8,
+      "amount": 4
+    },
+    {
+      "id": "20",
+      "productName": "Hair Spray",
+      "price": 9,
+      "amount": 5
+    },
+    {
+      "id": "21",
+      "productName": "Nail Polish",
+      "price": 7,
+      "amount": 1
+    },
+    {
+      "id": "22",
+      "productName": "Cuticle Oil",
+      "price": 5,
+      "amount": 2
+    },
+    {
+      "id": "23",
+      "productName": "Shower Gel",
+      "price": 6,
+      "amount": 3
+    },
+    {
+      "id": "24",
+      "productName": "Hair Conditioner",
+      "price": 11,
+      "amount": 4
+    },
+    {
+      "id": "25",
+      "productName": "Toothbrush",
+      "price": 3,
+      "amount": 5
+    },
+    {
+      "id": "26",
+      "productName": "Dental Floss",
+      "price": 4,
+      "amount": 1
+    },
+    {
+      "id": "27",
+      "productName": "Hair Brush",
+      "price": 10,
+      "amount": 2
+    },
+    {
+      "id": "28",
+      "productName": "Razor Blades",
+      "price": 12,
+      "amount": 3
+    },
+    {
+      "id": "29",
+      "productName": "Beard Oil",
+      "price": 15,
+      "amount": 4
+    },
+    {
+      "id": "30",
+      "productName": "Face Cream",
+      "price": 14,
+      "amount": 5
+    },
+    {
+      "id": "1",
+      "productName": "Shampoo",
+      "price": 10,
+      "amount": 1
+    },
+    {
+      "id": "2",
+      "productName": "Conditioner",
+      "price": 12,
+      "amount": 2
+    },
+    {
+      "id": "3",
+      "productName": "Body Wash",
+      "price": 8,
+      "amount": 3
+    },
+    {
+      "id": "4",
+      "productName": "Toothpaste",
+      "price": 5,
+      "amount": 4
+    },
+    {
+      "id": "5",
+      "productName": "Hand Soap",
+      "price": 3,
+      "amount": 5
+    },
+    {
+      "id": "6",
+      "productName": "Lotion",
+      "price": 15,
+      "amount": 1
+    },
+    {
+      "id": "7",
+      "productName": "Face Wash",
+      "price": 9,
+      "amount": 2
+    },
+    {
+      "id": "8",
+      "productName": "Shaving Cream",
+      "price": 7,
+      "amount": 3
+    },
+    {
+      "id": "9",
+      "productName": "Deodorant",
+      "price": 6,
+      "amount": 4
+    },
+    {
+      "id": "10",
+      "productName": "Hair Gel",
+      "price": 11,
+      "amount": 5
+    },
+    {
+      "id": "11",
+      "productName": "Mouthwash",
+      "price": 13,
+      "amount": 1
+    },
+    {
+      "id": "12",
+      "productName": "Sunscreen",
+      "price": 14,
+      "amount": 2
+    },
+    {
+      "id": "13",
+      "productName": "Lip Balm",
+      "price": 4,
+      "amount": 3
+    },
+    {
+      "id": "14",
+      "productName": "Hand Sanitizer",
+      "price": 2,
+      "amount": 4
+    },
+    {
+      "id": "15",
+      "productName": "Foot Cream",
+      "price": 10,
+      "amount": 5
+    },
+    {
+      "id": "16",
+      "productName": "Perfume",
+      "price": 20,
+      "amount": 1
+    },
+    {
+      "id": "17",
+      "productName": "Body Scrub",
+      "price": 18,
+      "amount": 2
+    },
+    {
+      "id": "18",
+      "productName": "Bath Salts",
+      "price": 16,
+      "amount": 3
+    },
+    {
+      "id": "19",
+      "productName": "Face Mask",
+      "price": 8,
+      "amount": 4
+    },
+    {
+      "id": "20",
+      "productName": "Hair Spray",
+      "price": 9,
+      "amount": 5
+    },
+    {
+      "id": "21",
+      "productName": "Nail Polish",
+      "price": 7,
+      "amount": 1
+    },
+    {
+      "id": "22",
+      "productName": "Cuticle Oil",
+      "price": 5,
+      "amount": 2
+    },
+    {
+      "id": "23",
+      "productName": "Shower Gel",
+      "price": 6,
+      "amount": 3
+    },
+    {
+      "id": "24",
+      "productName": "Hair Conditioner",
+      "price": 11,
+      "amount": 4
+    },
+    {
+      "id": "25",
+      "productName": "Toothbrush",
+      "price": 3,
+      "amount": 5
+    },
+    {
+      "id": "26",
+      "productName": "Dental Floss",
+      "price": 4,
+      "amount": 1
+    },
+    {
+      "id": "27",
+      "productName": "Hair Brush",
+      "price": 10,
+      "amount": 2
+    },
+    {
+      "id": "28",
+      "productName": "Razor Blades",
+      "price": 12,
+      "amount": 3
+    },
+    {
+      "id": "29",
+      "productName": "Beard Oil",
+      "price": 15,
+      "amount": 4
+    },
+    {
+      "id": "30",
+      "productName": "Face Cream",
+      "price": 14,
+      "amount": 5
     }
-  ],
-  "cards": []
+  ]
 }

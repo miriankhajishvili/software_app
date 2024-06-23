@@ -13,7 +13,7 @@ import { selectItems, selectProducts } from '../../store/reducer';
 import { ProductService } from '../../shared/services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
-import { NgToastModule } from 'ng-angular-popup';
+
 import { AddEditProductComponent } from '../add-edit-product/add-edit-product.component';
 
 @Component({
@@ -27,7 +27,7 @@ import { AddEditProductComponent } from '../add-edit-product/add-edit-product.co
     MatTableModule,
     MatButtonModule,
     MatIconModule,
-    NgToastModule,
+
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
@@ -61,7 +61,7 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getAllProducts()
+    this.getAllProducts()
   }
 
   getAllProducts() {

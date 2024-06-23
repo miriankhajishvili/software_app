@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LogOutDialogComponent } from '../../shared/components/log-out-dialog/log-out-dialog.component';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -26,14 +28,9 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
+  constructor(private router: Router, private dialog: MatDialog) {}
 
-constructor(private router:Router){
-
-}
-
-  onLogOut(){
-
-    localStorage.removeItem('token')
-    this.router.navigate(['auth/login'])
+  openDialog() {
+    this.dialog.open(LogOutDialogComponent);
   }
 }

@@ -8,7 +8,7 @@ import {
   getAllProducts,
 } from './action';
 import { map, switchMap } from 'rxjs';
-import { NgToastService } from 'ng-angular-popup';
+import { NgToastModule, NgToastService } from 'ng-angular-popup';
 import { AuthService } from '../shared/services/auth.service';
 import { ILoginRespons } from '../shared/interfaces/auth.interface';
 import { Router } from '@angular/router';
@@ -71,18 +71,28 @@ export const deleteProductEffect = createEffect(
 );
 
 export const loginEffect = createEffect(
-  (actions$ = inject(Actions), authService = inject(AuthService), router = inject(Router)) => {
+  (
+    actions$ = inject(Actions),
+    authService = inject(AuthService),
+    router = inject(Router),
+    ngToastService = inject(NgToastService)
+  ) => {
     return actions$.pipe(
       ofType(authAction.login),
       switchMap(({ form }) => {
         return authService.login(form).pipe(
           map((loginUser: ILoginRespons) => {
-     router.navigate(['/products'])
+            ngToastService.success({
+              detail: 'Success Message',
+              summary: 'User logged out successfully',
+            });
+            router.navigate(['/products']);
+
             return authAction.loginSuccess({ loginSuccess: loginUser });
           })
         );
       })
     );
   },
-  {functional:true}
+  { functional: true }
 );

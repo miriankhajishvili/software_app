@@ -6,15 +6,14 @@ export interface myData {
   pages: number;
   items: number;
   data: IProduct[];
-
 }
-
 
 export interface IProduct {
   id: string;
-  productName: string;
-  price: number;
-  amount: number;
+  name: string;
+  price: string;
+  quantity: number;
+  managers: [];
 }
 
 export interface iProductsState {

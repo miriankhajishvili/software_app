@@ -18,6 +18,7 @@ export class AddEditProductComponent implements OnInit {
     productName: new FormControl(),
     productPrice: new FormControl(),
     productQuantity: new FormControl(),
+    manager: new FormControl
   });
 
   constructor(
@@ -27,7 +28,7 @@ export class AddEditProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.productService.currentProduct$.subscribe(res => this.form.patchValue(res))
+    // this.productService.currentProduct$.subscribe(res => this.form.patchValue(res))
   }
 
   onAddProduct() {

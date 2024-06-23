@@ -6,7 +6,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { authAction } from '../../../store/action';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-log-in',
@@ -19,13 +27,13 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
     MatIconModule,
     MatTabsModule,
     MatCheckboxModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.scss',
 })
 export class LogInComponent {
-
   form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -35,6 +43,9 @@ export class LogInComponent {
     ]),
   });
 
+  constructor(private store: Store) {}
 
-  submit(){}
+  onSignIn() {
+    this.store.dispatch(authAction.login({ form: this.form.value }));
+  }
 }

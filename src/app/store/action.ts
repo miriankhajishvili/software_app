@@ -1,5 +1,14 @@
 import { createActionGroup, props } from '@ngrx/store';
 import { IProduct, pageRequest } from '../shared/interfaces/product-list';
+import { ILogin, ILoginRespons } from '../shared/interfaces/auth.interface';
+
+export const authAction = createActionGroup({
+  source: 'auth',
+  events: {
+    login: props<{ form: ILogin }>(),
+    loginSuccess: props<{ loginSuccess: ILoginRespons }>(),
+  },
+});
 
 export const getAllProducts = createActionGroup({
   source: 'getAllProducts',

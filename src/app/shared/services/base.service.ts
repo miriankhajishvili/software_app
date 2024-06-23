@@ -18,6 +18,7 @@ export class BaseService {
   post<T>(url: string, data: any): Observable<T> {
     return this.http.post<T>(this.apiUrl + url, data);
   }
+  
 
   put<T>(url: string, body?: any): Observable<T> {
     return this.http.put<T>(this.apiUrl + url, body);

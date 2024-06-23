@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
 import path from 'path';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,7 @@ export const routes: Routes = [
           import('./pages/products/products.component').then(
             (m) => m.ProductListComponent
           ),
+          canActivate: [authGuard]
       },
       {
         path: 'add-product',

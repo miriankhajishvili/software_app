@@ -7,16 +7,10 @@
       "productQuantity": "10"
     },
     {
-      "id": "00e1",
-      "productName": "Colgate",
-      "productPrice": "6.7",
+      "id": "ad0e",
+      "productName": "Chocolate",
+      "productPrice": "1",
       "productQuantity": "10"
-    },
-    {
-      "id": "2ba7",
-      "productName": "Chololate",
-      "productPrice": "4",
-      "productQuantity": "100"
     }
   ]
 }

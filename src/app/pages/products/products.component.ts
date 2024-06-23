@@ -61,7 +61,7 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllProducts();
+    // this.getAllProducts()
   }
 
   getAllProducts() {
@@ -89,17 +89,8 @@ export class ProductListComponent implements OnInit {
     this.productService.currentProduct$.next(product);
   }
 
-  // onAddProduct() {
-  //   this.productService.currentProduct$.next(null);
-  //   this.dialog.open(AddEditProductComponent);
-  // }
-
-  onAddOrEditProduct(){
-    if(this.productService.currentProduct$ == null){
-
-      this.dialog.open(AddEditProductComponent);
-    } else {
-      console.log('hi')
-    }
+  onAddProduct() {
+    this.productService.currentProduct$.next(null);
+    this.dialog.open(AddEditProductComponent);
   }
 }

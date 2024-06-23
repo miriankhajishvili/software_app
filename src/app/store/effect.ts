@@ -1,9 +1,17 @@
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ProductService } from '../shared/services/product.service';
-import { createProduct, deleteProduct, getAllProducts } from './action';
+import {
+  authAction,
+  createProduct,
+  deleteProduct,
+  getAllProducts,
+} from './action';
 import { map, switchMap } from 'rxjs';
 import { NgToastService } from 'ng-angular-popup';
+import { AuthService } from '../shared/services/auth.service';
+import { ILoginRespons } from '../shared/interfaces/auth.interface';
+import { Router } from '@angular/router';
 
 export const getAllProductsEffect = createEffect(
   (actions$ = inject(Actions), productService = inject(ProductService)) => {
@@ -24,26 +32,23 @@ export const getAllProductsEffect = createEffect(
   { functional: true }
 );
 
-
 export const createProductEffect = createEffect(
   (actions$ = inject(Actions), productService = inject(ProductService)) => {
     return actions$.pipe(
       ofType(createProduct.createProduct),
-      switchMap(({form})=> {
-        return  productService.createProduct(form).pipe(
-          map((res)=> {
+      switchMap(({ form }) => {
+        return productService.createProduct(form).pipe(
+          map((res) => {
             return createProduct.createProductSuccess({
-              newProduct: res
-            })
+              newProduct: res,
+            });
           })
-        )
+        );
       })
-    )
+    );
   },
-  {functional:true}
-)
-
-
+  { functional: true }
+);
 
 export const deleteProductEffect = createEffect(
   (
@@ -56,7 +61,6 @@ export const deleteProductEffect = createEffect(
       switchMap(({ id }) => {
         return productService.deleteProduct(id).pipe(
           map((res) => {
-          
             return deleteProduct.deleteClientActionSuccess({ id });
           })
         );
@@ -64,4 +68,21 @@ export const deleteProductEffect = createEffect(
     );
   },
   { functional: true }
+);
+
+export const loginEffect = createEffect(
+  (actions$ = inject(Actions), authService = inject(AuthService), router = inject(Router)) => {
+    return actions$.pipe(
+      ofType(authAction.login),
+      switchMap(({ form }) => {
+        return authService.login(form).pipe(
+          map((loginUser: ILoginRespons) => {
+     router.navigate(['/products'])
+            return authAction.loginSuccess({ loginSuccess: loginUser });
+          })
+        );
+      })
+    );
+  },
+  {functional:true}
 );

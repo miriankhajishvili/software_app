@@ -11,7 +11,7 @@ export class ProductService extends BaseService {
 
   getAllProducts(pageRequest: pageRequest): Observable<myData> {
     const { page, search, sort } = pageRequest;
-    let pageDetail = `?_page=${page}`;
+    let pageDetail = `?page=${page}`;
     return this.get<myData>(`products${pageDetail}`);
   }
 

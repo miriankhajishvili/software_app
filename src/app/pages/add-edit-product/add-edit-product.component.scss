@@ -1,0 +1,28 @@
+.container {
+  width: 500px;
+  height: 250px;
+  border-radius: 30px;
+}
+
+.form-control {
+  margin: 15px;
+}
+
+.form-content {
+  margin-top: 20px;
+  padding: 5%;
+  border: 1px solid #ced4da;
+  margin-bottom: 2%;
+}
+.form-control {
+  border-radius: 1.5rem;
+}
+.btnSubmit {
+  border: none;
+  border-radius: 1.5rem;
+  padding: 1%;
+  width: 40%;
+  cursor: pointer;
+  background: #0062cc;
+  color: #fff;
+}

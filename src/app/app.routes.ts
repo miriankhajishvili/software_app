@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
+import path from 'path';
 
 export const routes: Routes = [
   {
@@ -26,6 +27,13 @@ export const routes: Routes = [
       },
       {
         path: 'add-product',
+        loadComponent: () =>
+          import('./pages/add-edit-product/add-edit-product.component').then(
+            (m) => m.AddEditProductComponent
+          ),
+      },
+      {
+        path: 'edit-product/:id',
         loadComponent: () =>
           import('./pages/add-edit-product/add-edit-product.component').then(
             (m) => m.AddEditProductComponent

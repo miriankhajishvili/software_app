@@ -7,7 +7,23 @@ export const getAllProducts = createActionGroup({
     getAllProductsAction: props<{ pageRequest: pageRequest }>(),
     getAllProductsSuccess: props<{
       products: IProduct[];
-      items: number
+      items: number;
     }>(),
+  },
+});
+
+export const createProduct = createActionGroup({
+  source: 'createPRoduct',
+  events: {
+    createProduct: props<{ form: IProduct }>(),
+    createProductSuccess: props<{ newProduct: IProduct }>(),
+  },
+});
+
+export const deleteProduct = createActionGroup({
+  source: 'deleteProduct',
+  events: {
+    deleteProductAction: props<{ id: string }>(),
+    deleteClientActionSuccess: props<{ id: string }>(),
   },
 });

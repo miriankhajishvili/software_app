@@ -1,9 +1,9 @@
 <div style="margin-top: 25px" class="mat-elevation-z8">
   <button
+    (click)="onAddOrEditProduct()"
     style="background-color: #1c9f27; margin-left: 12px"
     mat-raised-button
     color="primary"
-    [routerLink]="['/add-product']"
   >
     Add Product
   </button>
@@ -15,32 +15,32 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="price">
+    <ng-container matColumnDef="productPrice">
       <th mat-header-cell *matHeaderCellDef><b>Price</b></th>
       <td mat-cell *matCellDef="let product">
-        {{ product.price | currency : "GEL" }}
+        {{ product.productPrice | currency : "GEL" }}
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="quantity">
+    <ng-container matColumnDef="productQuantity">
       <th mat-header-cell *matHeaderCellDef><b>Quantity</b></th>
-      <td mat-cell *matCellDef="let product">{{ product.amount }}</td>
+      <td mat-cell *matCellDef="let product">{{ product.productQuantity }}</td>
     </ng-container>
 
     <ng-container matColumnDef="delete">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let user">
+      <td mat-cell *matCellDef="let product">
         <button
+          (click)="onEdit(product)"
           style="background-color: #9f1c6b; margin-right: 20px"
-          [routerLink]="['/users-detail', user.id]"
           mat-raised-button
           color="primary"
         >
           Edit Product
         </button>
         <button
+          (click)="onDelete(product)"
           style="background-color: #f14131"
-          [routerLink]="['/users-detail', user.id]"
           mat-raised-button
           color="primary"
         >

@@ -1,6 +1,7 @@
 <div class="container">
   <div [formGroup]="form" class="form">
     <div class="form-content">
+      <h1>Create Product</h1>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
@@ -37,7 +38,7 @@
               class="form-control"
               data-mdb-select-init
             >
-              <option *ngFor="let manager of managers" [value]="manager.id">
+              <option p *ngFor="let manager of managers" [value]="manager.id">
                 {{ manager.name }}
               </option>
             </select>

@@ -12,7 +12,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LogOutDialogComponent } from '../../shared/components/log-out-dialog/log-out-dialog.component';
 import { Store } from '@ngrx/store';
-import { selectCurrentUser } from '../../store/reducer';
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -30,13 +30,11 @@ import { selectCurrentUser } from '../../store/reducer';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
-  currentUser$ = this.store.select(selectCurrentUser);
+  currentUser = localStorage.getItem('currentUser');
 
   constructor(private store: Store, private dialog: MatDialog) {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   openDialog() {
     this.dialog.open(LogOutDialogComponent);

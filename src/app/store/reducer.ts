@@ -7,7 +7,7 @@ const initialState: iProductsState = {
   managers: [],
   products: [],
   items: 0,
-  currentUser: ''
+
 };
 
 const products = createFeature({
@@ -41,11 +41,7 @@ const products = createFeature({
       items: action.items
     })),
 
-    on(authAction.loginSuccess, (state, action)=>({
-      ...state,
-      currentUser: action.loginSuccess.userData.name + ' '+ action.loginSuccess.userData.surname
-    }))
-  
+
   ),
 });
 
@@ -55,5 +51,5 @@ export const {
   selectProducts,
   selectItems,
   selectManagers,
-  selectCurrentUser
+
 } = products;

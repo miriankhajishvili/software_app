@@ -52,7 +52,7 @@ export interface iProductsState {
   managers: IManagers[];
   products: IProductResponse[];
   items: number;
-  currentUser: string;
+  
 }
 
 export interface pageRequest {

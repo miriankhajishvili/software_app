@@ -7,6 +7,14 @@
   >
     Add Product
   </button>
+  <button
+  style="background-color: #1c309f; margin-left: 12px"
+  mat-raised-button
+  color="primary"
+  [routerLink]="'/managers'"
+>
+  See Managers
+</button>
   <table mat-table [dataSource]="(products$ | async) || []">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef><b>Product Name</b></th>

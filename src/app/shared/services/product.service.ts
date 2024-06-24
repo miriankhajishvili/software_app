@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { BehaviorSubject, Observable,  } from 'rxjs';
-import { ICreateProductResponse, IGetAllProducts, IProduct,  pageRequest } from '../interfaces/product-list';
+import { BehaviorSubject, Observable } from 'rxjs';
+import {
+  ICreateProductResponse,
+  IGetAllProducts,
+  IProduct,
+  pageRequest,
+} from '../interfaces/product-list';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService extends BaseService {
-  currentProduct$ = new BehaviorSubject<any>('')
+  currentProduct$ = new BehaviorSubject<any>('');
 
   getAllProducts(pageRequest: pageRequest): Observable<IGetAllProducts> {
     const { page, search, sort } = pageRequest;

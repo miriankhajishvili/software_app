@@ -1,12 +1,20 @@
 import { createActionGroup, props } from '@ngrx/store';
-import { ICreateProductResponse, IProduct, IProductResponse,  pageRequest } from '../shared/interfaces/product-list';
+import {
+  ICreateProductResponse,
+  IProduct,
+  IProductResponse,
+  pageRequest,
+} from '../shared/interfaces/product-list';
 import { ILogin, ILoginRespons } from '../shared/interfaces/auth.interface';
+import { IManagers } from '../shared/interfaces/manager.interface';
 
 export const authAction = createActionGroup({
   source: 'auth',
   events: {
     login: props<{ form: ILogin }>(),
     loginSuccess: props<{ loginSuccess: ILoginRespons }>(),
+    loginFailure:  props<{ error: string }>()
+    
   },
 });
 
@@ -16,8 +24,7 @@ export const getAllProducts = createActionGroup({
     getAllProductsAction: props<{ pageRequest: pageRequest }>(),
     getAllProductsSuccess: props<{
       products: IProductResponse[];
-      items:  number
-      
+      items: number;
     }>(),
   },
 });
@@ -35,5 +42,16 @@ export const deleteProduct = createActionGroup({
   events: {
     deleteProductAction: props<{ id: number }>(),
     deleteClientActionSuccess: props<{ id: number }>(),
+  },
+});
+
+export const getAllManagers = createActionGroup({
+  source: 'getAllManagers',
+  events: {
+    getAllManagersAction: props<{ pageRequest: pageRequest }>(),
+    getAllManagersSuccess: props<{
+      managers: IManagers[];
+      items: number;
+    }>(),
   },
 });

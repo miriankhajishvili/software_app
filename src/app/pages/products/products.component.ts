@@ -1,11 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { IProduct, IProductResponse, pageRequest } from '../../shared/interfaces/product-list';
+import {
+  IProduct,
+  IProductResponse,
+  pageRequest,
+} from '../../shared/interfaces/product-list';
 import { Store } from '@ngrx/store';
 import { deleteProduct, getAllProducts } from '../../store/action';
 import { Observable } from 'rxjs';
@@ -34,13 +38,8 @@ import { AddEditProductComponent } from '../add-edit-product/add-edit-product.co
 export class ProductListComponent implements OnInit {
   products$: Observable<IProductResponse[]> = this.store.select(selectProducts);
   item$: Observable<number> = this.store.select(selectItems);
-  
-  displayedColumns: string[] = [
-    'name',
-    'price',
-    'quantity',
-    'delete',
-  ];
+
+  displayedColumns: string[] = ['name', 'price', 'quantity', 'delete'];
 
   pagination: pageRequest = {
     page: 1,
@@ -62,7 +61,6 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProducts();
-    this.products$.subscribe(res => console.log(res))
   }
 
   getAllProducts() {
@@ -85,9 +83,8 @@ export class ProductListComponent implements OnInit {
   }
 
   onEdit(product: IProduct) {
-    this.dialog.open(AddEditProductComponent), console.log(product);
-
-    this.productService.currentProduct$.next(product);
+    this.dialog.open(AddEditProductComponent),
+      this.productService.currentProduct$.next(product);
   }
 
   onAddProduct() {

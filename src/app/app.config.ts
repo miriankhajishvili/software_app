@@ -8,11 +8,12 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import { provideState, provideStore } from '@ngrx/store';
 import { productReducer } from './store/reducer';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
 import * as getAllProductsEffect from './store/effect';
 import * as createProductEffect from './store/effect';
 import * as deleteProductEffect from './store/effect';
 import * as loginEffect from './store/effect';
-import { authInterceptor } from './core/interceptors/auth.interceptor';
+import * as getAllManagersEffect from './store/effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,7 +26,8 @@ export const appConfig: ApplicationConfig = {
       getAllProductsEffect,
       createProductEffect,
       deleteProductEffect,
-      loginEffect
+      loginEffect,
+      getAllManagersEffect
     ),
     provideState({ name: 'products', reducer: productReducer }),
   ],

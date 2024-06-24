@@ -1,0 +1,76 @@
+<div style="margin-top: 25px" class="mat-elevation-z8">
+    <button
+      (click)="onAddManagers()"
+      style="background-color: #1c9f27; margin-left: 12px"
+      mat-raised-button
+      color="primary"
+    >
+      Add Product
+    </button>
+    <!-- <button
+    (click)="onAddProduct()"
+    style="background-color: #1c309f; margin-left: 12px"
+    mat-raised-button
+    color="primary"
+  >
+    See Managers
+  </button> -->
+    <table mat-table [dataSource]=" []">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef><b>Product Name</b></th>
+        <td mat-cell *matCellDef="let product">
+          {{ product.name }}
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef><b>Price</b></th>
+        <td mat-cell *matCellDef="let product">
+          {{ product.price | currency : "GEL" }}
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef><b>Quantity</b></th>
+        <td mat-cell *matCellDef="let product">{{ product.quantity }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let product">
+          <button
+            (click)="onEdit()"
+            style="background-color: #9f1c6b; margin-right: 20px"
+            mat-raised-button
+            color="primary"
+          >
+            Edit Product
+          </button>
+          <button
+            (click)="onDelete()"
+            style="background-color: #f14131"
+            mat-raised-button
+            color="primary"
+          >
+            Delete Product
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  
+    <mat-paginator
+      style="display: flex; justify-content: center"
+      pageSize="10"
+      [length]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+      aria-label="Select page of periodic elements"
+      [pageIndex]="0"
+      (page)="onPageChange()"
+    >
+    </mat-paginator>
+  </div>
+  

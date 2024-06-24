@@ -1,7 +1,6 @@
 import {
   Component,
   DestroyRef,
-  OnDestroy,
   OnInit,
   inject,
 } from '@angular/core';
@@ -14,8 +13,6 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
-
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ProductService } from '../../services/product.service';
 import { Store } from '@ngrx/store';
@@ -41,14 +38,12 @@ import { NgToastModule } from 'ng-angular-popup';
 export class DeleteConfirmDialogComponent implements OnInit {
   destroyRef: DestroyRef = inject(DestroyRef);
 
-  currentUserId!: string;
+  currentUserId!: number;
 
   constructor(
     public dialogRef: MatDialogRef<DeleteConfirmDialogComponent>,
     private productService: ProductService,
     private store: Store,
-
-    private router: Router // private ngToastService: NgToastService
   ) {}
 
   ngOnInit(): void {

@@ -1,9 +1,11 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { IProduct, iProductsState } from '../shared/interfaces/product-list';
 
-import { createProduct, deleteProduct, getAllProducts } from './action';
+import { createProduct, deleteProduct, getAllManagers, getAllProducts } from './action';
+import { access } from 'fs';
 
 const initialState: iProductsState = {
+  managers: [],
   products: [],
   items: 0,
 };
@@ -30,7 +32,14 @@ const products = createFeature({
         (products) => products.id !== action.id
       );
       return { ...state, products: updateProdudct };
-    })
+    }),
+
+    on(getAllManagers.getAllManagersAction, (state)=> ({...state})),
+    on(getAllManagers.getAllManagersSuccess, (state, action)=> ({
+      ...state,
+      managers: action.managers,
+      items: action.items
+    }))
   ),
 });
 
@@ -39,4 +48,5 @@ export const {
   reducer: productReducer,
   selectProducts,
   selectItems,
+  selectManagers
 } = products;

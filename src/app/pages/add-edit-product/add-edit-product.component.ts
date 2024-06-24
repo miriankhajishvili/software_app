@@ -40,7 +40,7 @@ export class AddEditProductComponent implements OnInit {
   onAddProduct() {
     const formValue = this.form.value;
     formValue.managers = [+formValue.managers];  // Convert string to number
-    console.log(formValue);
+  
     this.store.dispatch(createProduct.createProduct({ form: this.form.value }));
     this.form.reset();
   }

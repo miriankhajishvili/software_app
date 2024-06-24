@@ -1,4 +1,5 @@
 import { Data } from '@angular/router';
+import { IManagers } from './manager.interface';
 
 export interface IGetAllProducts {
   products: IProductResponse[];
@@ -21,8 +22,8 @@ export interface ICreateProductResponse {
   name: string;
   price: number;
   quantity: number;
-  createdAt: any;
-  updatedAt: any;
+  createdAt: Data;
+  updatedAt: Data;
   managers: [
     {
       id: number;
@@ -31,8 +32,8 @@ export interface ICreateProductResponse {
       surname: string;
       email: string;
       role: string;
-      createdAt: any;
-      updatedAt: any;
+      createdAt: Data;
+      updatedAt: Data;
     }
   ];
 }
@@ -42,11 +43,12 @@ export interface IProductResponse {
   name: string;
   price: number;
   quantity: number;
-  createdAt: any;
-  updatedAt: any;
+  createdAt: Data;
+  updatedAt: Data;
 }
 
 export interface iProductsState {
+  managers:IManagers[]
   products: IProductResponse[];
   items: number;
 }

@@ -5,13 +5,15 @@ import {
   authAction,
   createProduct,
   deleteProduct,
+  getAllManagers,
   getAllProducts,
 } from './action';
-import { map, switchMap } from 'rxjs';
+import { catchError, map, of, switchMap } from 'rxjs';
 import { NgToastModule, NgToastService } from 'ng-angular-popup';
 import { AuthService } from '../shared/services/auth.service';
 import { ILoginRespons } from '../shared/interfaces/auth.interface';
 import { Router } from '@angular/router';
+import { ManagerService } from '../shared/services/manager.service';
 
 export const getAllProductsEffect = createEffect(
   (actions$ = inject(Actions), productService = inject(ProductService)) => {
@@ -22,8 +24,7 @@ export const getAllProductsEffect = createEffect(
           map((res) => {
             return getAllProducts.getAllProductsSuccess({
               products: res.products,
-              items: res.total
-            
+              items: res.total,
             });
           })
         );
@@ -90,6 +91,34 @@ export const loginEffect = createEffect(
             router.navigate(['/products']);
 
             return authAction.loginSuccess({ loginSuccess: loginUser });
+          }),
+          catchError((error) => {
+            ngToastService.error({
+              detail: 'Error Message',
+              summary: 'Please check Email or Password',
+            });
+
+            return of(authAction.loginFailure({ error: error.message || 'Unknown error' }));
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
+
+export const getAllManagersEffect = createEffect(
+  (actions$ = inject(Actions), managerService = inject(ManagerService)) => {
+    return actions$.pipe(
+      ofType(getAllManagers.getAllManagersAction),
+      switchMap(({ pageRequest }) => {
+        return managerService.getAllManagers(pageRequest).pipe(
+          map((res) => {
+            return getAllManagers.getAllManagersSuccess({
+              managers: res.managers,
+              items: res.total,
+            });
           })
         );
       })

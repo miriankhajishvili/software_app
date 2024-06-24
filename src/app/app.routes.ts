@@ -28,6 +28,14 @@ export const routes: Routes = [
           canActivate: [authGuard]
       },
       {
+        path: 'managers',
+        loadComponent: () =>
+          import('./pages/managers/managers.component').then(
+            (m) => m.ManagersComponent
+          ),
+          canActivate: [authGuard]
+      },
+      {
         path: 'add-product',
         loadComponent: () =>
           import('./pages/add-edit-product/add-edit-product.component').then(

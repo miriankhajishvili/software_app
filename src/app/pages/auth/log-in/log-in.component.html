@@ -24,7 +24,7 @@
                 <input
                   matInput
                   placeholder="Password"
-                  type="password"
+                  [type]="hide? 'password' : 'text'"
                   name="password"
                   id="password"
                   formControlName="password"

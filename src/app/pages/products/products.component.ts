@@ -83,9 +83,16 @@ export class ProductListComponent implements OnInit {
   }
 
   onEdit(product: IProduct) {
-    this.dialog.open(AddEditProductComponent);
-    this.productService.onEditClick$.next(true)
-    this.productService.currentProduct$.next(product)
+    this.dialog.open(AddEditProductComponent, {
+      data: {
+        name: product.name,
+        quantity: product.quantity,
+        price: product.price,
+        managers: product.managers[0]
+      },
+    
+     
+    });
   }
 
   onSellProduct(product: IProduct) {}

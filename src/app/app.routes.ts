@@ -25,7 +25,7 @@ export const routes: Routes = [
           import('./pages/products/products.component').then(
             (m) => m.ProductListComponent
           ),
-          canActivate: [authGuard]
+        canActivate: [authGuard],
       },
       {
         path: 'managers',
@@ -33,21 +33,28 @@ export const routes: Routes = [
           import('./pages/managers/managers.component').then(
             (m) => m.ManagersComponent
           ),
-          canActivate: [authGuard]
+        canActivate: [authGuard],
       },
       {
         path: 'add-product',
         loadComponent: () =>
-          import('./pages/products/add-edit-product/add-edit-product.component').then(
-            (m) => m.AddEditProductComponent
+          import(
+            './pages/products/add-edit-product/add-edit-product.component'
+          ).then((m) => m.AddEditProductComponent),
+      },
+      {
+        path: 'sold-products',
+        loadComponent: () =>
+          import('./pages/sold-products/sold-product.component').then(
+            (m) => m.SoldProductComponent
           ),
       },
       {
         path: 'edit-product/:id',
         loadComponent: () =>
-          import('./pages/products/add-edit-product/add-edit-product.component').then(
-            (m) => m.AddEditProductComponent
-          ),
+          import(
+            './pages/products/add-edit-product/add-edit-product.component'
+          ).then((m) => m.AddEditProductComponent),
       },
     ],
   },
@@ -55,8 +62,8 @@ export const routes: Routes = [
     path: '**',
     pathMatch: 'full',
     loadComponent: () =>
-      import(
-        './shared/components/pagenotfound/pagenotfound.component'
-      ).then((m) => m.PagenotfoundComponent),
+      import('./shared/components/pagenotfound/pagenotfound.component').then(
+        (m) => m.PagenotfoundComponent
+      ),
   },
 ];

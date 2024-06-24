@@ -19,6 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
 
 import { AddEditProductComponent } from './add-edit-product/add-edit-product.component';
+import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 
 @Component({
   selector: 'app-product-list',
@@ -31,6 +32,7 @@ import { AddEditProductComponent } from './add-edit-product/add-edit-product.com
     MatTableModule,
     MatButtonModule,
     MatIconModule,
+    NavigationComponent
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
@@ -58,6 +60,7 @@ export class ProductListComponent implements OnInit {
     private store: Store,
     public dialog: MatDialog,
     private router: Router
+    
   ) {}
 
   ngOnInit(): void {
@@ -97,7 +100,5 @@ export class ProductListComponent implements OnInit {
 
   onSellProduct(product: IProduct) {}
 
-  onAddProduct() {
-    this.dialog.open(AddEditProductComponent);
-  }
+
 }

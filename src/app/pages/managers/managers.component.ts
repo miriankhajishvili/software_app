@@ -11,6 +11,7 @@ import { pageRequest } from '../../shared/interfaces/product-list';
 import { Observable } from 'rxjs';
 import { IManagers } from '../../shared/interfaces/manager.interface';
 import { selectManagers } from '../../store/reducer';
+import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 
 @Component({
   selector: 'app-managers',
@@ -23,6 +24,7 @@ import { selectManagers } from '../../store/reducer';
     MatTableModule,
     MatButtonModule,
     MatIconModule,
+    NavigationComponent
   ],
   templateUrl: './managers.component.html',
   styleUrl: './managers.component.scss',

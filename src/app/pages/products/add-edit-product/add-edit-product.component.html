@@ -1,38 +1,34 @@
+<div  class="main-container" [formGroup]="data.onclick ? managerForm : form">
+  <h1 mat-dialog-title>{{data.onclick ? 'Add Manager' : 'Add Product'}}</h1>
+  <div class="form-field-container">
+    <mat-form-field class="mat-field">
+      <mat-label>{{data.onclick ? 'Manager Firstname' : 'Product Name'}}</mat-label>
+      <input matInput type="text"  [formControlName]="data.onclick ? 'firstname' : 'name'" />
+    </mat-form-field>
 
-  <div class="main-container" [formGroup]="form" >
-      <h1 mat-dialog-title>Create Product</h1>
-          <mat-form-field class="mat-field" >
-            <mat-label>Product Name</mat-label>
-            <input
-            matInput
-              type="text"
-              formControlName="name"
-            />
-          </mat-form-field>
-          <mat-form-field class="mat-field" >
-            <mat-label>Quantity</mat-label>
-            <input
-            matInput
-              type="number"
-              formControlName="quantity"
-            />
-          </mat-form-field>
+    <mat-form-field class="mat-field">
+      <mat-label>{{data.onclick ? 'Manager Lastname' : 'Product Quantity'}}</mat-label>
+      <input matInput [type]="data.onclick  ? 'text' : 'number'"  [formControlName]="data.onclick ? 'lastname' : 'quantity'" />
+    </mat-form-field>
 
-        <mat-form-field class="mat-field" >
-          <mat-label>Price</mat-label>
-          <input  matInput type="number" formControlName="price" />
-        </mat-form-field>
-        <mat-form-field class="mat-field" >
-          <mat-label>Please select the manager</mat-label>
-          <mat-select formControlName="managers">
-            <mat-option *ngFor="let manager of managers" [value]="manager.id">
-              {{ manager.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      <button  mat-raised-button color="primary"
-       (click)="onAddProduct()" type="button">
-        Submit
-      </button>
+    <mat-form-field class="mat-field">
+      <mat-label>{{data.onclick? 'Manager Password' : 'Product Price'}}</mat-label>
+      <input matInput  [type]="data.onclick ? 'text' : 'number'"  [formControlName]="data.onclick ? 'password' : 'price'" />
+    </mat-form-field>
+
+
+
+    @if (!data.onclick ) {
+      <mat-form-field class="mat-field">
+        <mat-label>Please select the manager</mat-label>
+        <mat-select formControlName="managers">
+          <mat-option *ngFor="let manager of managers" [value]="manager.id">
+            {{ manager.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    }
+
   </div>
-
+  <button mat-raised-button color="primary" (click)="onAddProduct()" type="button">Submit</button>
+</div>

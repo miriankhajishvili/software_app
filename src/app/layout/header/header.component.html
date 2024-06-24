@@ -13,7 +13,7 @@
       <span class="example-spacer"></span>
       <!-- <p style="margin-top: 13px;">{{localData}}</p> -->
       <div class="header-right-side">
-        <span>Log Out</span>
+        <span>{{currentUser$ | async}}</span>
         <button
         (click)="openDialog()"
           mat-icon-button

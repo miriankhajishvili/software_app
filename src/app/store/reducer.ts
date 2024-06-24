@@ -1,13 +1,13 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { IProduct, iProductsState } from '../shared/interfaces/product-list';
+import { iProductsState } from '../shared/interfaces/product-list';
 
-import { createProduct, deleteProduct, getAllManagers, getAllProducts } from './action';
-import { access } from 'fs';
+import { authAction, createProduct, deleteProduct, getAllManagers, getAllProducts } from './action';
 
 const initialState: iProductsState = {
   managers: [],
   products: [],
   items: 0,
+  currentUser: ''
 };
 
 const products = createFeature({
@@ -39,7 +39,13 @@ const products = createFeature({
       ...state,
       managers: action.managers,
       items: action.items
+    })),
+
+    on(authAction.loginSuccess, (state, action)=>({
+      ...state,
+      currentUser: action.loginSuccess.userData.name + ' '+ action.loginSuccess.userData.surname
     }))
+  
   ),
 });
 
@@ -48,5 +54,6 @@ export const {
   reducer: productReducer,
   selectProducts,
   selectItems,
-  selectManagers
+  selectManagers,
+  selectCurrentUser
 } = products;

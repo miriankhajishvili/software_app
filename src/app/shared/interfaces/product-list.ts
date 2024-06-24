@@ -1,5 +1,6 @@
 import { Data } from '@angular/router';
 import { IManagers } from './manager.interface';
+import { ILoginUser } from './auth.interface';
 
 export interface IGetAllProducts {
   products: IProductResponse[];
@@ -48,9 +49,10 @@ export interface IProductResponse {
 }
 
 export interface iProductsState {
-  managers:IManagers[]
+  managers: IManagers[];
   products: IProductResponse[];
   items: number;
+  currentUser: string;
 }
 
 export interface pageRequest {

@@ -15,6 +15,7 @@ import { ILoginRespons } from '../shared/interfaces/auth.interface';
 import { Router } from '@angular/router';
 import { ManagerService } from '../shared/services/manager.service';
 
+
 export const getAllProductsEffect = createEffect(
   (actions$ = inject(Actions), productService = inject(ProductService)) => {
     return actions$.pipe(

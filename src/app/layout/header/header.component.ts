@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -11,6 +11,8 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LogOutDialogComponent } from '../../shared/components/log-out-dialog/log-out-dialog.component';
+import { Store } from '@ngrx/store';
+import { selectCurrentUser } from '../../store/reducer';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -27,8 +29,14 @@ import { LogOutDialogComponent } from '../../shared/components/log-out-dialog/lo
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
-  constructor(private router: Router, private dialog: MatDialog) {}
+export class HeaderComponent implements OnInit {
+  currentUser$ = this.store.select(selectCurrentUser);
+
+  constructor(private store: Store, private dialog: MatDialog) {}
+
+  ngOnInit(): void {
+
+  }
 
   openDialog() {
     this.dialog.open(LogOutDialogComponent);

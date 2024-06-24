@@ -13,7 +13,6 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ProductService } from '../../services/product.service';
 import { Store } from '@ngrx/store';
 import { deleteProduct } from '../../../store/action';

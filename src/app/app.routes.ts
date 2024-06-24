@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
-import path from 'path';
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
@@ -39,8 +38,8 @@ export const routes: Routes = [
         path: 'add-product',
         loadComponent: () =>
           import(
-            './pages/products/add-edit-product/add-edit-product.component'
-          ).then((m) => m.AddEditProductComponent),
+            './shared/components/add-edit-form/add-edit-form.component'
+          ).then((m) => m.AddEditFormComponent),
       },
       {
         path: 'sold-products',
@@ -53,8 +52,8 @@ export const routes: Routes = [
         path: 'edit-product/:id',
         loadComponent: () =>
           import(
-            './pages/products/add-edit-product/add-edit-product.component'
-          ).then((m) => m.AddEditProductComponent),
+        './shared/components/add-edit-form/add-edit-form.component'
+          ).then((m) => m.AddEditFormComponent),
       },
     ],
   },

@@ -3,7 +3,9 @@ import { Component, Input, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
-import { AddEditProductComponent } from '../../../pages/products/add-edit-product/add-edit-product.component';
+import { AddEditFormComponent } from '../add-edit-form/add-edit-form.component';
+
+
 
 @Component({
   selector: 'app-navigation',
@@ -18,7 +20,7 @@ export class NavigationComponent {
 
   onAddProduct() {
     this.onAddManagerClick = false;
-    this.dialog.open(AddEditProductComponent, {
+    this.dialog.open(AddEditFormComponent, {
       data: {
         onlcick: this.onAddManagerClick,
       },
@@ -26,7 +28,7 @@ export class NavigationComponent {
   }
   onAddManager() {
     this.onAddManagerClick = true;
-    this.dialog.open(AddEditProductComponent, {
+    this.dialog.open(AddEditFormComponent, {
       data: {
         onclick: this.onAddManagerClick,
       },

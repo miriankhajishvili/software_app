@@ -18,8 +18,10 @@ import { ProductService } from '../../shared/services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
 
-import { AddEditProductComponent } from './add-edit-product/add-edit-product.component';
+
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
+import { AddEditFormComponent } from '../../shared/components/add-edit-form/add-edit-form.component';
+
 
 @Component({
   selector: 'app-product-list',
@@ -86,7 +88,7 @@ export class ProductListComponent implements OnInit {
   }
 
   onEdit(product: IProduct) {
-    this.dialog.open(AddEditProductComponent, {
+    this.dialog.open(AddEditFormComponent, {
       data: {
         name: product.name,
         quantity: product.quantity,

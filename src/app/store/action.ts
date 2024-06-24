@@ -1,5 +1,5 @@
 import { createActionGroup, props } from '@ngrx/store';
-import { IProduct, pageRequest } from '../shared/interfaces/product-list';
+import { ICreateProductResponse, IProduct, IProductResponse,  pageRequest } from '../shared/interfaces/product-list';
 import { ILogin, ILoginRespons } from '../shared/interfaces/auth.interface';
 
 export const authAction = createActionGroup({
@@ -15,8 +15,9 @@ export const getAllProducts = createActionGroup({
   events: {
     getAllProductsAction: props<{ pageRequest: pageRequest }>(),
     getAllProductsSuccess: props<{
-      products: IProduct[];
-      items: number;
+      products: IProductResponse[];
+      items:  number
+      
     }>(),
   },
 });
@@ -25,14 +26,14 @@ export const createProduct = createActionGroup({
   source: 'createPRoduct',
   events: {
     createProduct: props<{ form: IProduct }>(),
-    createProductSuccess: props<{ newProduct: IProduct }>(),
+    createProductSuccess: props<{ newProduct: ICreateProductResponse }>(),
   },
 });
 
 export const deleteProduct = createActionGroup({
   source: 'deleteProduct',
   events: {
-    deleteProductAction: props<{ id: string }>(),
-    deleteClientActionSuccess: props<{ id: string }>(),
+    deleteProductAction: props<{ id: number }>(),
+    deleteClientActionSuccess: props<{ id: number }>(),
   },
 });

@@ -21,8 +21,9 @@ export const getAllProductsEffect = createEffect(
         return productService.getAllProducts(pageRequest).pipe(
           map((res) => {
             return getAllProducts.getAllProductsSuccess({
-              products: res.data,
-              items: res.items,
+              products: res.products,
+              items: res.total
+            
             });
           })
         );

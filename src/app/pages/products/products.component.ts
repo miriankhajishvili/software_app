@@ -5,7 +5,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { IProduct, pageRequest } from '../../shared/interfaces/product-list';
+import { IProduct, IProductResponse, pageRequest } from '../../shared/interfaces/product-list';
 import { Store } from '@ngrx/store';
 import { deleteProduct, getAllProducts } from '../../store/action';
 import { Observable } from 'rxjs';
@@ -27,18 +27,18 @@ import { AddEditProductComponent } from '../add-edit-product/add-edit-product.co
     MatTableModule,
     MatButtonModule,
     MatIconModule,
-
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
 export class ProductListComponent implements OnInit {
-  products$: Observable<IProduct[]> = this.store.select(selectProducts);
+  products$: Observable<IProductResponse[]> = this.store.select(selectProducts);
   item$: Observable<number> = this.store.select(selectItems);
+  
   displayedColumns: string[] = [
-    'productName',
-    'productPrice',
-    'productQuantity',
+    'name',
+    'price',
+    'quantity',
     'delete',
   ];
 
@@ -61,7 +61,8 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getAllProducts()
+    this.getAllProducts();
+    this.products$.subscribe(res => console.log(res))
   }
 
   getAllProducts() {

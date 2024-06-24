@@ -8,23 +8,23 @@
     Add Product
   </button>
   <table mat-table [dataSource]="(products$ | async) || []">
-    <ng-container matColumnDef="productName">
+    <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef><b>Product Name</b></th>
       <td mat-cell *matCellDef="let product">
-        {{ product.productName }}
+        {{ product.name }}
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="productPrice">
+    <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef><b>Price</b></th>
       <td mat-cell *matCellDef="let product">
-        {{ product.productPrice | currency : "GEL" }}
+        {{ product.price | currency : "GEL" }}
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="productQuantity">
+    <ng-container matColumnDef="quantity">
       <th mat-header-cell *matHeaderCellDef><b>Quantity</b></th>
-      <td mat-cell *matCellDef="let product">{{ product.productQuantity }}</td>
+      <td mat-cell *matCellDef="let product">{{ product.quantity }}</td>
     </ng-container>
 
     <ng-container matColumnDef="delete">

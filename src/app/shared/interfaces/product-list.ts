@@ -1,23 +1,53 @@
-export interface myData {
-  first: number;
-  prev: number;
-  next: number;
-  last: number;
-  pages: number;
-  items: number;
-  data: IProduct[];
+import { Data } from '@angular/router';
+
+export interface IGetAllProducts {
+  products: IProductResponse[];
+  total: number;
+  perPage: number;
+  currentPage: number;
+  nextPage: any;
 }
 
 export interface IProduct {
-  id: string;
+  id?: string;
   name: string;
   price: string;
   quantity: number;
-  managers: [];
+  managers: number[];
+}
+
+export interface ICreateProductResponse {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  createdAt: any;
+  updatedAt: any;
+  managers: [
+    {
+      id: number;
+      username: string;
+      name: string;
+      surname: string;
+      email: string;
+      role: string;
+      createdAt: any;
+      updatedAt: any;
+    }
+  ];
+}
+
+export interface IProductResponse {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+  createdAt: any;
+  updatedAt: any;
 }
 
 export interface iProductsState {
-  products: IProduct[];
+  products: IProductResponse[];
   items: number;
 }
 

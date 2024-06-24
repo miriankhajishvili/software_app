@@ -15,11 +15,17 @@ import { ProductService } from '../../shared/services/product.service';
 })
 export class AddEditProductComponent implements OnInit {
   form: FormGroup = new FormGroup({
-    productName: new FormControl(),
-    productPrice: new FormControl(),
-    productQuantity: new FormControl(),
-    manager: new FormControl
+    name: new FormControl(),
+    quantity: new FormControl(),
+    price: new FormControl(),
+    managers: new FormControl(null),
   });
+
+  managers = [
+    { id: 1, name: 'Manager 1' },
+    { id: 2, name: 'Manager 2' },
+    { id: 3, name: 'Manager 3' }
+  ];
 
   constructor(
     private store: Store,
@@ -32,7 +38,9 @@ export class AddEditProductComponent implements OnInit {
   }
 
   onAddProduct() {
-    console.log(this.form.value);
+    const formValue = this.form.value;
+    formValue.managers = [+formValue.managers];  // Convert string to number
+    console.log(formValue);
     this.store.dispatch(createProduct.createProduct({ form: this.form.value }));
     this.form.reset();
   }

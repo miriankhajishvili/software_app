@@ -31,6 +31,7 @@ import { Store } from '@ngrx/store';
 })
 export class HeaderComponent implements OnInit {
   currentUser = localStorage.getItem('currentUser');
+  currentRole = localStorage.getItem('Role')
 
   constructor(private store: Store, private dialog: MatDialog) {}
 

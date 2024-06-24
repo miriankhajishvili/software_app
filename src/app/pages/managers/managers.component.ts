@@ -8,6 +8,9 @@ import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { getAllManagers } from '../../store/action';
 import { pageRequest } from '../../shared/interfaces/product-list';
+import { Observable } from 'rxjs';
+import { IManagers } from '../../shared/interfaces/manager.interface';
+import { selectManagers } from '../../store/reducer';
 
 @Component({
   selector: 'app-managers',
@@ -25,7 +28,11 @@ import { pageRequest } from '../../shared/interfaces/product-list';
   styleUrl: './managers.component.scss',
 })
 export class ManagersComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'price', 'quantity', 'delete'];
+
+  managers$: Observable<IManagers[]> = this.store.select(selectManagers);
+
+
+  displayedColumns: string[] = ['name', 'price', 'totalPriceOfSellingProducts', 'delete'];
   pagination: pageRequest = {
     page: 1,
     row: 10,

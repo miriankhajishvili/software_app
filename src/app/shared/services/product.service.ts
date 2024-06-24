@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import {
   ICreateProductResponse,
   IGetAllProducts,
@@ -13,6 +13,7 @@ import {
 })
 export class ProductService extends BaseService {
   currentProduct$ = new BehaviorSubject<any>('');
+  onEditClick$ = new BehaviorSubject<boolean>(false)
 
   getAllProducts(pageRequest: pageRequest): Observable<IGetAllProducts> {
     const { page, search, sort } = pageRequest;

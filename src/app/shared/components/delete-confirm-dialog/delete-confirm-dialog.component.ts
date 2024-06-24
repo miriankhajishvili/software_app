@@ -51,9 +51,7 @@ export class DeleteConfirmDialogComponent implements OnInit {
   }
 
   getCurrentUsersId() {
-    this.productService.currentProduct$
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((res) => (this.currentUserId = res.id));
+   
   }
 
   onYesClick() {

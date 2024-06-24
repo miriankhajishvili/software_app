@@ -18,7 +18,7 @@ import { ProductService } from '../../shared/services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
 
-import { AddEditProductComponent } from '../add-edit-product/add-edit-product.component';
+import { AddEditProductComponent } from './add-edit-product/add-edit-product.component';
 
 @Component({
   selector: 'app-product-list',
@@ -38,6 +38,7 @@ import { AddEditProductComponent } from '../add-edit-product/add-edit-product.co
 export class ProductListComponent implements OnInit {
   products$: Observable<IProductResponse[]> = this.store.select(selectProducts);
   item$: Observable<number> = this.store.select(selectItems);
+  userRole = localStorage.getItem('Role');
 
   displayedColumns: string[] = ['name', 'price', 'quantity', 'delete'];
 
@@ -78,17 +79,18 @@ export class ProductListComponent implements OnInit {
   }
 
   onDelete(product: IProduct) {
-    this.dialog.open(DeleteConfirmDialogComponent),
-      this.productService.currentProduct$.next(product);
+    this.dialog.open(DeleteConfirmDialogComponent);
   }
 
   onEdit(product: IProduct) {
-    this.dialog.open(AddEditProductComponent),
-      this.productService.currentProduct$.next(product);
+    this.dialog.open(AddEditProductComponent);
+    this.productService.onEditClick$.next(true)
+    this.productService.currentProduct$.next(product)
   }
 
+  onSellProduct(product: IProduct) {}
+
   onAddProduct() {
-    this.productService.currentProduct$.next(null);
     this.dialog.open(AddEditProductComponent);
   }
 }

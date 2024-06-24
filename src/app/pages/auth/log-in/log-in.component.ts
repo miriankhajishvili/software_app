@@ -21,19 +21,22 @@ import { HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [
     CommonModule,
-    MatInputModule,
     MatCardModule,
+    MatInputModule,
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
     MatCheckboxModule,
     ReactiveFormsModule,
     HttpClientModule,
+   
   ],
   templateUrl: './log-in.component.html',
   styleUrl: './log-in.component.scss',
 })
 export class LogInComponent {
+
+  hide: boolean = true;
   form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -42,6 +45,15 @@ export class LogInComponent {
       Validators.maxLength(15),
     ]),
   });
+
+
+  get getEmail() {
+    return this.form.get('email');
+  }
+
+  get getPassword() {
+    return this.form.get('password');
+  }
 
   constructor(private store: Store) {}
 

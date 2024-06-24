@@ -86,6 +86,7 @@ export const loginEffect = createEffect(
         return authService.login(form).pipe(
           map((loginUser: ILoginRespons) => {
             localStorage.setItem('currentUser', loginUser.userData.name + ' ' + loginUser.userData.surname)
+            localStorage.setItem('Role', loginUser.userData.role)
             ngToastService.success({
               detail: 'Success Message',
               summary: 'User logged out successfully',

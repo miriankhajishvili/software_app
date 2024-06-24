@@ -38,14 +38,14 @@ export const routes: Routes = [
       {
         path: 'add-product',
         loadComponent: () =>
-          import('./pages/add-edit-product/add-edit-product.component').then(
+          import('./pages/products/add-edit-product/add-edit-product.component').then(
             (m) => m.AddEditProductComponent
           ),
       },
       {
         path: 'edit-product/:id',
         loadComponent: () =>
-          import('./pages/add-edit-product/add-edit-product.component').then(
+          import('./pages/products/add-edit-product/add-edit-product.component').then(
             (m) => m.AddEditProductComponent
           ),
       },

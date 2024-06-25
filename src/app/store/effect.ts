@@ -199,12 +199,20 @@ export const getAllSoldProductsEffect = createEffect(
 );
 
 export const createManagerEffect = createEffect(
-  (actions$ = inject(Actions), managerService = inject(ManagerService)) => {
+  (
+    actions$ = inject(Actions),
+    managerService = inject(ManagerService),
+    ngToastService = inject(NgToastService)
+  ) => {
     return actions$.pipe(
       ofType(createManager.createManagerAction),
       switchMap(({ form }) => {
         return managerService.createManager(form).pipe(
           map((res) => {
+            ngToastService.success({
+              detail: 'Success Message',
+              summary: 'The manager was created successfully',
+            });
             return createManager.createManagerSuccess({
               newManager: res,
             });

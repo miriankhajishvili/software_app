@@ -61,11 +61,11 @@ export class AddEditFormComponent implements OnInit {
   });
 
   managerForm: FormGroup = new FormGroup({
-    firstname: new FormControl('', [
+    firstName: new FormControl('', [
       Validators.required,
       lettersOnlyValidator(),
     ]),
-    lastname: new FormControl('', [
+    lastName: new FormControl('', [
       Validators.required,
       lettersOnlyValidator(),
     ]),

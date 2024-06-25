@@ -10,9 +10,9 @@ export interface IGetAllManagers {
 
 export interface IManagers {
   id: number;
-  name: string;
+  lastName: string;
   totalPriceOfSellingProducts: number;
-  surname: string;
+  firstName: string;
   password: string;
   email: string;
   role: string;
@@ -22,8 +22,8 @@ export interface IManagers {
 
 export interface IManagerCreate {
 
-  firstname: string
-  surname: string
+  firstName: string
+  lastName: string
   email: string
-  password: number;
+  password: string;
 }

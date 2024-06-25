@@ -8,7 +8,7 @@
   <div class="form-field-container">
     <mat-form-field class="mat-field">
       <mat-label>{{data.onclick ? 'Manager Firstname' : 'Product Name'}}</mat-label>
-      <input matInput type="text" [formControlName]="data.onclick ? 'firstname' : 'name'" />
+      <input matInput type="text" [formControlName]="data.onclick ? 'firstName' : 'name'" />
 
       @if (firstname?.errors?.['required'] && data.onclick ) {
         <mat-error>Firstname is mandatory</mat-error>
@@ -25,7 +25,7 @@
 
     <mat-form-field class="mat-field">
       <mat-label>{{data.onclick ? 'Manager Lastname' : 'Product Quantity'}}</mat-label>
-      <input matInput [type]="data.onclick ? 'text' : 'number'" [formControlName]="data.onclick ? 'lastname' : 'quantity'" />
+      <input matInput [type]="data.onclick ? 'text' : 'number'" [formControlName]="data.onclick ? 'lastName' : 'quantity'" />
 
       @if (lastname?.errors?.['required'] && data.onclick ) {
         <mat-error>Lastname is mandatory</mat-error>
@@ -78,7 +78,7 @@
         <mat-label>Please select the manager</mat-label>
         <mat-select formControlName="managers" multiple>
           @for (manager of (allManagers$  | async); track manager) {
-            <mat-option [value]="manager.id">{{manager.name + ' ' + manager.surname}}</mat-option>
+            <mat-option [value]="manager.id">{{manager.firstName + ' ' + manager.lastName}}</mat-option>
           }
         </mat-select>
       </mat-form-field>

@@ -2,21 +2,21 @@
     <app-navigation ></app-navigation>
   
     <table mat-table [dataSource]="[]">
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef><b>Manager</b></th>
+      <ng-container matColumnDef="productname">
+        <th mat-header-cell *matHeaderCellDef><b>Product name</b></th>
         <td mat-cell *matCellDef="let manager">
-          {{ manager.name + " " + manager.surname }}
+        <h1>Gela</h1>
         </td>
       </ng-container>
   
       <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef><b>Registration Data</b></th>
+        <th mat-header-cell *matHeaderCellDef><b>Product price</b></th>
         <td mat-cell *matCellDef="let manager">
           {{ manager.createdAt | date }}
         </td>
       </ng-container>
   
-      <ng-container matColumnDef="totalPriceOfSellingProducts">
+      <ng-container matColumnDef="quantity">
         <th mat-header-cell *matHeaderCellDef>
           <b>Total amount of product sold</b>
         </th>
@@ -25,28 +25,14 @@
         </td>
       </ng-container>
   
-      <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef></th>
+      <ng-container matColumnDef="solddata">
+        <th mat-header-cell *matHeaderCellDef>
+          <b>Sold Data</b>
+        </th>
         <td mat-cell *matCellDef="let manager">
-          <button
-            (click)="onEdit()"
-            style="background-color: #9f1c6b; margin-right: 20px"
-            mat-raised-button
-            color="primary"
-          >
-            Edit Manager
-          </button>
-          <button
-            (click)="onDelete()"
-            style="background-color: #f14131"
-            mat-raised-button
-            color="primary"
-          >
-            Delete Manager
-          </button>
+          {{ manager.createdAt | date }}
         </td>
       </ng-container>
-  
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>

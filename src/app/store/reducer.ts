@@ -1,14 +1,23 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { iProductsState } from '../shared/interfaces/product-list';
 
-import { authAction, createManager, createProduct, deleteManager, deleteProduct, editProduct, getAllManagers, getAllProducts, getAllSoldProducts } from './action';
+import {
+  authAction,
+  createManager,
+  createProduct,
+  deleteManager,
+  deleteProduct,
+  editProduct,
+  getAllManagers,
+  getAllProducts,
+  getAllSoldProducts,
+} from './action';
 
 const initialState: iProductsState = {
   soldProducts: [],
   managers: [],
   products: [],
   items: 0,
-
 };
 
 const products = createFeature({
@@ -42,18 +51,18 @@ const products = createFeature({
       return { ...state, managers: updateManager };
     }),
 
-    on(getAllManagers.getAllManagersAction, (state)=> ({...state})),
-    on(getAllManagers.getAllManagersSuccess, (state, action)=> ({
+    on(getAllManagers.getAllManagersAction, (state) => ({ ...state })),
+    on(getAllManagers.getAllManagersSuccess, (state, action) => ({
       ...state,
       managers: action.managers,
-      items: action.items
+      items: action.items,
     })),
 
-    on(getAllSoldProducts.getAllSoldProductsAction, (state)=> ({...state})),
-    on(getAllSoldProducts.getAllSoldProductsSuccess, (state, action)=> ({
+    on(getAllSoldProducts.getAllSoldProductsAction, (state) => ({ ...state })),
+    on(getAllSoldProducts.getAllSoldProductsSuccess, (state, action) => ({
       ...state,
       soldProducts: action.soldProducts,
-      items: action.items
+      items: action.items,
     })),
 
     on(createManager.createManagerAction, (state) => ({ ...state })),
@@ -65,16 +74,14 @@ const products = createFeature({
     on(editProduct.editProductAction, (state) => ({ ...state })),
     on(editProduct.editProductSuccess, (state, action) => {
       const editedProduct = state.products.map((products) => {
-    
         if (action.product.id === products.id) {
           return action.product;
         } else {
           return products;
         }
-    
       });
       return { ...state, products: editedProduct };
-    }),
+    })
   ),
 });
 
@@ -84,5 +91,4 @@ export const {
   selectProducts,
   selectItems,
   selectManagers,
-
 } = products;

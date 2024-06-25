@@ -10,7 +10,10 @@ import {
   IManagerCreate,
   IManagers,
 } from '../shared/interfaces/manager.interface';
-import { IGetAllSoldProducts, IProducts } from '../shared/interfaces/sold-product.interface';
+import {
+  IGetAllSoldProducts,
+  IProducts,
+} from '../shared/interfaces/sold-product.interface';
 
 export const authAction = createActionGroup({
   source: 'auth',

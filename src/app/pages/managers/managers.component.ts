@@ -14,6 +14,7 @@ import { selectManagers } from '../../store/reducer';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
+import { AddEditFormComponent } from '../../shared/components/add-edit-form/add-edit-form.component';
 
 @Component({
   selector: 'app-managers',
@@ -61,7 +62,11 @@ export class ManagersComponent implements OnInit {
 
   onAddManagers() {}
 
-  onEdit() {}
+  onEdit() {
+
+    
+
+  }
 
   onDelete(manager: IManagers) {
     this.matDialog.open(DeleteConfirmDialogComponent, {

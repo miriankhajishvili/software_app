@@ -24,6 +24,7 @@ import { positiveNumberValidator } from '../../regex/nonNegativeNumberValidator'
 import { selectManagers } from '../../../store/reducer';
 import { Observable } from 'rxjs';
 import { IManagers } from '../../interfaces/manager.interface';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -100,7 +101,7 @@ export class AddEditFormComponent implements OnInit {
     return this.managerForm.get('password');
   }
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private productService:ProductService) {}
 
   ngOnInit(): void {
     this.form.patchValue(this.data!);
@@ -123,10 +124,15 @@ export class AddEditFormComponent implements OnInit {
   }
 
   onEditProduct() {
-    console.log(this.data);
+    const formValue = this.form.value;
+    formValue.price = +formValue.price;
+    formValue.quantity = +formValue.quantity;
+    console.log(this.data.id)
+    
     this.store.dispatch(
       editProduct.editProductAction({ form: this.form.value, id: this.data.id })
     );
+
     this.form.reset();
   }
 }

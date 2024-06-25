@@ -1,5 +1,10 @@
 <div class="main-container" [formGroup]="data.onclick ? managerForm : form">
-  <h1 mat-dialog-title>{{data.onclick ? 'Add Manager' : 'Add Product'}}</h1>
+
+  @if (!data.editclick) { <h1 mat-dialog-title>{{data.onclick ? 'Add Manager' : 'Add Product'}}</h1>}
+@if (data.editclick) {
+  <h1 mat-dialog-title>Edit Product</h1>
+}
+ 
   <div class="form-field-container">
     <mat-form-field class="mat-field">
       <mat-label>{{data.onclick ? 'Manager Firstname' : 'Product Name'}}</mat-label>

@@ -13,8 +13,6 @@ import {
   providedIn: 'root',
 })
 export class ProductService extends BaseService {
-  currentProduct$ = new BehaviorSubject<any>('');
-  onEditClick$ = new BehaviorSubject<boolean>(false)
 
   getAllProducts(pageRequest: pageRequest): Observable<IGetAllProducts> {
     const { page, search, sort } = pageRequest;

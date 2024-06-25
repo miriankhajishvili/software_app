@@ -16,7 +16,7 @@ import { getAllSoldProducts } from '../../store/action';
   styleUrl: './sold-product.component.scss'
 })
 export class SoldProductComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'price', 'quantity', 'delete'];
+  displayedColumns: string[] = ['productname', 'price', 'quantity', 'solddata'];
 
   pagination: pageRequest = {
     page: 1,

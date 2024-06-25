@@ -221,7 +221,7 @@ export const editProductEffect = createEffect(
     return action$.pipe(
       ofType(editProduct.editProductAction),
       switchMap(({ form }, id) => {
-        console.log(form);
+        console.log(id);
         return productService.editProduct(id, form).pipe(
           map((data) => {
             return editProduct.editProductSuccess({

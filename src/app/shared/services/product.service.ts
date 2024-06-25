@@ -5,6 +5,7 @@ import {
   ICreateProductResponse,
   IGetAllProducts,
   IProduct,
+  IProductResponse,
   pageRequest,
 } from '../interfaces/product-list';
 
@@ -25,8 +26,8 @@ export class ProductService extends BaseService {
     return this.post<ICreateProductResponse>(`products`, form);
   }
 
-  editProduct(id: string, form: IProduct): Observable<IProduct> {
-    return this.put<IProduct>(`products/${id}`, form);
+  editProduct(id: number, form: IProduct): Observable<ICreateProductResponse> {
+    return this.patch<ICreateProductResponse>(`products/${id}`, form);
   }
 
   deleteProduct(id: number): Observable<IProduct> {

@@ -5,13 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { authAction } from '../../../store/action';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,17 +20,14 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
-    MatCheckboxModule,
     ReactiveFormsModule,
     HttpClientModule,
-   
   ],
   templateUrl: './log-in.component.html',
-  styleUrl: './log-in.component.scss',
+  styleUrls: ['./log-in.component.scss'],
 })
 export class LogInComponent {
-
-  hide: boolean = true;
+  hide = true;
   form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
@@ -45,7 +36,6 @@ export class LogInComponent {
       Validators.maxLength(15),
     ]),
   });
-
 
   get getEmail() {
     return this.form.get('email');
@@ -58,6 +48,8 @@ export class LogInComponent {
   constructor(private store: Store) {}
 
   onSignIn() {
-    this.store.dispatch(authAction.login({ form: this.form.value }));
+    if (this.form.valid) {
+      this.store.dispatch(authAction.login({ form: this.form.value }));
+    }
   }
 }

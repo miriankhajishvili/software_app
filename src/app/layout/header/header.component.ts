@@ -1,17 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-
 import { MatDividerModule } from '@angular/material/divider';
-import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../shared/services/auth.service';
+import { RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LogOutDialogComponent } from '../../shared/components/log-out-dialog/log-out-dialog.component';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-header',
@@ -27,13 +24,13 @@ import { Store } from '@ngrx/store';
     RouterModule,
   ],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   currentUser = localStorage.getItem('currentUser');
-  currentRole = localStorage.getItem('Role')
+  currentRole = localStorage.getItem('Role');
 
-  constructor(private store: Store, private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 

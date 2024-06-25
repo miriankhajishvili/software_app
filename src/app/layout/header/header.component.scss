@@ -1,27 +1,20 @@
 .header {
-    width: 100%;
-    background-color: #1a3edee2;
-  
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  
-    .example-spacer {
-      flex: 1 1 auto;
-    }
-    .img-container {
-      height: 50px;
-      img {
-        height: 100%;
-      }
-    }
-    .logo {
-      cursor: pointer;
-    }
-  
-    .header-right-side {
-      display: flex;
-      align-items: center;
-    }
-  }
-  
+  width: 100%;
+  background-color: #1a3edee2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.header-right-side {
+  display: flex;
+  align-items: center;
+}

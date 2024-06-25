@@ -17,11 +17,8 @@ import { selectItems, selectProducts } from '../../store/reducer';
 import { ProductService } from '../../shared/services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
-
-
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 import { AddEditFormComponent } from '../../shared/components/add-edit-form/add-edit-form.component';
-
 
 @Component({
   selector: 'app-product-list',
@@ -34,7 +31,7 @@ import { AddEditFormComponent } from '../../shared/components/add-edit-form/add-
     MatTableModule,
     MatButtonModule,
     MatIconModule,
-    NavigationComponent
+    NavigationComponent,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
@@ -62,7 +59,6 @@ export class ProductListComponent implements OnInit {
     private store: Store,
     public dialog: MatDialog,
     private router: Router
-    
   ) {}
 
   ngOnInit(): void {
@@ -90,17 +86,17 @@ export class ProductListComponent implements OnInit {
   onEdit(product: IProduct) {
     this.dialog.open(AddEditFormComponent, {
       data: {
+        id: product.id,
         name: product.name,
         quantity: product.quantity,
         price: product.price,
-        managers: product.managers[0]
+        managers: product.managers,
+        editclick: true
       },
-    
-     
     });
+
+   
   }
 
   onSellProduct(product: IProduct) {}
-
-
 }

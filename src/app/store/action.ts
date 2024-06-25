@@ -6,15 +6,17 @@ import {
   pageRequest,
 } from '../shared/interfaces/product-list';
 import { ILogin, ILoginRespons } from '../shared/interfaces/auth.interface';
-import { IManagers } from '../shared/interfaces/manager.interface';
+import {
+  IManagerCreate,
+  IManagers,
+} from '../shared/interfaces/manager.interface';
 
 export const authAction = createActionGroup({
   source: 'auth',
   events: {
     login: props<{ form: ILogin }>(),
     loginSuccess: props<{ loginSuccess: ILoginRespons }>(),
-    loginFailure:  props<{ error: string }>()
-    
+    loginFailure: props<{ error: string }>(),
   },
 });
 
@@ -45,6 +47,14 @@ export const deleteProduct = createActionGroup({
   },
 });
 
+export const createManager = createActionGroup({
+  source: 'createManager',
+  events: {
+    createManagerAction: props<{ form: IManagerCreate }>(),
+    createManagerSuccess: props<{ newManager: IManagers }>(),
+  },
+});
+
 export const getAllManagers = createActionGroup({
   source: 'getAllManagers',
   events: {
@@ -52,6 +62,17 @@ export const getAllManagers = createActionGroup({
     getAllManagersSuccess: props<{
       managers: IManagers[];
       items: number;
+    }>(),
+  },
+});
+
+export const editProduct = createActionGroup({
+  source: 'editProduct',
+  events: {
+    editProductAction: props<{ form: IProduct, id: number }>(),
+    editProductSuccess: props<{
+      id: number;
+      product: ICreateProductResponse;
     }>(),
   },
 });

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
 import { pageRequest } from '../interfaces/product-list';
 import { Observable } from 'rxjs';
-import { IGetAllManagers } from '../interfaces/manager.interface';
+import { IGetAllManagers, IManagerCreate, IManagers } from '../interfaces/manager.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -14,4 +14,9 @@ export class ManagerService extends BaseService {
     let pageDetail = `?page=${page}`;
     return this.get<IGetAllManagers>(`users/managers${pageDetail}`);
   }
+
+  createManager(form: IManagerCreate): Observable<IManagers> {
+    return this.post<IManagers>(`auth/register`, form);
+  }
+
 }

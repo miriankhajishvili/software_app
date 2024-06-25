@@ -20,3 +20,11 @@ export interface IManagers {
   createdAt: Data;
   updatedAt: Data;
 }
+
+export interface IManagerCreate {
+  username: string
+  name: string
+  surname: string
+  email: string
+  password: number;
+}

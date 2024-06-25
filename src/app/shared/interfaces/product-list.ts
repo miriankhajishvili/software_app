@@ -11,7 +11,7 @@ export interface IGetAllProducts {
 }
 
 export interface IProduct {
-  id?: string;
+  id: number;
   name: string;
   price: string;
   quantity: number;

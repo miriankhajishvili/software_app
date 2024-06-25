@@ -3,8 +3,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { ProductService } from '../shared/services/product.service';
 import {
   authAction,
+  createManager,
   createProduct,
   deleteProduct,
+  editProduct,
   getAllManagers,
   getAllProducts,
 } from './action';
@@ -14,7 +16,6 @@ import { AuthService } from '../shared/services/auth.service';
 import { ILoginRespons } from '../shared/interfaces/auth.interface';
 import { Router } from '@angular/router';
 import { ManagerService } from '../shared/services/manager.service';
-
 
 export const getAllProductsEffect = createEffect(
   (actions$ = inject(Actions), productService = inject(ProductService)) => {
@@ -85,8 +86,11 @@ export const loginEffect = createEffect(
       switchMap(({ form }) => {
         return authService.login(form).pipe(
           map((loginUser: ILoginRespons) => {
-            localStorage.setItem('currentUser', loginUser.userData.name + ' ' + loginUser.userData.surname)
-            localStorage.setItem('Role', loginUser.userData.role)
+            localStorage.setItem(
+              'currentUser',
+              loginUser.userData.name + ' ' + loginUser.userData.surname
+            );
+            localStorage.setItem('Role', loginUser.userData.role);
             ngToastService.success({
               detail: 'Success Message',
               summary: 'User logged out successfully',
@@ -101,7 +105,11 @@ export const loginEffect = createEffect(
               summary: 'Please check Email or Password',
             });
 
-            return of(authAction.loginFailure({ error: error.message || 'Unknown error' }));
+            return of(
+              authAction.loginFailure({
+                error: error.message || 'Unknown error',
+              })
+            );
           })
         );
       })
@@ -109,7 +117,6 @@ export const loginEffect = createEffect(
   },
   { functional: true }
 );
-
 
 export const getAllManagersEffect = createEffect(
   (actions$ = inject(Actions), managerService = inject(ManagerService)) => {
@@ -121,6 +128,44 @@ export const getAllManagersEffect = createEffect(
             return getAllManagers.getAllManagersSuccess({
               managers: res.managers,
               items: res.total,
+            });
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
+export const createManagerEffect = createEffect(
+  (actions$ = inject(Actions), managerService = inject(ManagerService)) => {
+    return actions$.pipe(
+      ofType(createManager.createManagerAction),
+      switchMap(({ form }) => {
+        return managerService.createManager(form).pipe(
+          map((res) => {
+            return createManager.createManagerSuccess({
+              newManager: res,
+            });
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
+export const editProductEffect = createEffect(
+  (action$ = inject(Actions), productService = inject(ProductService)) => {
+    return action$.pipe(
+      ofType(editProduct.editProductAction),
+      switchMap(( {form} , id) => {
+        console.log(form)
+        return productService.editProduct(id, form).pipe(
+          map((data) => {
+            return editProduct.editProductSuccess({
+              id: data.id,
+              product: data,
             });
           })
         );

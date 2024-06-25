@@ -1,7 +1,7 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { iProductsState } from '../shared/interfaces/product-list';
 
-import { authAction, createProduct, deleteProduct, getAllManagers, getAllProducts } from './action';
+import { authAction, createManager, createProduct, deleteProduct, editProduct, getAllManagers, getAllProducts } from './action';
 
 const initialState: iProductsState = {
   managers: [],
@@ -41,7 +41,25 @@ const products = createFeature({
       items: action.items
     })),
 
+    on(createManager.createManagerAction, (state) => ({ ...state })),
+    on(createManager.createManagerSuccess, (state, action) => ({
+      ...state,
+      managers: [...state.managers, action.newManager],
+    })),
 
+    on(editProduct.editProductAction, (state) => ({ ...state })),
+    on(editProduct.editProductSuccess, (state, action) => {
+      const editedProduct = state.products.map((products) => {
+    
+        if (action.product.id === products.id) {
+          return action.product;
+        } else {
+          return products;
+        }
+    
+      });
+      return { ...state, products: editedProduct };
+    }),
   ),
 });
 

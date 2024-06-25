@@ -10,6 +10,7 @@ import {
   IManagerCreate,
   IManagers,
 } from '../shared/interfaces/manager.interface';
+import { IGetAllSoldProducts, IProducts } from '../shared/interfaces/sold-product.interface';
 
 export const authAction = createActionGroup({
   source: 'auth',
@@ -55,7 +56,6 @@ export const deleteManager = createActionGroup({
   },
 });
 
-
 export const createManager = createActionGroup({
   source: 'createManager',
   events: {
@@ -75,10 +75,21 @@ export const getAllManagers = createActionGroup({
   },
 });
 
+export const getAllSoldProducts = createActionGroup({
+  source: 'getAllSoldProducts',
+  events: {
+    getAllSoldProductsAction: props<{ pageRequest: pageRequest }>(),
+    getAllSoldProductsSuccess: props<{
+      soldProducts: IProducts[];
+      items: number;
+    }>(),
+  },
+});
+
 export const editProduct = createActionGroup({
   source: 'editProduct',
   events: {
-    editProductAction: props<{ form: IProduct, id: number }>(),
+    editProductAction: props<{ form: IProduct; id: number }>(),
     editProductSuccess: props<{
       id: number;
       product: ICreateProductResponse;

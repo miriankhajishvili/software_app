@@ -10,6 +10,7 @@ import {
   editProduct,
   getAllManagers,
   getAllProducts,
+  getAllSoldProducts,
 } from './action';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { NgToastModule, NgToastService } from 'ng-angular-popup';
@@ -17,6 +18,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { ILoginRespons } from '../shared/interfaces/auth.interface';
 import { Router } from '@angular/router';
 import { ManagerService } from '../shared/services/manager.service';
+import { SoldProductService } from '../shared/services/sold-product.service';
 
 export const getAllProductsEffect = createEffect(
   (actions$ = inject(Actions), productService = inject(ProductService)) => {
@@ -159,6 +161,27 @@ export const getAllManagersEffect = createEffect(
   { functional: true }
 );
 
+
+export const getAllSoldProductsEffect = createEffect(
+  (actions$ = inject(Actions), soldProductService = inject(SoldProductService)) => {
+    return actions$.pipe(
+      ofType(getAllSoldProducts.getAllSoldProductsAction),
+      switchMap(({ pageRequest }) => {
+        return soldProductService.getAllSoldProducts(pageRequest).pipe(
+          map((res) => {
+            return getAllSoldProducts.getAllSoldProductsSuccess({
+              soldProducts: res.products,
+              items: res.total,
+            });
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
+
 export const createManagerEffect = createEffect(
   (actions$ = inject(Actions), managerService = inject(ManagerService)) => {
     return actions$.pipe(
@@ -187,7 +210,7 @@ export const editProductEffect = createEffect(
           map((data) => {
             return editProduct.editProductSuccess({
               id: data.id,
-              product: data,
+              product: data
             });
           })
         );

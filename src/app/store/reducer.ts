@@ -1,9 +1,10 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { iProductsState } from '../shared/interfaces/product-list';
 
-import { authAction, createManager, createProduct, deleteManager, deleteProduct, editProduct, getAllManagers, getAllProducts } from './action';
+import { authAction, createManager, createProduct, deleteManager, deleteProduct, editProduct, getAllManagers, getAllProducts, getAllSoldProducts } from './action';
 
 const initialState: iProductsState = {
+  soldProducts: [],
   managers: [],
   products: [],
   items: 0,
@@ -45,6 +46,13 @@ const products = createFeature({
     on(getAllManagers.getAllManagersSuccess, (state, action)=> ({
       ...state,
       managers: action.managers,
+      items: action.items
+    })),
+
+    on(getAllSoldProducts.getAllSoldProductsAction, (state)=> ({...state})),
+    on(getAllSoldProducts.getAllSoldProductsSuccess, (state, action)=> ({
+      ...state,
+      soldProducts: action.soldProducts,
       items: action.items
     })),
 

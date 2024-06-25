@@ -5,6 +5,7 @@ import {
   authAction,
   createManager,
   createProduct,
+  deleteManager,
   deleteProduct,
   editProduct,
   getAllManagers,
@@ -65,7 +66,7 @@ export const deleteProductEffect = createEffect(
       switchMap(({ id }) => {
         return productService.deleteProduct(id).pipe(
           map((res) => {
-            return deleteProduct.deleteClientActionSuccess({ id });
+            return deleteProduct.deleteProductActionSuccess({ id });
           })
         );
       })
@@ -73,6 +74,27 @@ export const deleteProductEffect = createEffect(
   },
   { functional: true }
 );
+
+export const deleteManagerEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    managerService = inject(ManagerService),
+ 
+  ) => {
+    return actions$.pipe(
+      ofType(deleteManager.deleteManagerAction),
+      switchMap(({ id }) => {
+        return managerService.deleteManager(id).pipe(
+          map((res) => {
+            return deleteManager.deleteManagerSuccess({ id });
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
 
 export const loginEffect = createEffect(
   (

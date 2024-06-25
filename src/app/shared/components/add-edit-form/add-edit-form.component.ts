@@ -8,8 +8,6 @@ import {
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { createManager, createProduct, editProduct } from '../../../store/action';
-import { Router } from '@angular/router';
-import { ProductService } from '../../services/product.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -51,6 +49,7 @@ export class AddEditFormComponent implements OnInit {
   managerForm: FormGroup = new FormGroup({
     firstname: new FormControl('', [Validators.required, lettersOnlyValidator()]),
     lastname: new FormControl('', [Validators.required, lettersOnlyValidator()]),
+    email: new FormControl(''),
     password: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
   });
 
@@ -101,8 +100,8 @@ export class AddEditFormComponent implements OnInit {
 
   onAddManager() {
     this.store.dispatch(createManager.createManagerAction({ form: this.managerForm.value }));
-    this.
-    managerForm.reset();
+console.log(this.managerForm.value)
+    this.managerForm.reset();
   }
 
   onEditProduct(){

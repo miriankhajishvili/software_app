@@ -22,9 +22,9 @@ export interface IManagers {
 }
 
 export interface IManagerCreate {
-  username: string
-  name: string
-  surname: string
+
+  firstname: string
+  lastname: string
   email: string
   password: number;
 }

@@ -80,7 +80,12 @@ export class ProductListComponent implements OnInit {
   }
 
   onDelete(product: IProduct) {
-    this.dialog.open(DeleteConfirmDialogComponent);
+    this.dialog.open(DeleteConfirmDialogComponent, {
+      data: {
+        id: product.id
+        
+      }
+    });
   }
 
   onEdit(product: IProduct) {

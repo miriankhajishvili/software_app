@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 import { IManagers } from '../../shared/interfaces/manager.interface';
 import { selectManagers } from '../../store/reducer';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
 
 @Component({
   selector: 'app-managers',
@@ -24,17 +26,20 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
     MatTableModule,
     MatButtonModule,
     MatIconModule,
-    NavigationComponent
+    NavigationComponent,
   ],
   templateUrl: './managers.component.html',
   styleUrl: './managers.component.scss',
 })
 export class ManagersComponent implements OnInit {
-
   managers$: Observable<IManagers[]> = this.store.select(selectManagers);
 
-
-  displayedColumns: string[] = ['name', 'price', 'totalPriceOfSellingProducts', 'delete'];
+  displayedColumns: string[] = [
+    'name',
+    'price',
+    'totalPriceOfSellingProducts',
+    'delete',
+  ];
   pagination: pageRequest = {
     page: 1,
     row: 10,
@@ -42,10 +47,10 @@ export class ManagersComponent implements OnInit {
     sort: '',
   };
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private matDialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.getAllManagers()
+    this.getAllManagers();
   }
 
   getAllManagers() {
@@ -58,7 +63,14 @@ export class ManagersComponent implements OnInit {
 
   onEdit() {}
 
-  onDelete() {}
+  onDelete(manager: IManagers) {
+    this.matDialog.open(DeleteConfirmDialogComponent, {
+      data: {
+        id: manager.id,
+        onManagerDelete: true
+      },
+    });
+  }
 
   onPageChange() {}
 }

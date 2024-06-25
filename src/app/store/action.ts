@@ -43,9 +43,18 @@ export const deleteProduct = createActionGroup({
   source: 'deleteProduct',
   events: {
     deleteProductAction: props<{ id: number }>(),
-    deleteClientActionSuccess: props<{ id: number }>(),
+    deleteProductActionSuccess: props<{ id: number }>(),
   },
 });
+
+export const deleteManager = createActionGroup({
+  source: 'deleteManager',
+  events: {
+    deleteManagerAction: props<{ id: number }>(),
+    deleteManagerSuccess: props<{ id: number }>(),
+  },
+});
+
 
 export const createManager = createActionGroup({
   source: 'createManager',

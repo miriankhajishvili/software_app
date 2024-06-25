@@ -37,7 +37,14 @@
       @if (quantity?.errors?.['positiveNumber'] ) {
         <mat-error>Entering a negative number or 0 is not allowed!</mat-error>
       }
-    </mat-form-field>
+    </mat-form-field >
+
+@if (data.onclick) {
+  <mat-form-field class="mat-field">
+    <mat-label>Pleae Enter manager email</mat-label>
+    <input matInput type="email" formControlName="email">
+  </mat-form-field>
+}
 
     <mat-form-field class="mat-field">
       <mat-label>{{data.onclick? 'Manager Password' : 'Product Price'}}</mat-label>

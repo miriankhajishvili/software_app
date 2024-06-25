@@ -16,6 +16,7 @@ import * as loginEffect from './store/effect';
 import * as getAllManagersEffect from './store/effect';
 import * as createManagerEffect from './store/effect';
 import * as editProductEffect from './store/effect';
+import * as deleteManagerEffect from './store/effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,7 +32,8 @@ export const appConfig: ApplicationConfig = {
       loginEffect,
       getAllManagersEffect,
       createManagerEffect,
-      editProductEffect
+      editProductEffect,
+      
     ),
     provideState({ name: 'products', reducer: productReducer }),
   ],

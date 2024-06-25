@@ -1,11 +1,7 @@
-import {
-  Component,
-  DestroyRef,
-  OnInit,
-  inject,
-} from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
+  MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
@@ -13,9 +9,8 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { ProductService } from '../../services/product.service';
 import { Store } from '@ngrx/store';
-import { deleteProduct } from '../../../store/action';
+import { deleteManager, deleteProduct } from '../../../store/action';
 import { NgToastModule } from 'ng-angular-popup';
 
 @Component({
@@ -36,26 +31,33 @@ import { NgToastModule } from 'ng-angular-popup';
 })
 export class DeleteConfirmDialogComponent implements OnInit {
   destroyRef: DestroyRef = inject(DestroyRef);
+  readonly data = inject<{ id: number; onManagerDelete: boolean }>(
+    MAT_DIALOG_DATA
+  );
 
   currentUserId!: number;
 
   constructor(
     public dialogRef: MatDialogRef<DeleteConfirmDialogComponent>,
-    private productService: ProductService,
-    private store: Store,
+    private store: Store
   ) {}
 
   ngOnInit(): void {
     this.getCurrentUsersId();
+    console.log(this.data.id);
   }
 
-  getCurrentUsersId() {
-   
-  }
+  getCurrentUsersId() {}
 
   onYesClick() {
-    this.store.dispatch(
-      deleteProduct.deleteProductAction({ id: this.currentUserId })
-    );
+    if (this.data.onManagerDelete) {
+      this.store.dispatch(
+        deleteManager.deleteManagerAction({ id: this.data.id })
+      );
+    } else {
+      this.store.dispatch(
+        deleteProduct.deleteProductAction({ id: this.data.id })
+      );
+    }
   }
 }

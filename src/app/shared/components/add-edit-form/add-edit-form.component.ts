@@ -7,7 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { createManager, createProduct, editProduct } from '../../../store/action';
+import {
+  createManager,
+  createProduct,
+  editProduct,
+} from '../../../store/action';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -17,6 +21,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { lettersOnlyValidator } from '../../regex/lettersOnlyValidator';
 import { positiveNumberValidator } from '../../regex/nonNegativeNumberValidator';
+import { selectManagers } from '../../../store/reducer';
+import { Observable } from 'rxjs';
+import { IManagers } from '../../interfaces/manager.interface';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -37,20 +44,36 @@ import { positiveNumberValidator } from '../../regex/nonNegativeNumberValidator'
 export class AddEditFormComponent implements OnInit {
   readonly data = inject<any>(MAT_DIALOG_DATA);
 
+  allManagers$: Observable<IManagers[]> = this.store.select(selectManagers);
 
   form: FormGroup = new FormGroup({
-    id: new FormControl(''),
     name: new FormControl('', [Validators.required]),
-    quantity: new FormControl('', [Validators.required, positiveNumberValidator()]),
-    price: new FormControl('', [Validators.required, positiveNumberValidator()]),
-    managers: new FormControl([]),  // Updated to handle multiple selections
+    quantity: new FormControl('', [
+      Validators.required,
+      positiveNumberValidator(),
+    ]),
+    price: new FormControl('', [
+      Validators.required,
+      positiveNumberValidator(),
+    ]),
+    managers: new FormControl([]), // Updated to handle multiple selections
   });
 
   managerForm: FormGroup = new FormGroup({
-    firstname: new FormControl('', [Validators.required, lettersOnlyValidator()]),
-    lastname: new FormControl('', [Validators.required, lettersOnlyValidator()]),
+    firstname: new FormControl('', [
+      Validators.required,
+      lettersOnlyValidator(),
+    ]),
+    lastname: new FormControl('', [
+      Validators.required,
+      lettersOnlyValidator(),
+    ]),
     email: new FormControl(''),
-    password: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(15),
+    ]),
   });
 
   get name() {
@@ -76,18 +99,11 @@ export class AddEditFormComponent implements OnInit {
   get password() {
     return this.managerForm.get('password');
   }
-  toppings = new FormControl('');
-  allmanagers = [
-    { id: 1, name: 'Manager 1' },
-    { id: 2, name: 'Manager 2' },
-    { id: 3, name: 'Manager 3' },
-  ];
 
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.form.patchValue(this.data);
-    console.log(this.data)
+    this.form.patchValue(this.data!);
   }
 
   onAddProduct() {
@@ -99,14 +115,18 @@ export class AddEditFormComponent implements OnInit {
   }
 
   onAddManager() {
-    this.store.dispatch(createManager.createManagerAction({ form: this.managerForm.value }));
-console.log(this.managerForm.value)
+    this.store.dispatch(
+      createManager.createManagerAction({ form: this.managerForm.value })
+    );
+    console.log(this.managerForm.value);
     this.managerForm.reset();
   }
 
-  onEditProduct(){
-    console.log(this.data)
-   this.store.dispatch(editProduct.editProductAction({form: this.form.value, id: this.data.id}))
-   this.form.reset()
+  onEditProduct() {
+    console.log(this.data);
+    this.store.dispatch(
+      editProduct.editProductAction({ form: this.form.value, id: this.data.id })
+    );
+    this.form.reset();
   }
 }

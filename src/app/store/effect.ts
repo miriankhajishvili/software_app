@@ -40,12 +40,20 @@ export const getAllProductsEffect = createEffect(
 );
 
 export const createProductEffect = createEffect(
-  (actions$ = inject(Actions), productService = inject(ProductService)) => {
+  (
+    actions$ = inject(Actions),
+    productService = inject(ProductService),
+    ngToastService = inject(NgToastService)
+  ) => {
     return actions$.pipe(
       ofType(createProduct.createProduct),
       switchMap(({ form }) => {
         return productService.createProduct(form).pipe(
           map((res) => {
+            ngToastService.success({
+              detail: 'Success Message',
+              summary: 'Product added successfully',
+            });
             return createProduct.createProductSuccess({
               newProduct: res,
             });
@@ -67,7 +75,11 @@ export const deleteProductEffect = createEffect(
       ofType(deleteProduct.deleteProductAction),
       switchMap(({ id }) => {
         return productService.deleteProduct(id).pipe(
-          map((res) => {
+          map((_) => {
+            ngToastService.success({
+              detail: 'Success Message',
+              summary: 'Product deleted successfully',
+            });
             return deleteProduct.deleteProductActionSuccess({ id });
           })
         );
@@ -81,13 +93,17 @@ export const deleteManagerEffect = createEffect(
   (
     actions$ = inject(Actions),
     managerService = inject(ManagerService),
- 
+    ngToastService = inject(NgToastService)
   ) => {
     return actions$.pipe(
       ofType(deleteManager.deleteManagerAction),
       switchMap(({ id }) => {
         return managerService.deleteManager(id).pipe(
-          map((res) => {
+          map((_) => {
+            ngToastService.success({
+              detail: 'Success Message',
+              summary: 'Manager deleted successfully',
+            });
             return deleteManager.deleteManagerSuccess({ id });
           })
         );
@@ -96,7 +112,6 @@ export const deleteManagerEffect = createEffect(
   },
   { functional: true }
 );
-
 
 export const loginEffect = createEffect(
   (
@@ -161,9 +176,11 @@ export const getAllManagersEffect = createEffect(
   { functional: true }
 );
 
-
 export const getAllSoldProductsEffect = createEffect(
-  (actions$ = inject(Actions), soldProductService = inject(SoldProductService)) => {
+  (
+    actions$ = inject(Actions),
+    soldProductService = inject(SoldProductService)
+  ) => {
     return actions$.pipe(
       ofType(getAllSoldProducts.getAllSoldProductsAction),
       switchMap(({ pageRequest }) => {
@@ -180,7 +197,6 @@ export const getAllSoldProductsEffect = createEffect(
   },
   { functional: true }
 );
-
 
 export const createManagerEffect = createEffect(
   (actions$ = inject(Actions), managerService = inject(ManagerService)) => {
@@ -204,13 +220,13 @@ export const editProductEffect = createEffect(
   (action$ = inject(Actions), productService = inject(ProductService)) => {
     return action$.pipe(
       ofType(editProduct.editProductAction),
-      switchMap(( {form} , id) => {
-        console.log(form)
+      switchMap(({ form }, id) => {
+        console.log(form);
         return productService.editProduct(id, form).pipe(
           map((data) => {
             return editProduct.editProductSuccess({
               id: data.id,
-              product: data
+              product: data,
             });
           })
         );

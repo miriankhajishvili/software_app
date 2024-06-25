@@ -12,7 +12,7 @@ import {
 } from '../../shared/interfaces/product-list';
 import { Store } from '@ngrx/store';
 import { deleteProduct, getAllManagers, getAllProducts } from '../../store/action';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { selectItems, selectProducts } from '../../store/reducer';
 import { ProductService } from '../../shared/services/product.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -37,7 +37,7 @@ import { AddEditFormComponent } from '../../shared/components/add-edit-form/add-
   styleUrl: './products.component.scss',
 })
 export class ProductListComponent implements OnInit {
-  products$: Observable<IProductResponse[]> = this.store.select(selectProducts);
+  products$: Observable<IProductResponse[]> = this.store.select(selectProducts)
   item$: Observable<number> = this.store.select(selectItems);
   userRole = localStorage.getItem('Role');
 
@@ -54,6 +54,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProducts();
+    this.products$.subscribe(res => console.log(res))
   }
 
   getAllProducts() {

@@ -99,3 +99,15 @@ export const editProduct = createActionGroup({
     }>(),
   },
 });
+
+export const editManager = createActionGroup({
+  source: 'editManager',
+  events: {
+    editManager: props<{ form: IManagerCreate; }>(),
+    editManagerSuccess: props<{
+      id: number;
+      manager: ICreateProductResponse;
+    }>(),
+  },
+});
+

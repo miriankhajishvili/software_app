@@ -131,7 +131,6 @@ export class AddEditFormComponent implements OnInit {
     formValue.quantity = +formValue.quantity;
     const obj = this.form.value
     obj.id = this.data.id
-    console.log(this.data.id)
     
     this.store.dispatch(
       editProduct.editProductAction({ form: obj, })
@@ -140,7 +139,8 @@ export class AddEditFormComponent implements OnInit {
     this.form.reset();
   }
 
-  onEditManager(){}
-
+  onEditManager(){
+    // this.store.dispatch()
+  } 
 
 }

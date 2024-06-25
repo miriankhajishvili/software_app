@@ -10,7 +10,7 @@ import { getAllManagers } from '../../store/action';
 import { pageRequest } from '../../shared/interfaces/product-list';
 import { Observable } from 'rxjs';
 import { IManagers } from '../../shared/interfaces/manager.interface';
-import { selectManagers } from '../../store/reducer';
+import { selectItems, selectManagers } from '../../store/reducer';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
@@ -34,6 +34,7 @@ import { AddEditFormComponent } from '../../shared/components/add-edit-form/add-
 })
 export class ManagersComponent implements OnInit {
   managers$: Observable<IManagers[]> = this.store.select(selectManagers);
+  item$: Observable<number> = this.store.select(selectItems);
 
   displayedColumns: string[] = [
     'manager',
@@ -50,35 +51,41 @@ export class ManagersComponent implements OnInit {
 
   constructor(private store: Store, private matDialog: MatDialog) {}
 
-  ngOnInit(): void {
-  
-  }
+  ngOnInit(): void {}
 
-
-
-
-  onEditManager(manager : IManagers) {
+  onEditManager(manager: IManagers) {
     this.matDialog.open(AddEditFormComponent, {
       data: {
         firstName: manager.firstName,
         lastName: manager.lastName,
         email: manager.email,
         password: manager.password,
-        onEditManagerClick: true
-      }
-    })
-    console.log(manager)
+        onEditManagerClick: true,
+      },
+    });
+    console.log(manager);
   }
-
 
   onDelete(manager: IManagers) {
     this.matDialog.open(DeleteConfirmDialogComponent, {
       data: {
         id: manager.id,
-        onManagerDelete: true
+        onManagerDelete: true,
       },
     });
   }
 
-  onPageChange() {}
+  onPageChange($event: any) {
+    this.pagination = {
+      ...this.pagination,
+      page: $event.pageIndex + 1,
+    };
+    this.getAllManagers();
+  }
+
+  getAllManagers() {
+    this.store.dispatch(
+      getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
+    );
+  }
 }

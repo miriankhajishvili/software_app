@@ -12,9 +12,9 @@ export interface ILoginRespons {
 
 export interface ILoginUser {
   id: number;
-  username: string;
+  firstName: string;
   name: string;
-  surname: string;
+  lastName: string;
   email: string;
   role: string;
   createdAt: Data;

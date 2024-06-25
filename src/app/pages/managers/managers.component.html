@@ -54,12 +54,12 @@
   <mat-paginator
     style="display: flex; justify-content: center"
     pageSize="10"
-    [length]="10"
+    [length]="item$ | async"
     [pageSizeOptions]="[5, 10, 20]"
     showFirstLastButtons
     aria-label="Select page of periodic elements"
     [pageIndex]="0"
-    (page)="onPageChange()"
+    (page)="onPageChange($event)"
   >
   </mat-paginator>
 </div>

@@ -125,9 +125,10 @@ export const loginEffect = createEffect(
       switchMap(({ form }) => {
         return authService.login(form).pipe(
           map((loginUser: ILoginRespons) => {
+            console.log(loginUser)
             localStorage.setItem(
               'currentUser',
-              loginUser.userData.name + ' ' + loginUser.userData.surname
+              loginUser.userData.firstName + ' ' + loginUser.userData.lastName
             );
             localStorage.setItem('Role', loginUser.userData.role);
             ngToastService.success({

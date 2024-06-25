@@ -51,6 +51,11 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getAllManagers()
+    
+  }
+
+  getAllManagers(){
     this.store.dispatch(
       getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
     );

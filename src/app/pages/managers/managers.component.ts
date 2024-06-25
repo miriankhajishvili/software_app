@@ -36,10 +36,10 @@ export class ManagersComponent implements OnInit {
   managers$: Observable<IManagers[]> = this.store.select(selectManagers);
 
   displayedColumns: string[] = [
-    'name',
-    'price',
+    'manager',
+    'registrationData',
     'totalPriceOfSellingProducts',
-    'delete',
+    'buttons',
   ];
   pagination: pageRequest = {
     page: 1,
@@ -51,22 +51,25 @@ export class ManagersComponent implements OnInit {
   constructor(private store: Store, private matDialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.getAllManagers();
+  
   }
 
-  getAllManagers() {
-    this.store.dispatch(
-      getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
-    );
+
+
+
+  onEditManager(manager : IManagers) {
+    this.matDialog.open(AddEditFormComponent, {
+      data: {
+        firstName: manager.firstName,
+        lastName: manager.lastName,
+        email: manager.email,
+        password: manager.password,
+        onEditManagerClick: true
+      }
+    })
+    console.log(manager)
   }
 
-  onAddManagers() {}
-
-  onEdit() {
-
-    
-
-  }
 
   onDelete(manager: IManagers) {
     this.matDialog.open(DeleteConfirmDialogComponent, {

@@ -11,7 +11,7 @@ import {
   pageRequest,
 } from '../../shared/interfaces/product-list';
 import { Store } from '@ngrx/store';
-import { deleteProduct, getAllProducts } from '../../store/action';
+import { deleteProduct, getAllManagers, getAllProducts } from '../../store/action';
 import { Observable } from 'rxjs';
 import { selectItems, selectProducts } from '../../store/reducer';
 import { ProductService } from '../../shared/services/product.service';
@@ -41,7 +41,7 @@ export class ProductListComponent implements OnInit {
   item$: Observable<number> = this.store.select(selectItems);
   userRole = localStorage.getItem('Role');
 
-  displayedColumns: string[] = ['name', 'price', 'quantity', 'delete'];
+  displayedColumns: string[] = ['name', 'price', 'quantity', 'buttons'];
 
   pagination: pageRequest = {
     page: 1,
@@ -50,16 +50,7 @@ export class ProductListComponent implements OnInit {
     sort: '',
   };
 
-  queryParams = {
-    page: 'edit-product',
-  };
-
-  constructor(
-    private productService: ProductService,
-    private store: Store,
-    public dialog: MatDialog,
-    private router: Router
-  ) {}
+  constructor(private store: Store, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getAllProducts();
@@ -69,7 +60,10 @@ export class ProductListComponent implements OnInit {
     this.store.dispatch(
       getAllProducts.getAllProductsAction({ pageRequest: this.pagination })
     );
+
   }
+
+  
 
   onPageChange($event: any) {
     this.pagination = {
@@ -82,13 +76,12 @@ export class ProductListComponent implements OnInit {
   onDelete(product: IProduct) {
     this.dialog.open(DeleteConfirmDialogComponent, {
       data: {
-        id: product.id
-        
-      }
+        id: product.id,
+      },
     });
   }
 
-  onEdit(product: IProduct) {
+  onEditProduct(product: IProduct) {
     this.dialog.open(AddEditFormComponent, {
       data: {
         id: product.id,
@@ -96,11 +89,10 @@ export class ProductListComponent implements OnInit {
         quantity: product.quantity,
         price: product.price,
         managers: product.managers,
-        editclick: true
+        onEditProductClick: true,
       },
     });
-
-   
+    
   }
 
   onSellProduct(product: IProduct) {}

@@ -22,7 +22,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { lettersOnlyValidator } from '../../regex/lettersOnlyValidator';
 import { positiveNumberValidator } from '../../regex/nonNegativeNumberValidator';
 import { selectManagers } from '../../../store/reducer';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { IManagers } from '../../interfaces/manager.interface';
 import { ProductService } from '../../services/product.service';
 
@@ -45,7 +45,7 @@ import { ProductService } from '../../services/product.service';
 export class AddEditFormComponent implements OnInit {
   readonly data = inject<any>(MAT_DIALOG_DATA);
 
-  allManagers$: Observable<IManagers[]> = this.store.select(selectManagers);
+  allManagers$: Observable<IManagers[]> = this.store.select(selectManagers).pipe(tap( console.log));
 
   form: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -92,10 +92,10 @@ export class AddEditFormComponent implements OnInit {
   }
 
   get firstname() {
-    return this.managerForm.get('firstname');
+    return this.managerForm.get('firstName');
   }
   get lastname() {
-    return this.managerForm.get('lastname');
+    return this.managerForm.get('lastName');
   }
   get password() {
     return this.managerForm.get('password');
@@ -104,7 +104,9 @@ export class AddEditFormComponent implements OnInit {
   constructor(private store: Store, private productService:ProductService) {}
 
   ngOnInit(): void {
-    this.form.patchValue(this.data!);
+   
+    this.form.patchValue(this.data);
+    this.managerForm.patchValue(this.data)
   }
 
   onAddProduct() {
@@ -127,12 +129,18 @@ export class AddEditFormComponent implements OnInit {
     const formValue = this.form.value;
     formValue.price = +formValue.price;
     formValue.quantity = +formValue.quantity;
+    const obj = this.form.value
+    obj.id = this.data.id
     console.log(this.data.id)
     
     this.store.dispatch(
-      editProduct.editProductAction({ form: this.form.value, id: this.data.id })
+      editProduct.editProductAction({ form: obj, })
     );
 
     this.form.reset();
   }
+
+  onEditManager(){}
+
+
 }

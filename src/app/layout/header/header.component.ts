@@ -9,6 +9,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LogOutDialogComponent } from '../../shared/components/log-out-dialog/log-out-dialog.component';
+import { pageRequest } from '../../shared/interfaces/product-list';
+import { Store } from '@ngrx/store';
+import { getAllManagers } from '../../store/action';
 
 @Component({
   selector: 'app-header',
@@ -30,11 +33,26 @@ export class HeaderComponent implements OnInit {
   currentUser = localStorage.getItem('currentUser');
   currentRole = localStorage.getItem('Role');
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private store: Store) {}
 
-  ngOnInit(): void {}
+
 
   openDialog() {
     this.dialog.open(LogOutDialogComponent);
+  }
+
+  pagination: pageRequest = {
+    page: 1,
+    row: 10,
+    search: '',
+    sort: '',
+  };
+
+
+
+  ngOnInit(): void {
+    this.store.dispatch(
+      getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
+    );
   }
 }

@@ -5,8 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { AddEditFormComponent } from '../add-edit-form/add-edit-form.component';
 
-
-
 @Component({
   selector: 'app-navigation',
   standalone: true,
@@ -16,13 +14,14 @@ import { AddEditFormComponent } from '../add-edit-form/add-edit-form.component';
 })
 export class NavigationComponent {
   onAddManagerClick?: boolean;
+  onAddProduckClick?: boolean;
   constructor(public dialog: MatDialog) {}
 
   onAddProduct() {
-    this.onAddManagerClick = false;
+    this.onAddProduckClick = true;
     this.dialog.open(AddEditFormComponent, {
       data: {
-        onlcick: this.onAddManagerClick,
+        onAddProduckClick: this.onAddProduckClick,
       },
     });
   }
@@ -30,7 +29,7 @@ export class NavigationComponent {
     this.onAddManagerClick = true;
     this.dialog.open(AddEditFormComponent, {
       data: {
-        onclick: this.onAddManagerClick,
+        onAddManagerClick: this.onAddManagerClick,
       },
     });
   }

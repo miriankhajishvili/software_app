@@ -228,9 +228,10 @@ export const editProductEffect = createEffect(
   (action$ = inject(Actions), productService = inject(ProductService)) => {
     return action$.pipe(
       ofType(editProduct.editProductAction),
-      switchMap(({ form }, id) => {
-        console.log(id);
-        return productService.editProduct(id, form).pipe(
+      switchMap(({ form }) => {
+        console.log(form)
+        console.log(form.id);
+        return productService.editProduct(form.id, form).pipe(
           map((data) => {
             return editProduct.editProductSuccess({
               id: data.id,

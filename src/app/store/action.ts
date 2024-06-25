@@ -92,7 +92,7 @@ export const getAllSoldProducts = createActionGroup({
 export const editProduct = createActionGroup({
   source: 'editProduct',
   events: {
-    editProductAction: props<{ form: IProduct; id: number }>(),
+    editProductAction: props<{ form: IProduct; }>(),
     editProductSuccess: props<{
       id: number;
       product: ICreateProductResponse;

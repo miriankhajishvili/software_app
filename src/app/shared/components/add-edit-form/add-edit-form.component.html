@@ -1,39 +1,75 @@
-<div class="main-container" [formGroup]="data.onclick ? managerForm : form">
-
-  @if (!data.editclick) { <h1 mat-dialog-title>{{data.onclick ? 'Add Manager' : 'Add Product'}}</h1>}
-@if (data.editclick) {
-  <h1 mat-dialog-title>Edit Product</h1>
-}
+<div class="main-container" [formGroup]="data.onEditManagerClick ? managerForm : form">
  
+@if (data.onAddManagerClick) { <h1 mat-dialog-title>Add Manager</h1>}
+@if (data.onEditManagerClick) { <h1 mat-dialog-title>Edit Manager</h1>}
+@if (data.onAddProduckClick) { <h1 mat-dialog-title>Add Product</h1>}
+@if (data.onEditProductClick) { <h1 mat-dialog-title>Edit Product</h1>}
+ 
+
   <div class="form-field-container">
-    <mat-form-field class="mat-field">
-      <mat-label>{{data.onclick ? 'Manager Firstname' : 'Product Name'}}</mat-label>
-      <input matInput type="text" [formControlName]="data.onclick ? 'firstName' : 'name'" />
+    @if (data.onAddManagerClick || data.onEditManagerClick ) {
+      <mat-form-field  class="mat-field">
+        <mat-label>Manager Firstname</mat-label>
+        <input type="text" matInput formControlName="firstName">
+        @if (firstname?.errors?.['required']  ) {
+          <mat-error>Firstname is mandatory</mat-error>
+        }
+    
+        @if (firstname?.errors?.['lettersOnly'] ) {
+          <mat-error>Please enter only letters!</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field  class="mat-field">
+        <mat-label>Manager Lastname</mat-label>
+        <input type="text" matInput formControlName="lastName">
+        @if (firstname?.errors?.['required']  ) {
+          <mat-error>Firstname is mandatory</mat-error>
+        }
+    
+        @if (firstname?.errors?.['lettersOnly'] ) {
+          <mat-error>Please enter only letters!</mat-error>
+        }
+        
+      </mat-form-field>
+      <mat-form-field class="mat-field">
+        <mat-label>Pleae Enter manager email</mat-label>
+        <input matInput type="email" formControlName="email">
+      </mat-form-field>
+    
+    
+      <mat-form-field class="mat-field">
+        <mat-label>Manager Password</mat-label>
+        <input matInput type='password'  formControlName='password'/>
+        @if (password?.errors?.['required']  ) {
+          <mat-error>Password is mandatory</mat-error>
+        }
+        @if (password?.hasError('minlength') ) {
+          <mat-error>The password must consist of at least 5 characters</mat-error>
+        }
+        @if (password?.hasError('maxlength') ) {
+          <mat-error>The password must contain a maximum of 15 characters</mat-error>
+        }
+      </mat-form-field>
+    }
+    
 
-      @if (firstname?.errors?.['required'] && data.onclick ) {
-        <mat-error>Firstname is mandatory</mat-error>
-      }
+    @if (data.onAddProduckClick || data.onEditProductClick ) {
 
-      @if (firstname?.errors?.['lettersOnly'] && data.onclick) {
-        <mat-error>Please enter only letters!</mat-error>
-      }
+      <mat-form-field class="mat-field">
+      <mat-label >Product Name</mat-label>
+      <input matInput type="text" formControlName='name' />
+
 
       @if (name?.errors?.['required'] ) {
         <mat-error>Product is mandatory</mat-error>
       }
-    </mat-form-field>
+    </mat-form-field> 
 
     <mat-form-field class="mat-field">
-      <mat-label>{{data.onclick ? 'Manager Lastname' : 'Product Quantity'}}</mat-label>
-      <input matInput [type]="data.onclick ? 'text' : 'number'" [formControlName]="data.onclick ? 'lastName' : 'quantity'" />
+      <mat-label>Product Quantity</mat-label>
+      <input matInput type='number' formControlName='quantity' />
 
-      @if (lastname?.errors?.['required'] && data.onclick ) {
-        <mat-error>Lastname is mandatory</mat-error>
-      }
 
-      @if (lastname?.errors?.['lettersOnly'] && data.onclick) {
-        <mat-error>Please enter only letters!</mat-error>
-      }
 
       @if (quantity?.errors?.['required'] ) {
         <mat-error>Quantity is mandatory!</mat-error>
@@ -44,25 +80,11 @@
       }
     </mat-form-field >
 
-@if (data.onclick) {
-  <mat-form-field class="mat-field">
-    <mat-label>Pleae Enter manager email</mat-label>
-    <input matInput type="email" formControlName="email">
-  </mat-form-field>
-}
 
     <mat-form-field class="mat-field">
-      <mat-label>{{data.onclick? 'Manager Password' : 'Product Price'}}</mat-label>
-      <input matInput [type]="data.onclick ? 'password' : 'number'" [formControlName]="data.onclick ? 'password' : 'price'" />
-      @if (password?.errors?.['required'] && data.onclick ) {
-        <mat-error>Password is mandatory</mat-error>
-      }
-      @if (password?.hasError('minlength') && data.onclick) {
-        <mat-error>The password must consist of at least 5 characters</mat-error>
-      }
-      @if (password?.hasError('maxlength') && data.onclick) {
-        <mat-error>The password must contain a maximum of 15 characters</mat-error>
-      }
+      <mat-label>Product Price</mat-label>
+      <input matInput type='number' formControlName='price' />
+
 
       @if (price?.errors?.['required'] ) {
         <mat-error>Price is mandatory!</mat-error>
@@ -73,7 +95,10 @@
       }
     </mat-form-field>
 
-    @if (!data.onclick ) {
+    }
+
+
+    @if (data.onAddProduckClick || data.onEditProductClick ) {
       <mat-form-field class="mat-field">
         <mat-label>Please select the manager</mat-label>
         <mat-select formControlName="managers" multiple>
@@ -84,12 +109,24 @@
       </mat-form-field>
     }
   </div>
-  @if (!data.editclick) {
-    <button mat-raised-button color="primary" (click)="data.onclick ? onAddManager() : onAddProduct()" type="button">Submit</button>
 
+
+
+  
+  @if (data.onEditManagerClick) {
+    <button mat-raised-button color="primary" (click)="onEditManager()" type="button">Submit</button>
   }
 
-  @if (data.editclick) {
+
+  @if (data.onAddManagerClick) {
+    <button mat-raised-button color="primary" (click)="onAddManager()" type="button">Submit</button>
+  }
+
+  @if (data.onAddProduckClick) {
+    <button mat-raised-button color="primary" (click)="onAddProduct()" type="button">Submit</button>
+  }
+
+  @if (data.onEditProductClick) {
     <button mat-raised-button color="primary" (click)="onEditProduct()" type="button">Submit</button>
   }
 

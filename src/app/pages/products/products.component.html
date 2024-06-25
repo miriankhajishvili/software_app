@@ -21,11 +21,11 @@
     </ng-container>
 
     @if (userRole == 'admin') {
-    <ng-container matColumnDef="delete">
+    <ng-container matColumnDef="buttons">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let product">
         <button
-          (click)="onEdit(product)"
+          (click)="onEditProduct(product)"
           style="background-color: #9f1c6b; margin-right: 20px"
           mat-raised-button
           color="primary"

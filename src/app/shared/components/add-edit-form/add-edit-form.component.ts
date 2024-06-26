@@ -10,6 +10,7 @@ import { Store } from '@ngrx/store';
 import {
   createManager,
   createProduct,
+  editManager,
   editProduct,
   sellProduct,
 } from '../../../store/action';
@@ -26,6 +27,7 @@ import { selectManagers } from '../../../store/reducer';
 import { Observable, tap } from 'rxjs';
 import { IManagers } from '../../interfaces/manager.interface';
 import { ProductService } from '../../services/product.service';
+import { singleLanguageValidator } from '../../regex/georgianLettersValidator';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -50,10 +52,11 @@ export class AddEditFormComponent implements OnInit {
   allManagers$: Observable<IManagers[]> = this.store.select(selectManagers).pipe(tap( console.log));
 
   form: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required,  singleLanguageValidator()],),
     quantity: new FormControl('', [
       Validators.required,
       positiveNumberValidator(),
+    
     ]),
     price: new FormControl('', [
       Validators.required,
@@ -71,7 +74,7 @@ export class AddEditFormComponent implements OnInit {
       Validators.required,
       lettersOnlyValidator(),
     ]),
-    email: new FormControl(''),
+    email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
@@ -100,7 +103,13 @@ export class AddEditFormComponent implements OnInit {
   }
   get lastname() {
     return this.managerForm.get('lastName');
+    
   }
+
+  get email() {
+    return this.managerForm.get('email');
+  }
+
   get password() {
     return this.managerForm.get('password');
   }
@@ -155,6 +164,12 @@ export class AddEditFormComponent implements OnInit {
 
   onEditManager(){
 
+    const obj = this.managerForm.value
+    obj.id = this.data.id
+
+    this.store.dispatch(editManager.editManager({ form: obj}))
+    this.dialogRef.close()
+    this.form.reset();
   } 
 
   onSellProduct(){

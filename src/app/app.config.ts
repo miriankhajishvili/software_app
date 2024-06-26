@@ -7,7 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
 import { provideState, provideStore } from '@ngrx/store';
-import { productReducer } from './store/reducer';
+import { mainReducer } from './store/reducer';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import * as getAllProductsEffect from './store/effect';
 import * as createProductEffect from './store/effect';
@@ -38,8 +38,7 @@ export const appConfig: ApplicationConfig = {
       deleteManagerEffect,
       getAllSoldProductsEffect,
       sellProductEffect
-      
     ),
-    provideState({ name: 'products', reducer: productReducer }),
+    provideState({ name: 'products', reducer: mainReducer }),
   ],
 };

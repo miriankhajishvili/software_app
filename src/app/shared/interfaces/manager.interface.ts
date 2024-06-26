@@ -21,7 +21,7 @@ export interface IManagers {
 }
 
 export interface IManagerCreate {
-
+  id: number
   firstName: string
   lastName: string
   email: string

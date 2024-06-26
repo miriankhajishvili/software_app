@@ -23,11 +23,11 @@
         <mat-form-field  class="mat-field">
           <mat-label>Manager Lastname</mat-label>
           <input type="text" matInput formControlName="lastName">
-          @if (firstname?.errors?.['required']  ) {
-            <mat-error>Firstname is mandatory</mat-error>
+          @if (lastname?.errors?.['required']  ) {
+            <mat-error>Lastname is mandatory</mat-error>
           }
       
-          @if (firstname?.errors?.['lettersOnly'] ) {
+          @if (lastname?.errors?.['lettersOnly'] ) {
             <mat-error>Please enter only letters!</mat-error>
           }
           
@@ -35,6 +35,13 @@
         <mat-form-field class="mat-field">
           <mat-label>Pleae Enter manager email</mat-label>
           <input matInput type="email" formControlName="email">
+          @if (email?.errors?.['required']  ) {
+            <mat-error>Email is mandatory</mat-error>
+          }
+      
+          @if (email?.errors?.['email'] ) {
+            <mat-error>Please enter the email in the correct format</mat-error>
+          }
         </mat-form-field>
       
       
@@ -66,6 +73,10 @@
 
     @if (name?.errors?.['required'] ) {
       <mat-error>Product is mandatory</mat-error>
+    }
+
+    @if (name?.errors?.['singleLanguage'] ) {
+      <mat-error>Please write in English or In Georgian</mat-error>
     }
   </mat-form-field> 
 

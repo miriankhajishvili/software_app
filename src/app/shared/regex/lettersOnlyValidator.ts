@@ -6,7 +6,7 @@ export function lettersOnlyValidator(): ValidatorFn {
     if (!value) {
       return null;  // Don't show error if input is empty
     }
-    const valid = /^[A-Za-z]+$/.test(value);
+    const valid = /^[A-Za-z\u10A0-\u10FF]+$/.test(value);
     return valid ? null : { lettersOnly: true };
   };
 }

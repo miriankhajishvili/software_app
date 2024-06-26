@@ -19,6 +19,10 @@ export class ManagerService extends BaseService {
     return this.post<IManagers>(`manager/register`, form);
   }
 
+  editManager(id: number, form: IManagerCreate): Observable<any> {
+    return this.patch<any>(`managers/${id}`, form);
+  }
+
 
   deleteManager(id: number): Observable<IManagers> {
     return this.delete<IManagers>(`users/${id}`);

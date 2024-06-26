@@ -2,7 +2,6 @@ import { createFeature, createReducer, on } from '@ngrx/store';
 import { iProductsState } from '../shared/interfaces/product-list';
 
 import {
-  authAction,
   createManager,
   createProduct,
   deleteManager,
@@ -20,7 +19,7 @@ const initialState: iProductsState = {
   items: 0,
 };
 
-const products = createFeature({
+const main = createFeature({
   name: 'products',
   reducer: createReducer(
     initialState,
@@ -87,9 +86,9 @@ const products = createFeature({
 
 export const {
   name: productsFeatureKey,
-  reducer: productReducer,
+  reducer: mainReducer,
   selectProducts,
   selectItems,
   selectManagers,
   selectSoldProducts
-} = products;
+} = main;

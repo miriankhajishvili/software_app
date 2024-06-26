@@ -113,6 +113,7 @@ export const editManager = createActionGroup({
       id: number;
       manager: ICreateProductResponse;
     }>(),
+    editManagerFailure: props<{ error: string }>(),
   },
 });
 

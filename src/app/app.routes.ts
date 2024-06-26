@@ -1,10 +1,12 @@
 import { Routes } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
 import { authGuard } from './core/guards/auth.guard';
+import { loginGuard } from './core/guards/login.guard';
 
 export const routes: Routes = [
   {
     path: '',
+    canActivate: [loginGuard],
     loadChildren: () =>
       import('./pages/auth/auth.routes').then((m) => m.routes),
   },
@@ -34,26 +36,14 @@ export const routes: Routes = [
           ),
         canActivate: [authGuard],
       },
-      {
-        path: 'add-product',
-        loadComponent: () =>
-          import(
-            './shared/components/add-edit-form/add-edit-form.component'
-          ).then((m) => m.AddEditFormComponent),
-      },
+
       {
         path: 'sold-products',
         loadComponent: () =>
           import('./pages/sold-products/sold-product.component').then(
             (m) => m.SoldProductComponent
           ),
-      },
-      {
-        path: 'edit-product/:id',
-        loadComponent: () =>
-          import(
-        './shared/components/add-edit-form/add-edit-form.component'
-          ).then((m) => m.AddEditFormComponent),
+        canActivate: [authGuard],
       },
     ],
   },

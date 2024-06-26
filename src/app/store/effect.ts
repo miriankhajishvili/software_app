@@ -7,6 +7,7 @@ import {
   createProduct,
   deleteManager,
   deleteProduct,
+  editManager,
   editProduct,
   getAllManagers,
   getAllProducts,
@@ -398,3 +399,44 @@ export const editProductEffect = createEffect(
   },
   { functional: true }
 );
+
+
+export const editManagerEffect = createEffect(
+  (
+    action$ = inject(Actions),
+    managerService = inject(ManagerService),
+    ngToastService = inject(NgToastService)
+  ) => {
+    return action$.pipe(
+      ofType(editManager.editManager),
+      switchMap(({ form }) => {
+        return managerService.editManager(form.id, form).pipe(
+          map((data) => {
+            ngToastService.success({
+              detail: 'Success Message',
+              summary: 'Manager edited successfully',
+            });
+            return editManager.editManagerSuccess({
+              id: data.id,
+              manager: data,
+            });
+          }),
+          catchError((error) => {
+            ngToastService.error({
+              detail: 'Error Message',
+              summary: error.error.message,
+            });
+
+            return of(
+              editManager.editManagerFailure({
+                error: error.message,
+              })
+            );
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+

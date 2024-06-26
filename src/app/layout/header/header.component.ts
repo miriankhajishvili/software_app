@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -12,6 +12,8 @@ import { LogOutDialogComponent } from '../../shared/components/log-out-dialog/lo
 import { pageRequest } from '../../shared/interfaces/product-list';
 import { Store } from '@ngrx/store';
 import { getAllManagers } from '../../store/action';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-header',
@@ -25,6 +27,7 @@ import { getAllManagers } from '../../store/action';
     MatButtonModule,
     MatDividerModule,
     RouterModule,
+
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
@@ -42,12 +45,16 @@ export class HeaderComponent implements OnInit {
   pagination: pageRequest = {
     page: 1,
     row: 10,
-    search: '',
-    sort: '',
+    firstname: '',
+    lastname: '',
   };
 
   ngOnInit(): void {
     this.getAllManagers();
+    // const defaultLange = localStorage.getItem('language') || 'en';
+    // this.translateService.setDefaultLang(defaultLange)
+    // this.currentLanguage = defaultLange
+    // this.translateService.use(defaultLange)
   }
 
   getAllManagers() {
@@ -57,4 +64,15 @@ export class HeaderComponent implements OnInit {
       );
     }
   }
+
+
+  // private translateService = inject(TranslateService)
+  // currentLanguage!: string
+
+
+  // changeLanguage(lang: string){
+  //   this.translateService.use(lang);
+  //   localStorage.setItem('language', lang)
+  //   this.currentLanguage = lang
+  // } 
 }

@@ -32,13 +32,13 @@ export class SoldProductComponent implements OnInit {
   soldProducts$: Observable<ISoldProducts[]> =
     this.store.select(selectSoldProducts);
 
-  displayedColumns: string[] = ['productname', 'price', 'quantity', 'solddata'];
+  displayedColumns: string[] = ['productname', 'price', 'quantity', 'totalprice', 'solddata'];
 
   pagination: pageRequest = {
     page: 1,
     row: 10,
-    search: '',
-    sort: '',
+    firstname: '',
+    lastname: '',
   };
 
   constructor(private store: Store) {}

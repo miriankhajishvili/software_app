@@ -15,6 +15,7 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
 import { AddEditFormComponent } from '../../shared/components/add-edit-form/add-edit-form.component';
+import { FilterComponent } from '../../shared/components/filter/filter.component';
 
 @Component({
   selector: 'app-managers',
@@ -45,16 +46,16 @@ export class ManagersComponent implements OnInit {
   pagination: pageRequest = {
     page: 1,
     row: 10,
-    search: '',
-    sort: '',
+    firstname: '',
+    lastname: '',
   };
 
-  constructor(private store: Store, private matDialog: MatDialog) {}
+  constructor(private store: Store, private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
   onEditManager(manager: IManagers) {
-    this.matDialog.open(AddEditFormComponent, {
+    this.dialog.open(AddEditFormComponent, {
       data: {
         firstName: manager.firstName,
         lastName: manager.lastName,
@@ -67,7 +68,7 @@ export class ManagersComponent implements OnInit {
   }
 
   onDelete(manager: IManagers) {
-    this.matDialog.open(DeleteConfirmDialogComponent, {
+    this.dialog.open(DeleteConfirmDialogComponent, {
       data: {
         id: manager.id,
         onManagerDelete: true,
@@ -87,5 +88,11 @@ export class ManagersComponent implements OnInit {
     this.store.dispatch(
       getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
     );
+  }
+
+  onManagerFilterClick() {
+    this.dialog.open(FilterComponent, {
+      data: { onManagerFilterClick : true },
+    });
   }
 }

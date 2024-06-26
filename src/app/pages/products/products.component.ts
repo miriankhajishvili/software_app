@@ -23,6 +23,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 import { AddEditFormComponent } from '../../shared/components/add-edit-form/add-edit-form.component';
+import { FilterComponent } from '../../shared/components/filter/filter.component';
 
 @Component({
   selector: 'app-product-list',
@@ -50,8 +51,8 @@ export class ProductListComponent implements OnInit {
   pagination: pageRequest = {
     page: 1,
     row: 10,
-    search: '',
-    sort: '',
+    firstname: '',
+    lastname: '',
   };
 
   constructor(private store: Store, public dialog: MatDialog) {}
@@ -102,6 +103,12 @@ export class ProductListComponent implements OnInit {
         quantity: product.quantity,
         onSellProductClick: true,
       },
+    });
+  }
+
+  onProductFilterClick(){
+    this.dialog.open(FilterComponent, {
+      data: { onProductFilterClick : true },
     });
   }
 }

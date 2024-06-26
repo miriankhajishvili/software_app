@@ -1,6 +1,8 @@
 <div style="margin-top: 25px" class="mat-elevation-z8">
   <app-navigation ></app-navigation>
-
+  <span (click)="onManagerFilterClick()" class="material-symbols-outlined">
+    filter_alt
+    </span>
   <table mat-table [dataSource]="(managers$ | async) || []">
     <ng-container matColumnDef="manager">
       <th mat-header-cell *matHeaderCellDef><b>Manager</b></th>

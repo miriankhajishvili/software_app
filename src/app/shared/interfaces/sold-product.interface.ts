@@ -9,10 +9,11 @@ export interface IGetAllSoldProducts {
 }
 
 export interface ISoldProducts {
-  quantity: number;
-  price: number;
   name: string;
+  price: number;
   soldAt: Data;
+  totalPrice: number
+  totalQuantity: number;
 }
 
 export interface ISellProduct {

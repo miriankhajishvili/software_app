@@ -16,7 +16,7 @@ import { ISellProduct } from '../interfaces/sold-product.interface';
 export class ProductService extends BaseService {
 
   getAllProducts(pageRequest: pageRequest): Observable<IGetAllProducts> {
-    const { page, search, sort } = pageRequest;
+    const { page, firstname, lastname } = pageRequest;
     let pageDetail = `?page=${page}`;
     return this.get<IGetAllProducts>(`products${pageDetail}`);
   }

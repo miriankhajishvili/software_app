@@ -1,0 +1,56 @@
+<!-- filter-popup.component.html -->
+
+<div class="form-field-container">
+  @if (data.onManagerFilterClick) {
+  <div [formGroup]="managerForm" class="filter-popup">
+    <h2>Filter Options</h2>
+    <form>
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input formControlName="firstname" type="text" id="firstName"  />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input  formControlName="lastname" type="text" id="lastName"  />
+      </div>
+      <div class="form-group">
+        <label for="registrationDateStart">Registration Date From:</label>
+        <input
+          type="date"
+          id="registrationDateStart"
+          name="registrationDateStart"
+        />
+      </div>
+      <div class="form-group">
+        <label for="registrationDateEnd">Registration Date To:</label>
+        <input
+          type="date"
+          id="registrationDateEnd"
+          name="registrationDateEnd"
+        />
+      </div>
+      <div class="form-group">
+        <label for="soldAmountFrom">Sold Product Amount From:</label>
+        <input type="number" id="soldAmountFrom" name="soldAmountFrom" />
+      </div>
+      <div class="form-group">
+        <label for="soldAmountTo">Sold Product Amount To:</label>
+        <input type="number" id="soldAmountTo" name="soldAmountTo" />
+      </div>
+      <div class="form-actions">
+        <button (click)="onProductFilter()" type="button" class="apply-button">Apply Filters</button>
+        <button type="button" class="clear-button">Clear Filters</button>
+      </div>
+    </form>
+  </div>
+  } @if (data.onProductFilterClick) {
+
+    <h1 mat-dialog-title>Filter</h1>
+  <mat-form-field class="mat-field">
+    <mat-label>Manager Firstname</mat-label>
+    <input type="text" matInput>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="onProductFilter()" type="button">Submit</button>
+  }
+</div>

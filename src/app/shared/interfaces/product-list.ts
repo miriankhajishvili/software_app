@@ -60,6 +60,6 @@ export interface iProductsState {
 export interface pageRequest {
   page: number;
   row: number;
-  search: string | undefined | null;
-  sort: string;
+  firstname: string
+  lastname: string;
 }

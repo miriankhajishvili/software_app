@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { Store, compose } from '@ngrx/store';
 import {
   createManager,
   createProduct,
@@ -146,6 +146,7 @@ export class AddEditFormComponent implements OnInit {
     console.log(this.managerForm.value);
     this.dialogRef.close()
     this.managerForm.reset();
+  
   }
 
   onEditProduct() {

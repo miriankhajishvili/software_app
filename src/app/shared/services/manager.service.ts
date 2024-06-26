@@ -10,9 +10,11 @@ import { IGetAllManagers, IManagerCreate, IManagers } from '../interfaces/manage
 export class ManagerService extends BaseService {
   
   getAllManagers(pageRequest: pageRequest): Observable<IGetAllManagers> {
-    const { page, search, sort } = pageRequest;
-    let pageDetail = `?page=${page}`;
-    return this.get<IGetAllManagers>(`users/managers${pageDetail}`);
+    const { page, firstname, lastname } = pageRequest;
+    let pageDetail = `&page=${page}`;
+    let name = `?firstNameSearch=${firstname}`
+    let surname = `&lastNameSearch=${lastname}`
+    return this.get<IGetAllManagers>(`users/managers${name}${surname}${pageDetail}`);
   }
 
   createManager(form: IManagerCreate): Observable<IManagers> {

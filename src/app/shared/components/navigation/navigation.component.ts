@@ -13,6 +13,7 @@ import { AddEditFormComponent } from '../add-edit-form/add-edit-form.component';
   styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent {
+  userRole = localStorage.getItem('Role')
   onAddManagerClick?: boolean;
   onAddProduckClick?: boolean;
   constructor(public dialog: MatDialog) {}

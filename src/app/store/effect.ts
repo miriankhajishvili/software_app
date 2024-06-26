@@ -11,9 +11,10 @@ import {
   getAllManagers,
   getAllProducts,
   getAllSoldProducts,
+  sellProduct,
 } from './action';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { NgToastModule, NgToastService } from 'ng-angular-popup';
+import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from '../shared/services/auth.service';
 import { ILoginRespons } from '../shared/interfaces/auth.interface';
 import { Router } from '@angular/router';
@@ -125,7 +126,7 @@ export const loginEffect = createEffect(
       switchMap(({ form }) => {
         return authService.login(form).pipe(
           map((loginUser: ILoginRespons) => {
-            console.log(loginUser)
+            console.log(loginUser);
             localStorage.setItem(
               'currentUser',
               loginUser.userData.firstName + ' ' + loginUser.userData.lastName
@@ -188,7 +189,7 @@ export const getAllSoldProductsEffect = createEffect(
         return soldProductService.getAllSoldProducts(pageRequest).pipe(
           map((res) => {
             return getAllSoldProducts.getAllSoldProductsSuccess({
-              soldProducts: res.products,
+              soldProducts: res.sellingProducts,
               items: res.total,
             });
           })
@@ -226,20 +227,50 @@ export const createManagerEffect = createEffect(
 );
 
 export const editProductEffect = createEffect(
-  (action$ = inject(Actions), productService = inject(ProductService)) => {
+  (action$ = inject(Actions), productService = inject(ProductService), ngToastService = inject(NgToastService)) => {
     return action$.pipe(
       ofType(editProduct.editProductAction),
       switchMap(({ form }) => {
-        console.log(form)
-        console.log(form.id);
         return productService.editProduct(form.id, form).pipe(
           map((data) => {
+            ngToastService.success({
+              detail: 'Success Message',
+              summary: 'Product edited successfully',
+            });
             return editProduct.editProductSuccess({
               id: data.id,
               product: data,
             });
           })
         );
+      })
+    );
+  },
+  { functional: true }
+);
+
+export const sellProductEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    productService = inject(ProductService),
+    ngToastService = inject(NgToastService)
+  ) => {
+    return actions$.pipe(
+      ofType(sellProduct.sellProduct),
+      switchMap((data) => {
+        return productService
+          .sellProduct({ quantity: data.quantity }, data.id)
+          .pipe(
+            map((res) => {
+              ngToastService.success({
+                detail: 'Success Message',
+                summary: 'Product Sold successfully',
+              });
+              return sellProduct.sellProductSuccess({
+                quantity: res.quantity,
+              });
+            })
+          );
       })
     );
   },

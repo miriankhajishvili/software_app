@@ -11,8 +11,9 @@ import {
   createManager,
   createProduct,
   editProduct,
+  sellProduct,
 } from '../../../store/action';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -44,6 +45,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class AddEditFormComponent implements OnInit {
   readonly data = inject<any>(MAT_DIALOG_DATA);
+  readonly dialogRef = inject(MatDialogRef<AddEditFormComponent>);
 
   allManagers$: Observable<IManagers[]> = this.store.select(selectManagers).pipe(tap( console.log));
 
@@ -77,6 +79,8 @@ export class AddEditFormComponent implements OnInit {
     ]),
   });
 
+  sellMyProduct = new FormControl('', [Validators.required,  positiveNumberValidator()])
+
   get name() {
     return this.form.get('name');
   }
@@ -101,12 +105,20 @@ export class AddEditFormComponent implements OnInit {
     return this.managerForm.get('password');
   }
 
+  get sellProduct() {
+    return this.sellMyProduct.get('sellMyProduct');
+  }
+
+
   constructor(private store: Store, private productService:ProductService) {}
 
   ngOnInit(): void {
    
     this.form.patchValue(this.data);
     this.managerForm.patchValue(this.data)
+    
+
+    console.log(this.sellMyProduct)
   }
 
   onAddProduct() {
@@ -115,6 +127,7 @@ export class AddEditFormComponent implements OnInit {
     formValue.quantity = +formValue.quantity;
     this.store.dispatch(createProduct.createProduct({ form: this.form.value }));
     this.form.reset();
+    this.dialogRef.close()
   }
 
   onAddManager() {
@@ -122,6 +135,7 @@ export class AddEditFormComponent implements OnInit {
       createManager.createManagerAction({ form: this.managerForm.value })
     );
     console.log(this.managerForm.value);
+    this.dialogRef.close()
     this.managerForm.reset();
   }
 
@@ -135,12 +149,22 @@ export class AddEditFormComponent implements OnInit {
     this.store.dispatch(
       editProduct.editProductAction({ form: obj, })
     );
-
+    this.dialogRef.close()
     this.form.reset();
   }
 
   onEditManager(){
-    // this.store.dispatch()
+
   } 
+
+  onSellProduct(){
+    console.log(this.data)
+    this.store.dispatch(
+      sellProduct.sellProduct({ quantity: +this.sellMyProduct.value! , id: this.data.id})
+    );
+    this.dialogRef.close()
+  }
+
+  onClose(){}
 
 }

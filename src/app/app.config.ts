@@ -18,6 +18,7 @@ import * as createManagerEffect from './store/effect';
 import * as editProductEffect from './store/effect';
 import * as deleteManagerEffect from './store/effect';
 import * as getAllSoldProductsEffect from './store/effect';
+import * as sellProductEffect from './store/effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -35,7 +36,8 @@ export const appConfig: ApplicationConfig = {
       createManagerEffect,
       editProductEffect,
       deleteManagerEffect,
-      getAllSoldProductsEffect
+      getAllSoldProductsEffect,
+      sellProductEffect
       
     ),
     provideState({ name: 'products', reducer: productReducer }),

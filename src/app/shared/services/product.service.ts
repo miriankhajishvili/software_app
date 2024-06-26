@@ -8,6 +8,7 @@ import {
   IProductResponse,
   pageRequest,
 } from '../interfaces/product-list';
+import { ISellProduct } from '../interfaces/sold-product.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,9 @@ export class ProductService extends BaseService {
 
   createProduct(form: IProduct): Observable<ICreateProductResponse> {
     return this.post<ICreateProductResponse>(`products`, form);
+  }
+  sellProduct(quantity: ISellProduct, id: number): Observable<ISellProduct> {
+    return this.post<ISellProduct>(`products/sell/${id}`, quantity);
   }
 
   editProduct(id: number, form: IProduct): Observable<ICreateProductResponse> {

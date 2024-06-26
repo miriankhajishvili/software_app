@@ -91,4 +91,5 @@ export const {
   selectProducts,
   selectItems,
   selectManagers,
+  selectSoldProducts
 } = products;

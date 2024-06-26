@@ -35,8 +35,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private store: Store) {}
 
-
-
   openDialog() {
     this.dialog.open(LogOutDialogComponent);
   }
@@ -48,16 +46,15 @@ export class HeaderComponent implements OnInit {
     sort: '',
   };
 
-
-
   ngOnInit(): void {
-    this.getAllManagers()
-    
+    this.getAllManagers();
   }
 
-  getAllManagers(){
-    this.store.dispatch(
-      getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
-    );
+  getAllManagers() {
+    if (this.currentRole == 'admin') {
+      this.store.dispatch(
+        getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
+      );
+    }
   }
 }

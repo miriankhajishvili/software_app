@@ -1,114 +1,135 @@
-<div class="main-container" [formGroup]="data.onEditManagerClick ? managerForm : form">
+<div class="main-container">
  
-@if (data.onAddManagerClick) { <h1 mat-dialog-title>Add Manager</h1>}
-@if (data.onEditManagerClick) { <h1 mat-dialog-title>Edit Manager</h1>}
-@if (data.onAddProduckClick) { <h1 mat-dialog-title>Add Product</h1>}
-@if (data.onEditProductClick) { <h1 mat-dialog-title>Edit Product</h1>}
+ @if (data.onAddManagerClick) { <h1 mat-dialog-title>Add Manager</h1>}
+ @if (data.onEditManagerClick) { <h1 mat-dialog-title>Edit Manager</h1>}
+ @if (data.onAddProduckClick) { <h1 mat-dialog-title>Add Product</h1>}
+ @if (data.onEditProductClick) { <h1 mat-dialog-title>Edit Product</h1>}
  
 
   <div class="form-field-container">
     @if (data.onAddManagerClick || data.onEditManagerClick ) {
-      <mat-form-field  class="mat-field">
-        <mat-label>Manager Firstname</mat-label>
-        <input type="text" matInput formControlName="firstName">
-        @if (firstname?.errors?.['required']  ) {
-          <mat-error>Firstname is mandatory</mat-error>
-        }
-    
-        @if (firstname?.errors?.['lettersOnly'] ) {
-          <mat-error>Please enter only letters!</mat-error>
-        }
-      </mat-form-field>
-      <mat-form-field  class="mat-field">
-        <mat-label>Manager Lastname</mat-label>
-        <input type="text" matInput formControlName="lastName">
-        @if (firstname?.errors?.['required']  ) {
-          <mat-error>Firstname is mandatory</mat-error>
-        }
-    
-        @if (firstname?.errors?.['lettersOnly'] ) {
-          <mat-error>Please enter only letters!</mat-error>
-        }
-        
-      </mat-form-field>
-      <mat-form-field class="mat-field">
-        <mat-label>Pleae Enter manager email</mat-label>
-        <input matInput type="email" formControlName="email">
-      </mat-form-field>
-    
-    
-      <mat-form-field class="mat-field">
-        <mat-label>Manager Password</mat-label>
-        <input matInput type='password'  formControlName='password'/>
-        @if (password?.errors?.['required']  ) {
-          <mat-error>Password is mandatory</mat-error>
-        }
-        @if (password?.hasError('minlength') ) {
-          <mat-error>The password must consist of at least 5 characters</mat-error>
-        }
-        @if (password?.hasError('maxlength') ) {
-          <mat-error>The password must contain a maximum of 15 characters</mat-error>
-        }
-      </mat-form-field>
-    }
-    
-
-    @if (data.onAddProduckClick || data.onEditProductClick ) {
-
-      <mat-form-field class="mat-field">
-      <mat-label >Product Name</mat-label>
-      <input matInput type="text" formControlName='name' />
-
-
-      @if (name?.errors?.['required'] ) {
-        <mat-error>Product is mandatory</mat-error>
-      }
-    </mat-form-field> 
-
-    <mat-form-field class="mat-field">
-      <mat-label>Product Quantity</mat-label>
-      <input matInput type='number' formControlName='quantity' />
-
-
-
-      @if (quantity?.errors?.['required'] ) {
-        <mat-error>Quantity is mandatory!</mat-error>
-      }
-
-      @if (quantity?.errors?.['positiveNumber'] ) {
-        <mat-error>Entering a negative number or 0 is not allowed!</mat-error>
-      }
-    </mat-form-field >
-
-
-    <mat-form-field class="mat-field">
-      <mat-label>Product Price</mat-label>
-      <input matInput type='number' formControlName='price' />
-
-
-      @if (price?.errors?.['required'] ) {
-        <mat-error>Price is mandatory!</mat-error>
-      }
-
-      @if (price?.errors?.['positiveNumber'] ) {
-        <mat-error>Entering a negative number or 0 is not allowed!</mat-error>
-      }
-    </mat-form-field>
-
-    }
-
-
-    @if (data.onAddProduckClick || data.onEditProductClick ) {
-      <mat-form-field class="mat-field">
-        <mat-label>Please select the manager</mat-label>
-        <mat-select formControlName="managers" multiple>
-          @for (manager of (allManagers$  | async); track manager) {
-            <mat-option [value]="manager.id">{{manager.firstName + ' ' + manager.lastName}}</mat-option>
+      <div  [formGroup]="managerForm">
+        <mat-form-field  class="mat-field">
+          <mat-label>Manager Firstname</mat-label>
+          <input type="text" matInput formControlName="firstName">
+          @if (firstname?.errors?.['required']  ) {
+            <mat-error>Firstname is mandatory</mat-error>
           }
-        </mat-select>
-      </mat-form-field>
+      
+          @if (firstname?.errors?.['lettersOnly'] ) {
+            <mat-error>Please enter only letters!</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field  class="mat-field">
+          <mat-label>Manager Lastname</mat-label>
+          <input type="text" matInput formControlName="lastName">
+          @if (firstname?.errors?.['required']  ) {
+            <mat-error>Firstname is mandatory</mat-error>
+          }
+      
+          @if (firstname?.errors?.['lettersOnly'] ) {
+            <mat-error>Please enter only letters!</mat-error>
+          }
+          
+        </mat-form-field>
+        <mat-form-field class="mat-field">
+          <mat-label>Pleae Enter manager email</mat-label>
+          <input matInput type="email" formControlName="email">
+        </mat-form-field>
+      
+      
+        <mat-form-field class="mat-field">
+          <mat-label>Manager Password</mat-label>
+          <input matInput type='password'  formControlName='password'/>
+          @if (password?.errors?.['required']  ) {
+            <mat-error>Password is mandatory</mat-error>
+          }
+          @if (password?.hasError('minlength') ) {
+            <mat-error>The password must consist of at least 5 characters</mat-error>
+          }
+          @if (password?.hasError('maxlength') ) {
+            <mat-error>The password must contain a maximum of 15 characters</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
     }
-  </div>
+    
+
+    @if (data.onAddProduckClick || data.onEditProductClick ) {
+
+<div [formGroup]="form" >
+  <mat-form-field class="mat-field">
+    <mat-label >Product Name</mat-label>
+    <input matInput type="text" formControlName='name' />
+
+
+    @if (name?.errors?.['required'] ) {
+      <mat-error>Product is mandatory</mat-error>
+    }
+  </mat-form-field> 
+
+  <mat-form-field class="mat-field">
+    <mat-label>Product Quantity</mat-label>
+    <input matInput type='number' formControlName='quantity' />
+
+
+
+    @if (quantity?.errors?.['required'] ) {
+      <mat-error>Quantity is mandatory!</mat-error>
+    }
+
+    @if (quantity?.errors?.['positiveNumber'] ) {
+      <mat-error>Entering a negative number or 0 is not allowed!</mat-error>
+    }
+  </mat-form-field >
+
+
+  <mat-form-field class="mat-field">
+    <mat-label>Product Price</mat-label>
+    <input matInput type='number' formControlName='price' />
+
+
+    @if (price?.errors?.['required'] ) {
+      <mat-error>Price is mandatory!</mat-error>
+    }
+
+    @if (price?.errors?.['positiveNumber'] ) {
+      <mat-error>Entering a negative number or 0 is not allowed!</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field class="mat-field">
+    <mat-label>Please select the manager</mat-label>
+    <mat-select formControlName="managers" multiple>
+      @for (manager of (allManagers$  | async); track manager) {
+        <mat-option [value]="manager.id">{{manager.firstName + ' ' + manager.lastName}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
+
+    }
+
+
+    @if (data.onSellProductClick) {
+      <h1 mat-dialog-title>Sell product</h1>
+      <mat-form-field class="mat-field">
+        <mat-label>Please select a quantity</mat-label>
+        <input [formControl]="sellMyProduct" type="number" matInput>
+
+        @if (sellMyProduct.errors?.['required'] ) {
+          <mat-error>Price is mandatory!</mat-error>
+        }
+    
+        @if (sellMyProduct.errors?.['positiveNumber'] ) {
+          <mat-error>Entering a negative number or 0 is not allowed!</mat-error>
+        }
+      </mat-form-field>
+
+    }
+
+
 
 
 
@@ -129,6 +150,10 @@
   @if (data.onEditProductClick) {
     <button mat-raised-button color="primary" (click)="onEditProduct()" type="button">Submit</button>
   }
+  @if (data.onSellProductClick) {
+    <button mat-raised-button color="primary" (click)="onSellProduct()" type="button">Submit</button>
+  }
+
 
 
 </div>

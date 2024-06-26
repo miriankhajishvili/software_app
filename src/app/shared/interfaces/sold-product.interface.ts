@@ -1,20 +1,20 @@
 import { Data } from '@angular/router';
-import { IManagers } from './manager.interface';
 
 export interface IGetAllSoldProducts {
-  products: IProducts[];
+  sellingProducts: ISoldProducts[];
   total: number;
   perPage: number;
   currentPage: number;
   nextPage: number;
 }
 
-export interface IProducts {
-  id: number;
-  name: string;
-  price: number;
+export interface ISoldProducts {
   quantity: number;
-  createdAt: Data;
-  updatedAt: Data;
-  managers: IManagers[];
+  price: number;
+  name: string;
+  soldAt: Data;
+}
+
+export interface ISellProduct {
+  quantity: number;
 }

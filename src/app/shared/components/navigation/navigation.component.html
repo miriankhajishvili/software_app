@@ -8,6 +8,8 @@
   See Products
 </button>
 
+@if (userRole == 'admin') {
+
 <button
   [routerLink]="'/managers'"
   style="background-color: #1c309f; margin-left: 12px"
@@ -18,7 +20,7 @@
 </button>
 
 <button
-(click)="onAddManager()"
+  (click)="onAddManager()"
   style="background-color: #1c9f27; margin-left: 12px"
   mat-raised-button
   color="primary"
@@ -34,6 +36,7 @@
 >
   Add Product
 </button>
+}
 
 <button
   style="background-color: #b5a218; margin-left: 12px"

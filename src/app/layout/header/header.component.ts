@@ -47,6 +47,8 @@ export class HeaderComponent implements OnInit {
     row: 10,
     firstname: '',
     lastname: '',
+    from: 0,
+    to: 0
   };
 
   ngOnInit(): void {

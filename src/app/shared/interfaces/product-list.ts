@@ -62,4 +62,6 @@ export interface pageRequest {
   row: number;
   firstname: string
   lastname: string;
+  from: number,
+  to:number
 }

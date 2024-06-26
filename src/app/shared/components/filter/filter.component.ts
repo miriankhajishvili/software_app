@@ -32,16 +32,21 @@ import { getAllManagers } from '../../../store/action';
 })
 export class FilterComponent implements OnInit {
   readonly data = inject<any>(MAT_DIALOG_DATA);
-  pagination: pageRequest = {
+ pagination: pageRequest = {
     page: 1,
     row: 10,
     firstname: '',
     lastname: '',
+    from: 0,
+    to: 0
   };
+
 
   managerForm: FormGroup = new FormGroup({
     firstname: new FormControl(''),
-    lastname: new FormControl('')
+    lastname: new FormControl(''),
+    soldProductFrom: new FormControl(''),
+    soldProductTo: new FormControl('')
   });
 
   constructor(private store: Store) {}
@@ -52,11 +57,17 @@ export class FilterComponent implements OnInit {
     this.pagination = {
       ...this.pagination,
       firstname: this.managerForm.value.firstname,
-      lastname: this.managerForm.value.lastname
+      lastname: this.managerForm.value.lastname,
+      from: this.managerForm.value.soldProductFrom,
+      to: this.managerForm.value.soldProductTo
     };
 
     this.store.dispatch(
       getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
     );
+  }
+
+  onClearFilters() {
+    this.managerForm.reset();
   }
 }

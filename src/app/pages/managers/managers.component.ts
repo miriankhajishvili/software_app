@@ -43,12 +43,15 @@ export class ManagersComponent implements OnInit {
     'totalPriceOfSellingProducts',
     'buttons',
   ];
-  pagination: pageRequest = {
+ pagination: pageRequest = {
     page: 1,
     row: 10,
     firstname: '',
     lastname: '',
+    from: 0,
+    to: 0
   };
+
 
   constructor(private store: Store, private dialog: MatDialog) {}
 

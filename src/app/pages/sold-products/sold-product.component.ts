@@ -34,12 +34,15 @@ export class SoldProductComponent implements OnInit {
 
   displayedColumns: string[] = ['productname', 'price', 'quantity', 'totalprice', 'solddata'];
 
-  pagination: pageRequest = {
+ pagination: pageRequest = {
     page: 1,
     row: 10,
     firstname: '',
     lastname: '',
+    from: 0,
+    to: 0
   };
+
 
   constructor(private store: Store) {}
 

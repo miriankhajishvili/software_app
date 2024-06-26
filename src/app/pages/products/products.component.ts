@@ -48,12 +48,15 @@ export class ProductListComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'price', 'quantity', 'buttons'];
 
-  pagination: pageRequest = {
+ pagination: pageRequest = {
     page: 1,
     row: 10,
     firstname: '',
     lastname: '',
+    from: 0,
+    to: 0
   };
+
 
   constructor(private store: Store, public dialog: MatDialog) {}
 

@@ -23,7 +23,7 @@ export class NavigationComponent {
 
  pagination: pageRequest = {
     page: 1,
-    row: 10,
+    
    
   };
 

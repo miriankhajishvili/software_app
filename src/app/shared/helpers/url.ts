@@ -16,7 +16,5 @@ export function createRequestUrl(
       );
     }
   }
-  console.log(`${basePath}?${params.join('&')}`)
-
   return `${basePath}?${params.join('&')}`;
 }

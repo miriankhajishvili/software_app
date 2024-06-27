@@ -42,8 +42,10 @@ export class HeaderComponent implements OnInit {
 
   pagination: pageRequest = {
     page: 1,
-    row: 10,
   };
+
+
+
 
   ngOnInit(): void {
     this.getAllManagers();

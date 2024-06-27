@@ -16,7 +16,7 @@ export interface IProduct {
   name: string;
   price: string;
   quantity: number;
-  managers: number[];
+  managers: IManagers[];
 }
 
 export interface ICreateProductResponse {
@@ -50,6 +50,7 @@ export interface IProductResponse {
 }
 
 export interface iProductsState {
+  allManagers: IManagers[]
   soldProducts: ISoldProducts[];
   managers: IManagers[];
   products: IProductResponse[];
@@ -58,7 +59,7 @@ export interface iProductsState {
 
 export interface pageRequest {
   page: number;
-  row: number;
+  limit?: number
 }
 
 export interface getManagerRequest {
@@ -74,6 +75,6 @@ export interface getManagerRequest {
 
 export interface IGetAllProductsList {
   page: number;
-  row: number;
-  search?: string
+
+  search?: string;
 }

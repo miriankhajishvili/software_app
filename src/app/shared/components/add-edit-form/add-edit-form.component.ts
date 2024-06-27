@@ -12,6 +12,7 @@ import {
   createProduct,
   editManager,
   editProduct,
+  getAllManagersUnlimited,
   sellProduct,
 } from '../../../store/action';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
@@ -23,11 +24,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { lettersOnlyValidator } from '../../regex/lettersOnlyValidator';
 import { positiveNumberValidator } from '../../regex/nonNegativeNumberValidator';
-import { selectManagers } from '../../../store/reducer';
+import { selectAllManagers, selectManagers } from '../../../store/reducer';
 import { Observable, tap } from 'rxjs';
-import { IManagers } from '../../interfaces/manager.interface';
+import { IGetAllManagers, IManagers } from '../../interfaces/manager.interface';
 import { ProductService } from '../../services/product.service';
 import { singleLanguageValidator } from '../../regex/georgianLettersValidator';
+import { ObserversModule } from '@angular/cdk/observers';
+import { pageRequest } from '../../interfaces/product-list';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -49,20 +52,19 @@ export class AddEditFormComponent implements OnInit {
   readonly data = inject<any>(MAT_DIALOG_DATA);
   readonly dialogRef = inject(MatDialogRef<AddEditFormComponent>);
 
-  allManagers$: Observable<IManagers[]> = this.store.select(selectManagers).pipe(tap( console.log));
+  allManagers$: Observable<IManagers[]> = this.store.select(selectAllManagers);
 
   form: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required,  singleLanguageValidator()],),
+    name: new FormControl('', [Validators.required, singleLanguageValidator()]),
     quantity: new FormControl('', [
       Validators.required,
       positiveNumberValidator(),
-    
     ]),
     price: new FormControl('', [
       Validators.required,
       positiveNumberValidator(),
     ]),
-    managers: new FormControl([]), // Updated to handle multiple selections
+    managers: new FormControl([2, 3, 4]), // Updated to handle multiple selections
   });
 
   managerForm: FormGroup = new FormGroup({
@@ -81,8 +83,11 @@ export class AddEditFormComponent implements OnInit {
       Validators.maxLength(15),
     ]),
   });
-
-  sellMyProduct = new FormControl('', [Validators.required,  positiveNumberValidator()])
+  currentRole = localStorage.getItem('Role');
+  sellMyProduct = new FormControl('', [
+    Validators.required,
+    positiveNumberValidator(),
+  ]);
 
   get name() {
     return this.form.get('name');
@@ -103,7 +108,6 @@ export class AddEditFormComponent implements OnInit {
   }
   get lastname() {
     return this.managerForm.get('lastName');
-    
   }
 
   get email() {
@@ -118,16 +122,32 @@ export class AddEditFormComponent implements OnInit {
     return this.sellMyProduct.get('sellMyProduct');
   }
 
+  allManagerArray$: Observable<IManagers[]> = new Observable();
 
-  constructor(private store: Store, private productService:ProductService) {}
+  pagination: pageRequest = {
+    page: 1,
+    limit: 1000,
+  };
+
+  constructor(private store: Store, private productService: ProductService) {}
 
   ngOnInit(): void {
-   
-    this.form.patchValue(this.data);
-    this.managerForm.patchValue(this.data)
-    
+    if (this.currentRole == 'admin') {
+      this.getAllManagers();
+    }
+    this.allManagerArray$ = this.data.managers;
 
-    console.log(this.sellMyProduct)
+    this.form.patchValue(this.data);
+
+    this.managerForm.patchValue(this.data);
+  }
+
+  getAllManagers() {
+    this.store.dispatch(
+      getAllManagersUnlimited.getAllManagersUnlimitedAction({
+        pageRequest: this.pagination,
+      })
+    );
   }
 
   onAddProduct() {
@@ -136,7 +156,7 @@ export class AddEditFormComponent implements OnInit {
     formValue.quantity = +formValue.quantity;
     this.store.dispatch(createProduct.createProduct({ form: this.form.value }));
     this.form.reset();
-    this.dialogRef.close()
+    this.dialogRef.close();
   }
 
   onAddManager() {
@@ -144,43 +164,42 @@ export class AddEditFormComponent implements OnInit {
       createManager.createManagerAction({ form: this.managerForm.value })
     );
     console.log(this.managerForm.value);
-    this.dialogRef.close()
+    this.dialogRef.close();
     this.managerForm.reset();
-  
   }
 
   onEditProduct() {
     const formValue = this.form.value;
     formValue.price = +formValue.price;
     formValue.quantity = +formValue.quantity;
-    const obj = this.form.value
-    obj.id = this.data.id
+    const obj = this.form.value;
+    obj.id = this.data.id;
+
+    this.store.dispatch(editProduct.editProductAction({ form: obj }));
+    this.dialogRef.close();
+    this.form.reset();
+  }
+
+  onEditManager() {
+    const obj = this.managerForm.value;
+    obj.id = this.data.id;
+
+    this.store.dispatch(editManager.editManager({ form: obj }));
+    this.dialogRef.close();
+    this.form.reset();
+  }
+
+  onSellProduct() {
+    console.log(this.data);
+    this.store.dispatch(
+      sellProduct.sellProduct({
+        quantity: +this.sellMyProduct.value!,
+        id: this.data.id,
+      })
+    );
+    this.dialogRef.close();
     
-    this.store.dispatch(
-      editProduct.editProductAction({ form: obj, })
-    );
-    this.dialogRef.close()
-    this.form.reset();
   }
 
-  onEditManager(){
-
-    const obj = this.managerForm.value
-    obj.id = this.data.id
-
-    this.store.dispatch(editManager.editManager({ form: obj}))
-    this.dialogRef.close()
-    this.form.reset();
-  } 
-
-  onSellProduct(){
-    console.log(this.data)
-    this.store.dispatch(
-      sellProduct.sellProduct({ quantity: +this.sellMyProduct.value! , id: this.data.id})
-    );
-    this.dialogRef.close()
-  }
-
-  onClose(){}
-
+  onClose() {}
 }

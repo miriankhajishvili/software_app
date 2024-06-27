@@ -114,7 +114,7 @@
     <mat-label>Please select the manager</mat-label>
     <mat-select formControlName="managers" multiple>
       @for (manager of (allManagers$  | async); track manager) {
-        <mat-option [value]="manager.id">{{manager.firstName + ' ' + manager.lastName}}</mat-option>
+        <mat-option  [value]="manager.id">{{manager.firstName + ' ' + manager.lastName}}</mat-option>
       }
     </mat-select>
   </mat-form-field>

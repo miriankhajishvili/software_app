@@ -8,11 +8,13 @@ import {
   deleteProduct,
   editProduct,
   getAllManagers,
+  getAllManagersUnlimited,
   getAllProducts,
   getAllSoldProducts,
 } from './action';
 
 const initialState: iProductsState = {
+  allManagers: [],
   soldProducts: [],
   managers: [],
   products: [],
@@ -57,6 +59,14 @@ const main = createFeature({
       items: action.items,
     })),
 
+    on(getAllManagersUnlimited.getAllManagersUnlimitedAction, (state) => ({ ...state })),
+    on(getAllManagersUnlimited.getAllManagersUnlimitedSuccess, (state, action) => ({
+      ...state,
+      allManagers: action.managers,
+      items: action.items,
+    })),
+
+
     on(getAllSoldProducts.getAllSoldProductsAction, (state) => ({ ...state })),
     on(getAllSoldProducts.getAllSoldProductsSuccess, (state, action) => ({
       ...state,
@@ -90,5 +100,6 @@ export const {
   selectProducts,
   selectItems,
   selectManagers,
-  selectSoldProducts
+  selectSoldProducts,
+  selectAllManagers
 } = main;

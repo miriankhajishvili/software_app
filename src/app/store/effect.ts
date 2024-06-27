@@ -10,6 +10,7 @@ import {
   editManager,
   editProduct,
   getAllManagers,
+  getAllManagersUnlimited,
   getAllProducts,
   getAllSoldProducts,
   sellProduct,
@@ -102,6 +103,9 @@ export const getAllProductsEffect = createEffect(
   },
   { functional: true }
 );
+
+
+
 
 export const createProductEffect = createEffect(
   (
@@ -287,6 +291,42 @@ export const getAllManagersEffect = createEffect(
   },
   { functional: true }
 );
+
+export const getAllManagersUnlimitedEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    managerService = inject(ManagerService),
+    ngToastService = inject(NgToastService)
+  ) => {
+    return actions$.pipe(
+      ofType(getAllManagersUnlimited.getAllManagersUnlimitedAction),
+      switchMap(({ pageRequest }) => {
+        return managerService.getAllManagers(pageRequest).pipe(
+          map((res) => {
+            return getAllManagersUnlimited.getAllManagersUnlimitedSuccess({
+              managers: res.managers,
+              items: res.total,
+            });
+          }),
+          catchError((error) => {
+            ngToastService.error({
+              detail: 'Error Message',
+              summary: error.error.message,
+            });
+
+            return of(
+              getAllManagersUnlimited.getAllManagersUnlimitedFailied({
+                error: error.message,
+              })
+            );
+          })
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
 
 export const getAllSoldProductsEffect = createEffect(
   (

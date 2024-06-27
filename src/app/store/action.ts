@@ -84,6 +84,19 @@ export const getAllManagers = createActionGroup({
   },
 });
 
+export const getAllManagersUnlimited = createActionGroup({
+  source: 'getAllManagersUnlimited',
+  events: {
+    getAllManagersUnlimitedAction: props<{ pageRequest: pageRequest }>(),
+    getAllManagersUnlimitedSuccess: props<{
+      managers: IManagers[];
+      items: number;
+    }>(),
+    getAllManagersUnlimitedFailied: props<{ error: string }>(),
+  },
+});
+
+
 export const getAllSoldProducts = createActionGroup({
   source: 'getAllSoldProducts',
   events: {

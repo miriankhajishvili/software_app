@@ -33,11 +33,10 @@ import { getAllManagers, getAllProducts } from '../../../store/action';
 export class FilterComponent implements OnInit {
   readonly data = inject<any>(MAT_DIALOG_DATA);
 
-  pagination: pageRequest = {
+   pagination: pageRequest = {
     page: 1,
-    row: 10,
-  };
 
+  };
   managerForm: FormGroup = new FormGroup({
     firstNameSearch: new FormControl(''),
     lastNameSearch: new FormControl(''),

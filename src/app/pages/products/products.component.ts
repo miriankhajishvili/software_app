@@ -17,7 +17,7 @@ import {
   getAllManagers,
   getAllProducts,
 } from '../../store/action';
-import { Observable, tap } from 'rxjs';
+import { Observable, take, tap } from 'rxjs';
 import { selectItems, selectProducts } from '../../store/reducer';
 import { ProductService } from '../../shared/services/product.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -51,7 +51,7 @@ export class ProductListComponent implements OnInit {
 
  pagination: IGetAllProductsList = {
     page: 1,
-    row: 10,
+    
   };
 
 
@@ -90,7 +90,7 @@ export class ProductListComponent implements OnInit {
         name: product.name,
         quantity: product.quantity,
         price: product.price,
-        managers: product.managers,
+        managers: product.managers.map(manager => manager.id),
         onEditProductClick: true,
       },
     });
@@ -103,7 +103,9 @@ export class ProductListComponent implements OnInit {
         quantity: product.quantity,
         onSellProductClick: true,
       },
-    });
+    }).afterClosed().pipe(take(1),
+       tap( res => this.getAllProducts())
+    ).subscribe()
   }
 
   onProductFilterClick(){

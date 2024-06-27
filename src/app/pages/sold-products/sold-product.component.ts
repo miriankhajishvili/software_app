@@ -40,8 +40,12 @@ export class SoldProductComponent implements OnInit {
     firstname: '',
     lastname: '',
     from: 0,
-    to: 0
+    to: 0,
+    registerFrom: Date,
+    registerTo: Date,
+    product: ''
   };
+
 
 
   constructor(private store: Store) {}

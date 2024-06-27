@@ -54,7 +54,10 @@ export class ProductListComponent implements OnInit {
     firstname: '',
     lastname: '',
     from: 0,
-    to: 0
+    to: 0,
+    registerFrom: Date,
+    registerTo: Date,
+    product: ''
   };
 
 

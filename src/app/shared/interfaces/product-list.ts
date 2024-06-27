@@ -64,4 +64,7 @@ export interface pageRequest {
   lastname: string;
   from: number,
   to:number
+  registerFrom : Data,
+  registerTo: Data,
+  product: string
 }

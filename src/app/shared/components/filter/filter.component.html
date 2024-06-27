@@ -16,9 +16,11 @@
       <div class="form-group">
         <label for="registrationDateStart">Registration Date From:</label>
         <input
+
           type="date"
           id="registrationDateStart"
           name="registrationDateStart"
+          formControlName="registerDataFrom"
         />
       </div>
       <div class="form-group">
@@ -27,6 +29,7 @@
           type="date"
           id="registrationDateEnd"
           name="registrationDateEnd"
+          formControlName="registerDataTo"
         />
       </div>
       <div class="form-group">
@@ -38,7 +41,7 @@
         <input formControlName="soldProductTo" type="number" id="soldAmountTo" name="soldAmountTo" />
       </div>
       <div class="form-actions">
-        <button (click)="onProductFilter()" type="button" class="apply-button">Apply Filters</button>
+        <button (click)="onManagerFilter()" type="button" class="apply-button">Apply Filters</button>
         <button type="button" class="clear-button">Clear Filters</button>
       </div>
     </form>
@@ -48,12 +51,18 @@
   
   } @if (data.onProductFilterClick) {
 
-    <h1 mat-dialog-title>Filter</h1>
-  <mat-form-field class="mat-field">
-    <mat-label>Manager Firstname</mat-label>
-    <input type="text" matInput>
-  </mat-form-field>
-
-  <button mat-raised-button color="primary" (click)="onProductFilter()" type="button">Submit</button>
+    <div class="filter-popup">
+      <h2>Filter Options</h2>
+      <form>
+        <div class="form-group">
+          <label for="productName">Product Name:</label>
+          <input [formControl]="productControl" type="text" id="productName" />
+        </div>
+        <div class="form-actions">
+          <button (click)="onProductFilter()" type="button" class="apply-button">Apply Filters</button>
+          <button (click)="onClearFilters()" type="button" class="clear-button">Clear Filters</button>
+        </div>
+      </form>
+    </div>
+    
   }
-</div>

@@ -38,7 +38,7 @@
           <b>Sold Data</b>
         </th>
         <td mat-cell *matCellDef="let product">
-          {{ product.soldAt | date }}
+          {{ product.soldAt | date : "medium" }}
         </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

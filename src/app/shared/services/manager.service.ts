@@ -13,12 +13,15 @@ import {
 })
 export class ManagerService extends BaseService {
   getAllManagers(pageRequest: pageRequest): Observable<IGetAllManagers> {
-    const { page, firstname, lastname, from, to } = pageRequest;
-    let pageDetail = `&page=${page}`;
+    const { page, firstname, lastname, from, to, registerFrom, registerTo } = pageRequest;
     let name = `?firstNameSearch=${firstname}`;
     let surname = `&lastNameSearch=${lastname}`;
+    let pageDetail = `&page=${page}`;
+    // let dateFrom = `&registrationDateFrom${registerFrom}`;
+    // let dateTo = `&registrationDateTo${registerTo}`;
     let priceFrom = `&totalPriceMin=${from}`;
-    let priceTo = `&totalPriceMax${to}`;
+    let priceTo = `&totalPriceMax=${to}`;
+
     return this.get<IGetAllManagers>(
       `users/managers${name}${surname}${pageDetail}${priceFrom}${priceTo}`
     );

@@ -14,11 +14,11 @@ import { ISellProduct } from '../interfaces/sold-product.interface';
   providedIn: 'root',
 })
 export class ProductService extends BaseService {
-
   getAllProducts(pageRequest: pageRequest): Observable<IGetAllProducts> {
-    const { page, firstname, lastname } = pageRequest;
-    let pageDetail = `?page=${page}`;
-    return this.get<IGetAllProducts>(`products${pageDetail}`);
+    const { page, firstname, lastname, product } = pageRequest;
+    let pageDetail = `&page=${page}`;
+    let productName = `?search=${product}`;
+    return this.get<IGetAllProducts>(`products${productName}${pageDetail}`);
   }
 
   createProduct(form: IProduct): Observable<ICreateProductResponse> {

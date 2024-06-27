@@ -14,7 +14,7 @@
     <ng-container matColumnDef="registrationData">
       <th mat-header-cell *matHeaderCellDef><b>Registration Data</b></th>
       <td mat-cell *matCellDef="let manager">
-        {{ manager.createdAt | date }}
+        {{ manager.createdAt | date : "medium"}}
       </td>
     </ng-container>
 

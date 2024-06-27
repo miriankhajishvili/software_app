@@ -140,6 +140,7 @@ export class AddEditFormComponent implements OnInit {
     this.form.patchValue(this.data);
 
     this.managerForm.patchValue(this.data);
+    console.log(this.data)
   }
 
   getAllManagers() {
@@ -149,7 +150,7 @@ export class AddEditFormComponent implements OnInit {
       })
     );
   }
-
+ 
   onAddProduct() {
     const formValue = this.form.value;
     formValue.price = +formValue.price;

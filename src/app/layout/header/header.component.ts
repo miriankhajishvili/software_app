@@ -48,20 +48,14 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllManagers();
+
+
     // const defaultLange = localStorage.getItem('language') || 'en';
     // this.translateService.setDefaultLang(defaultLange)
     // this.currentLanguage = defaultLange
     // this.translateService.use(defaultLange)
   }
 
-  getAllManagers() {
-    if (this.currentRole == 'admin') {
-      this.store.dispatch(
-        getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
-      );
-    }
-  }
 
   // private translateService = inject(TranslateService)
   // currentLanguage!: string

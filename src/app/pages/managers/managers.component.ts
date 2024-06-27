@@ -52,7 +52,9 @@ export class ManagersComponent implements OnInit {
 
   constructor(private store: Store, private dialog: MatDialog) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllManagers()
+  }
 
   onEditManager(manager: IManagers) {
     this.dialog.open(AddEditFormComponent, {

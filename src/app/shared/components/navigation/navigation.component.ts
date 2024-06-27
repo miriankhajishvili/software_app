@@ -16,19 +16,15 @@ import { pageRequest } from '../../interfaces/product-list';
   styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent {
-  userRole = localStorage.getItem('Role')
+  userRole = localStorage.getItem('Role');
   onAddManagerClick?: boolean;
   onAddProduckClick?: boolean;
 
-
- pagination: pageRequest = {
+  pagination: pageRequest = {
     page: 1,
-    
-   
   };
 
-
-  constructor(public dialog: MatDialog, private store:Store) {}
+  constructor(public dialog: MatDialog, private store: Store) {}
 
   onAddProduct() {
     this.onAddProduckClick = true;
@@ -37,9 +33,7 @@ export class NavigationComponent {
         onAddProduckClick: this.onAddProduckClick,
       },
     });
-    this.store.dispatch(
-      getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
-    );
+ 
   }
   onAddManager() {
     this.onAddManagerClick = true;
@@ -49,4 +43,5 @@ export class NavigationComponent {
       },
     });
   }
+
 }

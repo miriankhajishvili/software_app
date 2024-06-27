@@ -127,16 +127,14 @@ export class AddEditFormComponent implements OnInit {
     limit: 1000,
   };
 
-  constructor(private store: Store, private productService: ProductService) {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-
-    if(!this.data.onAddManagerClick){
-      if (this.currentRole == 'admin' ) {
+    if (!this.data.onAddManagerClick && !this.data.onEditManagerClick) {
+      if (this.currentRole == 'admin') {
         this.getAllManagers();
       }
     }
-   
 
     this.form.patchValue(this.data);
     this.managerForm.patchValue(this.data);
@@ -198,6 +196,4 @@ export class AddEditFormComponent implements OnInit {
     );
     this.dialogRef.close();
   }
-
- 
 }

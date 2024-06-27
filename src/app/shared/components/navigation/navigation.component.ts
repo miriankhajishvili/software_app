@@ -5,7 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { RouterModule } from '@angular/router';
 import { AddEditFormComponent } from '../add-edit-form/add-edit-form.component';
 import { Store } from '@ngrx/store';
-import { getAllManagers } from '../../../store/action';
 import { IPageRequest } from '../../interfaces/product-listinterface';
 
 @Component({

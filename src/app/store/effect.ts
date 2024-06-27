@@ -104,9 +104,6 @@ export const getAllProductsEffect = createEffect(
   { functional: true }
 );
 
-
-
-
 export const createProductEffect = createEffect(
   (
     actions$ = inject(Actions),
@@ -327,7 +324,6 @@ export const getAllManagersUnlimitedEffect = createEffect(
   { functional: true }
 );
 
-
 export const getAllSoldProductsEffect = createEffect(
   (
     actions$ = inject(Actions),
@@ -412,6 +408,7 @@ export const editProductEffect = createEffect(
       switchMap(({ form }) => {
         return productService.editProduct(form.id, form).pipe(
           map((data) => {
+            console.log(data);
             ngToastService.success({
               detail: 'Success Message',
               summary: 'Product edited successfully',
@@ -439,7 +436,6 @@ export const editProductEffect = createEffect(
   },
   { functional: true }
 );
-
 
 export const editManagerEffect = createEffect(
   (
@@ -479,4 +475,3 @@ export const editManagerEffect = createEffect(
   },
   { functional: true }
 );
-

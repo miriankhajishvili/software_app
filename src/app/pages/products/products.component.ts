@@ -20,6 +20,7 @@ import { DeleteConfirmDialogComponent } from '../../shared/components/delete-con
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 import { AddEditFormComponent } from '../../shared/components/add-edit-form/add-edit-form.component';
 import { FilterComponent } from '../../shared/components/filter/filter.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product-list',
@@ -33,6 +34,7 @@ import { FilterComponent } from '../../shared/components/filter/filter.component
     MatButtonModule,
     MatIconModule,
     NavigationComponent,
+    TranslateModule
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',

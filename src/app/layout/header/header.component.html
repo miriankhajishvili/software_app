@@ -1,28 +1,20 @@
-<div class="logos" *ngIf="currentLanguage">
-
-  <button class="logos__logo" [class.active]="currentLanguage === 'ka'" (click)="changeLanguage('ka')"><img src="assets/svg/ka.svg" alt=""></button>
-  <button class="logos__logo" [class.active]="currentLanguage === 'en'" (click)="changeLanguage('en')"><img src="assets/svg/en.svg" alt=""></button>
-</div>
 <header>
   <mat-toolbar color="primary" class="header">
     <mat-toolbar-row>
-      <span class="logo" routerLink="/products">Software App</span>
-      <span
-        routerLink="/products"
-        class="material-icons"
-        style="cursor: pointer"
-      >
-        home
-      </span>
+      <span routerLink="/products" class="material-icons" style="cursor: pointer; font-size: 30px; margin-right: 10px;">home</span>
+      <div class="logos" *ngIf="currentLanguage">
+        <button class="logos__logo" [class.active]="currentLanguage === 'ka'" (click)="changeLanguage('ka')">
+          <img src="assets/svg/ka.svg" alt="">
+        </button>
+        <button class="logos__logo" [class.active]="currentLanguage === 'en'" (click)="changeLanguage('en')">
+          <img src="assets/svg/en.svg" alt="">
+        </button>
+      </div>
+      
       <span class="example-spacer"></span>
       <div class="header-right-side">
         <span>{{ currentUser }} ({{ currentRole }})</span>
-        <button
-          mat-icon-button
-          (click)="openDialog()"
-          class="example-icon"
-          aria-label="Logout"
-        >
+        <button mat-icon-button (click)="openDialog()" class="example-icon" aria-label="Logout">
           <span class="material-icons">logout</span>
         </button>
       </div>

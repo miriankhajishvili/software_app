@@ -62,7 +62,7 @@ export class FilterComponent implements OnInit {
     this.store.dispatch(
       getAllManagers.getAllManagersAction({ IPageRequest: this.pagination })
     );
-    console.log(this.managerForm.value);
+  
     this.dialog.closeAll();
   }
 

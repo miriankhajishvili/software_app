@@ -1,9 +1,11 @@
-<h2 mat-dialog-title>Log-out User</h2>
+<h2 mat-dialog-title>{{ "Log-out User" | translate }}</h2>
 
-<mat-dialog-content> Are you sure you want to Log-out? </mat-dialog-content>
+<mat-dialog-content>
+  {{ "Are you sure you want to Log-out?" | translate }}</mat-dialog-content
+>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close>{{ "No" | translate }}</button>
   <button (click)="onYesClick()" mat-button mat-dialog-close cdkFocusInitial>
-    Ok
+    {{ "Ok" | translate }}
   </button>
 </mat-dialog-actions>

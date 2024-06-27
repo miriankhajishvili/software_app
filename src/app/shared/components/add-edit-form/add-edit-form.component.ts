@@ -31,6 +31,7 @@ import { ProductService } from '../../services/product.service';
 import { singleLanguageValidator } from '../../regex/georgianLettersValidator';
 import {} from '@angular/cdk/observers';
 import { IPageRequest } from '../../interfaces/product-listinterface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -44,6 +45,7 @@ import { IPageRequest } from '../../interfaces/product-listinterface';
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
+    TranslateModule
   ],
   templateUrl: './add-edit-form.component.html',
   styleUrl: './add-edit-form.component.scss',
@@ -183,6 +185,7 @@ export class AddEditFormComponent implements OnInit {
     obj.id = this.data.id;
 
     this.store.dispatch(editManager.editManagerAction({ form: obj }));
+
     this.dialogRef.close();
     this.form.reset();
   }

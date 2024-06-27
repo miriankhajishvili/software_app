@@ -35,7 +35,6 @@ export const loginEffect = createEffect(
       switchMap(({ form }) => {
         return authService.login(form).pipe(
           map((loginUser: ILoginRespons) => {
-            console.log(loginUser);
             localStorage.setItem(
               'currentUser',
               loginUser.userData.firstName + ' ' + loginUser.userData.lastName
@@ -50,7 +49,6 @@ export const loginEffect = createEffect(
             return authAction.loginSuccess({ loginSuccess: loginUser });
           }),
           catchError((error) => {
-            console.log(error);
             ngToastService.error({
               detail: 'Error Message',
               summary: error.error.message,
@@ -124,7 +122,6 @@ export const createProductEffect = createEffect(
             });
           }),
           catchError((error) => {
-            console.log(error);
             ngToastService.error({
               detail: 'Error Message',
               summary: error.error.message,
@@ -408,7 +405,6 @@ export const editProductEffect = createEffect(
       switchMap(({ form }) => {
         return productService.editProduct(form.id, form).pipe(
           map((data) => {
-            console.log(data);
             ngToastService.success({
               detail: 'Success Message',
               summary: 'Product edited successfully',

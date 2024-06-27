@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgToastModule, NgToastService } from 'ng-angular-popup';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-log-out-dialog',
   standalone: true,
@@ -24,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatIconModule,
     MatButtonModule,
     NgToastModule,
+    TranslateModule
   ],
   templateUrl: './log-out-dialog.component.html',
   styleUrl: './log-out-dialog.component.scss',

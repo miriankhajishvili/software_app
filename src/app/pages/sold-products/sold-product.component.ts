@@ -10,6 +10,7 @@ import { getAllSoldProducts } from '../../store/action';
 import { Observable } from 'rxjs';
 import { selectItems, selectSoldProducts } from '../../store/reducer';
 import { ISoldProducts } from '../../shared/interfaces/sold-product.interface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sold-product',
@@ -20,6 +21,7 @@ import { ISoldProducts } from '../../shared/interfaces/sold-product.interface';
     MatButtonModule,
     MatPaginator,
     MatTableModule,
+    TranslateModule
   ],
   templateUrl: './sold-product.component.html',
   styleUrl: './sold-product.component.scss',

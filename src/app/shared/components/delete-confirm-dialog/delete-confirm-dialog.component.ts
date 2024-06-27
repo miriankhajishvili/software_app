@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { deleteManager, deleteProduct } from '../../../store/action';
 import { NgToastModule } from 'ng-angular-popup';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-delete-confirm-dialog',
@@ -25,6 +26,7 @@ import { NgToastModule } from 'ng-angular-popup';
     MatIconModule,
     MatButtonModule,
     NgToastModule,
+    TranslateModule,
   ],
   templateUrl: './delete-confirm-dialog.component.html',
   styleUrl: './delete-confirm-dialog.component.scss',
@@ -44,7 +46,6 @@ export class DeleteConfirmDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrentUsersId();
-    console.log(this.data.id);
   }
 
   getCurrentUsersId() {}

@@ -10,8 +10,42 @@
   flex: 1 1 auto;
 }
 
-.logo {
+.logos {
+  display: flex;
+  gap: 10px; /* Adds space between the buttons */
+}
+
+.logos__logo {
+  border: none;
+  background: none;
   cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.logos__logo.active {
+  background-color: #e0e0e0; /* Active button background color */
+}
+
+.logos__logo img {
+  width: 14px;
+  height: 14px;
+}
+
+.logos__logo:hover {
+  background-color: #f0f0f0; /* Hover background color */
+}
+
+.home-icon {
+  font-size: 40px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .header-right-side {

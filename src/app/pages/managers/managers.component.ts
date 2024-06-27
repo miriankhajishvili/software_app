@@ -69,7 +69,7 @@ export class ManagersComponent implements OnInit {
         onEditManagerClick: true,
       },
     });
-    console.log(manager);
+  
   }
 
   onDelete(manager: IManagers) {

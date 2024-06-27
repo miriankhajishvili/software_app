@@ -7,24 +7,19 @@ import {
   IManagerCreate,
   IManagers,
 } from '../interfaces/manager.interface';
+import { createRequestUrl } from '../helpers/url';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ManagerService extends BaseService {
-  getAllManagers(pageRequest: pageRequest): Observable<IGetAllManagers> {
-    const { page, firstname, lastname, from, to, registerFrom, registerTo } = pageRequest;
-    let name = `?firstNameSearch=${firstname}`;
-    let surname = `&lastNameSearch=${lastname}`;
-    let pageDetail = `&page=${page}`;
-    // let dateFrom = `&registrationDateFrom${registerFrom}`;
-    // let dateTo = `&registrationDateTo${registerTo}`;
-    let priceFrom = `&totalPriceMin=${from}`;
-    let priceTo = `&totalPriceMax=${to}`;
 
-    return this.get<IGetAllManagers>(
-      `users/managers${name}${surname}${pageDetail}${priceFrom}${priceTo}`
-    );
+
+  getAllManagers(pageRequest: pageRequest): Observable<IGetAllManagers> {
+    
+    const url = createRequestUrl('users/managers', pageRequest);
+    return this.get<IGetAllManagers>(url);
   }
 
   createManager(form: IManagerCreate): Observable<IManagers> {

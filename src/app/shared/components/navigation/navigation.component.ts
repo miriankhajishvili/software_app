@@ -24,13 +24,7 @@ export class NavigationComponent {
  pagination: pageRequest = {
     page: 1,
     row: 10,
-    firstname: '',
-    lastname: '',
-    from: 0,
-    to: 0,
-    registerFrom: Date,
-    registerTo: Date,
-    product: ''
+   
   };
 
 

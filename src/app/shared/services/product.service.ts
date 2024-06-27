@@ -4,21 +4,22 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import {
   ICreateProductResponse,
   IGetAllProducts,
+  IGetAllProductsList,
   IProduct,
   IProductResponse,
+
   pageRequest,
 } from '../interfaces/product-list';
 import { ISellProduct } from '../interfaces/sold-product.interface';
+import { createRequestUrl } from '../helpers/url';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService extends BaseService {
-  getAllProducts(pageRequest: pageRequest): Observable<IGetAllProducts> {
-    const { page, firstname, lastname, product } = pageRequest;
-    let pageDetail = `&page=${page}`;
-    let productName = `?search=${product}`;
-    return this.get<IGetAllProducts>(`products${productName}${pageDetail}`);
+  getAllProducts(productRequest: IGetAllProductsList): Observable<IGetAllProducts> {
+    const url = createRequestUrl('products', productRequest);
+    return this.get<IGetAllProducts>(url);
   }
 
   createProduct(form: IProduct): Observable<ICreateProductResponse> {

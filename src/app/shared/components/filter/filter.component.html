@@ -7,11 +7,11 @@
     <form>
       <div class="form-group">
         <label for="firstName">First Name:</label>
-        <input formControlName="firstname" type="text" id="firstName"  />
+        <input formControlName="firstNameSearch" type="text" id="firstName"  />
       </div>
       <div class="form-group">
         <label for="lastName">Last Name:</label>
-        <input  formControlName="lastname" type="text" id="lastName"  />
+        <input  formControlName="lastNameSearch" type="text" id="lastName"  />
       </div>
       <div class="form-group">
         <label for="registrationDateStart">Registration Date From:</label>
@@ -20,7 +20,7 @@
           type="date"
           id="registrationDateStart"
           name="registrationDateStart"
-          formControlName="registerDataFrom"
+          formControlName="registrationDateFrom"
         />
       </div>
       <div class="form-group">
@@ -29,16 +29,16 @@
           type="date"
           id="registrationDateEnd"
           name="registrationDateEnd"
-          formControlName="registerDataTo"
+          formControlName="registrationDateTo"
         />
       </div>
       <div class="form-group">
         <label for="soldAmountFrom">Sold Product Amount From:</label>
-        <input  formControlName="soldProductFrom" type="number" id="soldAmountFrom" name="soldAmountFrom" />
+        <input  formControlName="totalPriceMin" type="number" name="soldAmountFrom" />
       </div>
       <div class="form-group">
         <label for="soldAmountTo">Sold Product Amount To:</label>
-        <input formControlName="soldProductTo" type="number" id="soldAmountTo" name="soldAmountTo" />
+        <input formControlName="totalPriceMax" type="number"  name="soldAmountTo" />
       </div>
       <div class="form-actions">
         <button (click)="onManagerFilter()" type="button" class="apply-button">Apply Filters</button>

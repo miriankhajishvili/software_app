@@ -14,7 +14,6 @@ import { Store } from '@ngrx/store';
 import { getAllManagers } from '../../store/action';
 import { TranslateService } from '@ngx-translate/core';
 
-
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -27,7 +26,6 @@ import { TranslateService } from '@ngx-translate/core';
     MatButtonModule,
     MatDividerModule,
     RouterModule,
-
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
@@ -45,13 +43,6 @@ export class HeaderComponent implements OnInit {
   pagination: pageRequest = {
     page: 1,
     row: 10,
-    firstname: '',
-    lastname: '',
-    from: 0,
-    to: 0,
-    registerFrom: Date,
-    registerTo: Date,
-    product: ''
   };
 
   ngOnInit(): void {
@@ -70,14 +61,12 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-
   // private translateService = inject(TranslateService)
   // currentLanguage!: string
-
 
   // changeLanguage(lang: string){
   //   this.translateService.use(lang);
   //   localStorage.setItem('language', lang)
   //   this.currentLanguage = lang
-  // } 
+  // }
 }

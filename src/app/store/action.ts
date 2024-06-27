@@ -1,8 +1,11 @@
 import { createActionGroup, props } from '@ngrx/store';
 import {
   ICreateProductResponse,
+  IGetAllProducts,
+  IGetAllProductsList,
   IProduct,
   IProductResponse,
+  
   pageRequest,
 } from '../shared/interfaces/product-list';
 import { ILogin, ILoginRespons } from '../shared/interfaces/auth.interface';
@@ -24,7 +27,7 @@ export const authAction = createActionGroup({
 export const getAllProducts = createActionGroup({
   source: 'getAllProducts',
   events: {
-    getAllProductsAction: props<{ pageRequest: pageRequest }>(),
+    getAllProductsAction: props<{ pageRequest: IGetAllProductsList }>(),
     getAllProductsSuccess: props<{
       products: IProductResponse[];
       items: number;

@@ -6,6 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {
+  IGetAllProductsList,
   IProduct,
   IProductResponse,
   pageRequest,
@@ -48,16 +49,9 @@ export class ProductListComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'price', 'quantity', 'buttons'];
 
- pagination: pageRequest = {
+ pagination: IGetAllProductsList = {
     page: 1,
     row: 10,
-    firstname: '',
-    lastname: '',
-    from: 0,
-    to: 0,
-    registerFrom: Date,
-    registerTo: Date,
-    product: ''
   };
 
 

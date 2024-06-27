@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable} from 'rxjs';
 import {
   ICreateProductResponse,
   IGetAllProducts,
   IGetAllProductsList,
   IProduct,
-  IProductResponse,
 
-  pageRequest,
-} from '../interfaces/product-list';
+
+ 
+} from '../interfaces/product-listinterface';
 import { ISellProduct } from '../interfaces/sold-product.interface';
 import { createRequestUrl } from '../helpers/url';
 

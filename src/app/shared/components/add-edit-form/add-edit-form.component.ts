@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Store, compose } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import {
   createManager,
   createProduct,
@@ -24,13 +24,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { lettersOnlyValidator } from '../../regex/lettersOnlyValidator';
 import { positiveNumberValidator } from '../../regex/nonNegativeNumberValidator';
-import { selectAllManagers, selectManagers } from '../../../store/reducer';
-import { Observable, tap } from 'rxjs';
-import { IGetAllManagers, IManagers } from '../../interfaces/manager.interface';
+import { selectAllManagers } from '../../../store/reducer';
+import { Observable } from 'rxjs';
+import { IManagers } from '../../interfaces/manager.interface';
 import { ProductService } from '../../services/product.service';
 import { singleLanguageValidator } from '../../regex/georgianLettersValidator';
-import { ObserversModule } from '@angular/cdk/observers';
-import { pageRequest } from '../../interfaces/product-list';
+import {} from '@angular/cdk/observers';
+import { IPageRequest } from '../../interfaces/product-listinterface';
 
 @Component({
   selector: 'app-add-edit-product',
@@ -122,9 +122,7 @@ export class AddEditFormComponent implements OnInit {
     return this.sellMyProduct.get('sellMyProduct');
   }
 
-  allManagerArray$: Observable<IManagers[]> = new Observable();
-
-  pagination: pageRequest = {
+  pagination: IPageRequest = {
     page: 1,
     limit: 1000,
   };
@@ -132,25 +130,26 @@ export class AddEditFormComponent implements OnInit {
   constructor(private store: Store, private productService: ProductService) {}
 
   ngOnInit(): void {
-    if (this.currentRole == 'admin') {
-      this.getAllManagers();
+
+    if(!this.data.onAddManagerClick){
+      if (this.currentRole == 'admin' ) {
+        this.getAllManagers();
+      }
     }
-    this.allManagerArray$ = this.data.managers;
+   
 
     this.form.patchValue(this.data);
-
     this.managerForm.patchValue(this.data);
-    console.log(this.data)
   }
 
   getAllManagers() {
     this.store.dispatch(
       getAllManagersUnlimited.getAllManagersUnlimitedAction({
-        pageRequest: this.pagination,
+        IPageRequest: this.pagination,
       })
     );
   }
- 
+
   onAddProduct() {
     const formValue = this.form.value;
     formValue.price = +formValue.price;
@@ -164,7 +163,7 @@ export class AddEditFormComponent implements OnInit {
     this.store.dispatch(
       createManager.createManagerAction({ form: this.managerForm.value })
     );
-    console.log(this.managerForm.value);
+
     this.dialogRef.close();
     this.managerForm.reset();
   }
@@ -185,13 +184,12 @@ export class AddEditFormComponent implements OnInit {
     const obj = this.managerForm.value;
     obj.id = this.data.id;
 
-    this.store.dispatch(editManager.editManager({ form: obj }));
+    this.store.dispatch(editManager.editManagerAction({ form: obj }));
     this.dialogRef.close();
     this.form.reset();
   }
 
   onSellProduct() {
-    console.log(this.data);
     this.store.dispatch(
       sellProduct.sellProduct({
         quantity: +this.sellMyProduct.value!,
@@ -199,8 +197,7 @@ export class AddEditFormComponent implements OnInit {
       })
     );
     this.dialogRef.close();
-    
   }
 
-  onClose() {}
+ 
 }

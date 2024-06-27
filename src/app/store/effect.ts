@@ -77,8 +77,8 @@ export const getAllProductsEffect = createEffect(
   ) => {
     return actions$.pipe(
       ofType(getAllProducts.getAllProductsAction),
-      switchMap(({ pageRequest }) => {
-        return productService.getAllProducts(pageRequest).pipe(
+      switchMap(({ IPageRequest }) => {
+        return productService.getAllProducts(IPageRequest).pipe(
           map((res) => {
             return getAllProducts.getAllProductsSuccess({
               products: res.products,
@@ -265,8 +265,8 @@ export const getAllManagersEffect = createEffect(
   ) => {
     return actions$.pipe(
       ofType(getAllManagers.getAllManagersAction),
-      switchMap(({ pageRequest }) => {
-        return managerService.getAllManagers(pageRequest).pipe(
+      switchMap(({ IPageRequest }) => {
+        return managerService.getAllManagers(IPageRequest).pipe(
           map((res) => {
             return getAllManagers.getAllManagersSuccess({
               managers: res.managers,
@@ -300,8 +300,8 @@ export const getAllManagersUnlimitedEffect = createEffect(
   ) => {
     return actions$.pipe(
       ofType(getAllManagersUnlimited.getAllManagersUnlimitedAction),
-      switchMap(({ pageRequest }) => {
-        return managerService.getAllManagers(pageRequest).pipe(
+      switchMap(({ IPageRequest }) => {
+        return managerService.getAllManagers(IPageRequest).pipe(
           map((res) => {
             return getAllManagersUnlimited.getAllManagersUnlimitedSuccess({
               managers: res.managers,
@@ -336,8 +336,8 @@ export const getAllSoldProductsEffect = createEffect(
   ) => {
     return actions$.pipe(
       ofType(getAllSoldProducts.getAllSoldProductsAction),
-      switchMap(({ pageRequest }) => {
-        return soldProductService.getAllSoldProducts(pageRequest).pipe(
+      switchMap(({ IPageRequest }) => {
+        return soldProductService.getAllSoldProducts(IPageRequest).pipe(
           map((res) => {
             return getAllSoldProducts.getAllSoldProductsSuccess({
               soldProducts: res.sellingProducts,
@@ -448,7 +448,7 @@ export const editManagerEffect = createEffect(
     ngToastService = inject(NgToastService)
   ) => {
     return action$.pipe(
-      ofType(editManager.editManager),
+      ofType(editManager.editManagerAction),
       switchMap(({ form }) => {
         return managerService.editManager(form.id, form).pipe(
           map((data) => {

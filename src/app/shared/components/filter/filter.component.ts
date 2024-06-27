@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
-import { IGetAllProducts,  IGetAllProductsList,  pageRequest } from '../../interfaces/product-list';
+import { IGetAllProducts,  IGetAllProductsList,  IPageRequest } from '../../interfaces/product-listinterface';
 import { Store } from '@ngrx/store';
 import { getAllManagers, getAllProducts } from '../../../store/action';
 
@@ -33,7 +33,7 @@ import { getAllManagers, getAllProducts } from '../../../store/action';
 export class FilterComponent implements OnInit {
   readonly data = inject<any>(MAT_DIALOG_DATA);
 
-   pagination: pageRequest = {
+   pagination: IPageRequest = {
     page: 1,
 
   };
@@ -60,7 +60,7 @@ export class FilterComponent implements OnInit {
     };
 
     this.store.dispatch(
-      getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
+      getAllManagers.getAllManagersAction({ IPageRequest: this.pagination })
     );
     console.log(this.managerForm.value);
     this.dialog.closeAll();
@@ -75,7 +75,7 @@ export class FilterComponent implements OnInit {
     }
    
     this.store.dispatch(
-      getAllProducts.getAllProductsAction({ pageRequest: productRequest})
+      getAllProducts.getAllProductsAction({ IPageRequest: productRequest})
     );
     this.dialog.closeAll();
 

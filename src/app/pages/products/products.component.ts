@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,14 +9,9 @@ import {
   IGetAllProductsList,
   IProduct,
   IProductResponse,
-  pageRequest,
-} from '../../shared/interfaces/product-list';
+} from '../../shared/interfaces/product-listinterface';
 import { Store } from '@ngrx/store';
-import {
-  deleteProduct,
-  getAllManagers,
-  getAllProducts,
-} from '../../store/action';
+import { getAllProducts } from '../../store/action';
 import { Observable, take, tap } from 'rxjs';
 import { selectItems, selectProducts } from '../../store/reducer';
 import { ProductService } from '../../shared/services/product.service';
@@ -49,11 +44,9 @@ export class ProductListComponent implements OnInit {
 
   displayedColumns: string[] = ['name', 'price', 'quantity', 'buttons'];
 
- pagination: IGetAllProductsList = {
+  pagination: IGetAllProductsList = {
     page: 1,
-    
   };
-
 
   constructor(private store: Store, public dialog: MatDialog) {}
 
@@ -63,7 +56,7 @@ export class ProductListComponent implements OnInit {
 
   getAllProducts() {
     this.store.dispatch(
-      getAllProducts.getAllProductsAction({ pageRequest: this.pagination })
+      getAllProducts.getAllProductsAction({ IPageRequest: this.pagination })
     );
   }
 
@@ -90,27 +83,32 @@ export class ProductListComponent implements OnInit {
         name: product.name,
         quantity: product.quantity,
         price: product.price,
-        managers: product.managers.map(manager => manager.id),
+        managers: product.managers.map((manager) => manager.id),
         onEditProductClick: true,
       },
     });
   }
 
   onSellProduct(product: IProduct) {
-    this.dialog.open(AddEditFormComponent, {
-      data: {
-        id: product.id,
-        quantity: product.quantity,
-        onSellProductClick: true,
-      },
-    }).afterClosed().pipe(take(1),
-       tap( res => this.getAllProducts())
-    ).subscribe()
+    this.dialog
+      .open(AddEditFormComponent, {
+        data: {
+          id: product.id,
+          quantity: product.quantity,
+          onSellProductClick: true,
+        },
+      })
+      .afterClosed()
+      .pipe(
+        take(1),
+        tap((res) => this.getAllProducts())
+      )
+      .subscribe();
   }
 
-  onProductFilterClick(){
+  onProductFilterClick() {
     this.dialog.open(FilterComponent, {
-      data: { onProductFilterClick : true },
+      data: { onProductFilterClick: true },
     });
   }
 }

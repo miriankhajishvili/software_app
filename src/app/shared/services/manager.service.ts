@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { pageRequest } from '../interfaces/product-list';
+import { IPageRequest } from '../interfaces/product-listinterface';
 import { Observable } from 'rxjs';
 import {
   IGetAllManagers,
@@ -16,9 +16,9 @@ import { createRequestUrl } from '../helpers/url';
 export class ManagerService extends BaseService {
 
 
-  getAllManagers(pageRequest: pageRequest): Observable<IGetAllManagers> {
+  getAllManagers(IPageRequest: IPageRequest): Observable<IGetAllManagers> {
     
-    const url = createRequestUrl('users/managers', pageRequest);
+    const url = createRequestUrl('users/managers', IPageRequest);
     return this.get<IGetAllManagers>(url);
   }
 
@@ -27,7 +27,7 @@ export class ManagerService extends BaseService {
   }
 
   editManager(id: number, form: IManagerCreate): Observable<any> {
-    return this.patch<any>(`managers/${id}`, form);
+    return this.patch<any>(`manager/${id}`, form);
   }
 
   deleteManager(id: number): Observable<IManagers> {

@@ -6,8 +6,8 @@ import {
   IProduct,
   IProductResponse,
   
-  pageRequest,
-} from '../shared/interfaces/product-list';
+  IPageRequest,
+} from '../shared/interfaces/product-listinterface';
 import { ILogin, ILoginRespons } from '../shared/interfaces/auth.interface';
 import {
   IManagerCreate,
@@ -27,7 +27,7 @@ export const authAction = createActionGroup({
 export const getAllProducts = createActionGroup({
   source: 'getAllProducts',
   events: {
-    getAllProductsAction: props<{ pageRequest: IGetAllProductsList }>(),
+    getAllProductsAction: props<{ IPageRequest: IGetAllProductsList }>(),
     getAllProductsSuccess: props<{
       products: IProductResponse[];
       items: number;
@@ -75,7 +75,7 @@ export const createManager = createActionGroup({
 export const getAllManagers = createActionGroup({
   source: 'getAllManagers',
   events: {
-    getAllManagersAction: props<{ pageRequest: pageRequest }>(),
+    getAllManagersAction: props<{ IPageRequest: IPageRequest }>(),
     getAllManagersSuccess: props<{
       managers: IManagers[];
       items: number;
@@ -87,7 +87,7 @@ export const getAllManagers = createActionGroup({
 export const getAllManagersUnlimited = createActionGroup({
   source: 'getAllManagersUnlimited',
   events: {
-    getAllManagersUnlimitedAction: props<{ pageRequest: pageRequest }>(),
+    getAllManagersUnlimitedAction: props<{ IPageRequest: IPageRequest }>(),
     getAllManagersUnlimitedSuccess: props<{
       managers: IManagers[];
       items: number;
@@ -100,7 +100,7 @@ export const getAllManagersUnlimited = createActionGroup({
 export const getAllSoldProducts = createActionGroup({
   source: 'getAllSoldProducts',
   events: {
-    getAllSoldProductsAction: props<{ pageRequest: pageRequest }>(),
+    getAllSoldProductsAction: props<{ IPageRequest: IPageRequest }>(),
     getAllSoldProductsSuccess: props<{
       soldProducts: ISoldProducts[];
       items: number;
@@ -124,10 +124,10 @@ export const editProduct = createActionGroup({
 export const editManager = createActionGroup({
   source: 'editManager',
   events: {
-    editManager: props<{ form: IManagerCreate }>(),
+    editManagerAction: props<{ form: IManagerCreate }>(),
     editManagerSuccess: props<{
       id: number;
-      manager: ICreateProductResponse;
+      manager: IManagers;
     }>(),
     editManagerFailure: props<{ error: string }>(),
   },

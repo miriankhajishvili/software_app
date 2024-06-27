@@ -5,10 +5,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
-import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { authAction } from '../../../store/action';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-log-in',
@@ -21,7 +25,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatTabsModule,
     ReactiveFormsModule,
-    HttpClientModule,
   ],
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.scss'],

@@ -1,7 +1,7 @@
 import { Data } from '@angular/router';
 import { IManagers } from './manager.interface';
-import { ILoginUser } from './auth.interface';
-import { IGetAllSoldProducts, ISoldProducts } from './sold-product.interface';
+
+import { ISoldProducts } from './sold-product.interface';
 
 export interface IGetAllProducts {
   products: IProductResponse[];
@@ -50,31 +50,21 @@ export interface IProductResponse {
 }
 
 export interface iProductsState {
-  allManagers: IManagers[]
+  allManagers: IManagers[];
   soldProducts: ISoldProducts[];
   managers: IManagers[];
   products: IProductResponse[];
   items: number;
 }
 
-export interface pageRequest {
+export interface IPageRequest {
   page: number;
-  limit?: number
+  limit?: number;
 }
 
-export interface getManagerRequest {
-  page: number;
-  row: number;
-  firstNameSearch?: string;
-  lastNameSearch?: string;
-  totalPriceMin?: number;
-  totalPriceMax?: number;
-  registrationDateFrom?: string;
-  registrationDateTo?: string;
-}
+
 
 export interface IGetAllProductsList {
   page: number;
-
   search?: string;
 }

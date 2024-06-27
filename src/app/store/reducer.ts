@@ -1,11 +1,12 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { iProductsState } from '../shared/interfaces/product-list';
+import { iProductsState } from '../shared/interfaces/product-listinterface';
 
 import {
   createManager,
   createProduct,
   deleteManager,
   deleteProduct,
+  editManager,
   editProduct,
   getAllManagers,
   getAllManagersUnlimited,
@@ -90,8 +91,20 @@ const main = createFeature({
         }
       });
       return { ...state, products: editedProduct };
+    }),
+    on(editManager.editManagerAction, (state) => ({ ...state })),
+    on(editManager.editManagerSuccess, (state, action) => {
+      const editManager = state.managers.map((managers) => {
+        if (action.manager.id === managers.id) {
+          return action.manager;
+        } else {
+          return managers;
+        }
+      });
+      return { ...state, managers: editManager };
     })
   ),
+  
 });
 
 export const {

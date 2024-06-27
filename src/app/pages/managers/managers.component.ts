@@ -7,7 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { getAllManagers } from '../../store/action';
-import { pageRequest } from '../../shared/interfaces/product-list';
+import { IPageRequest } from '../../shared/interfaces/product-listinterface';
 import { Observable } from 'rxjs';
 import { IManagers } from '../../shared/interfaces/manager.interface';
 import { selectItems, selectManagers } from '../../store/reducer';
@@ -43,7 +43,7 @@ export class ManagersComponent implements OnInit {
     'totalPriceOfSellingProducts',
     'buttons',
   ];
- pagination: pageRequest = {
+ pagination: IPageRequest = {
     page: 1,
    
    
@@ -59,6 +59,7 @@ export class ManagersComponent implements OnInit {
   onEditManager(manager: IManagers) {
     this.dialog.open(AddEditFormComponent, {
       data: {
+        id: manager.id,
         firstName: manager.firstName,
         lastName: manager.lastName,
         email: manager.email,
@@ -88,7 +89,7 @@ export class ManagersComponent implements OnInit {
 
   getAllManagers() {
     this.store.dispatch(
-      getAllManagers.getAllManagersAction({ pageRequest: this.pagination })
+      getAllManagers.getAllManagersAction({ IPageRequest: this.pagination })
     );
   }
 

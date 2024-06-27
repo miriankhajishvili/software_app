@@ -1,7 +1,7 @@
 <div style="margin-top: 25px" class="mat-elevation-z8">
-<app-navigation  ></app-navigation>
-<span (click)="onProductFilterClick()" class="material-symbols-outlined">
-  filter_alt
+  <app-navigation></app-navigation>
+  <span (click)="onProductFilterClick()" class="material-symbols-outlined">
+    filter_alt
   </span>
   <table mat-table [dataSource]="(products$ | async) || []">
     <ng-container matColumnDef="name">

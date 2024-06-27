@@ -4,15 +4,12 @@ import { NavigationComponent } from '../../shared/components/navigation/navigati
 import { MatButtonModule } from '@angular/material/button';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import { pageRequest } from '../../shared/interfaces/product-list';
+import { IPageRequest } from '../../shared/interfaces/product-listinterface';
 import { Store } from '@ngrx/store';
 import { getAllSoldProducts } from '../../store/action';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { selectItems, selectSoldProducts } from '../../store/reducer';
-import {
-  IGetAllSoldProducts,
-  ISoldProducts,
-} from '../../shared/interfaces/sold-product.interface';
+import { ISoldProducts } from '../../shared/interfaces/sold-product.interface';
 
 @Component({
   selector: 'app-sold-product',
@@ -40,7 +37,7 @@ export class SoldProductComponent implements OnInit {
     'solddata',
   ];
 
-  pagination: pageRequest = {
+  pagination: IPageRequest = {
     page: 1,
   };
 
@@ -53,14 +50,12 @@ export class SoldProductComponent implements OnInit {
   getAllSoldProducts() {
     this.store.dispatch(
       getAllSoldProducts.getAllSoldProductsAction({
-        pageRequest: this.pagination,
+        IPageRequest: this.pagination,
       })
     );
   }
 
   onEdit() {}
-
-  onDelete() {}
 
   onPageChange($event: any) {
     this.pagination = {

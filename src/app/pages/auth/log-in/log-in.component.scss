@@ -18,8 +18,7 @@ mat-card {
   border-radius: 8px;
 }
 
-mat-form-field,
-mat-checkbox {
+mat-form-field {
   width: 80%;
   display: block;
   margin: auto;
@@ -30,8 +29,8 @@ mat-card-content {
 }
 
 .login-button {
-  margin-top: 20px;
   display: block;
+  margin-top: 20px;
   width: 80%;
   margin: 20px auto;
 }

@@ -5,14 +5,14 @@
     </span>
   <table mat-table [dataSource]="(managers$ | async) || []">
     <ng-container matColumnDef="manager">
-      <th mat-header-cell *matHeaderCellDef><b>Manager</b></th>
+      <th mat-header-cell *matHeaderCellDef><b>{{"Manager" | translate}}</b></th>
       <td mat-cell *matCellDef="let manager">
         {{ manager.firstName + " " + manager.lastName }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="registrationData">
-      <th mat-header-cell *matHeaderCellDef><b>Registration Data</b></th>
+      <th mat-header-cell *matHeaderCellDef><b>{{"Registration Data" | translate}}</b></th>
       <td mat-cell *matCellDef="let manager">
         {{ manager.createdAt | date : "medium"}}
       </td>
@@ -20,7 +20,7 @@
 
     <ng-container matColumnDef="totalPriceOfSellingProducts">
       <th mat-header-cell *matHeaderCellDef>
-        <b>Total amount of product sold</b>
+        <b>{{"Total amount of product sold" | translate}}</b>
       </th>
       <td mat-cell *matCellDef="let manager">
         {{ manager.totalPriceOfSellingProducts }}

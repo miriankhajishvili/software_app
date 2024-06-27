@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { LogOutDialogComponent } from '../../shared/components/log-out-dialog/log-out-dialog.component';
 import { IPageRequest } from '../../shared/interfaces/product-listinterface';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -23,6 +24,7 @@ import { IPageRequest } from '../../shared/interfaces/product-listinterface';
     MatButtonModule,
     MatDividerModule,
     RouterModule,
+    TranslateModule
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
@@ -42,18 +44,18 @@ export class HeaderComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    // const defaultLange = localStorage.getItem('language') || 'en';
-    // this.translateService.setDefaultLang(defaultLange)
-    // this.currentLanguage = defaultLange
-    // this.translateService.use(defaultLange)
+    const defaultLange = localStorage.getItem('language') || 'en';
+    this.translateService.setDefaultLang(defaultLange)
+    this.currentLanguage = defaultLange
+    this.translateService.use(defaultLange)
   }
 
-  // private translateService = inject(TranslateService)
-  // currentLanguage!: string
+  private translateService = inject(TranslateService)
+  currentLanguage!: string
 
-  // changeLanguage(lang: string){
-  //   this.translateService.use(lang);
-  //   localStorage.setItem('language', lang)
-  //   this.currentLanguage = lang
-  // }
+  changeLanguage(lang: string){
+    this.translateService.use(lang);
+    localStorage.setItem('language', lang)
+    this.currentLanguage = lang
+  }
 }

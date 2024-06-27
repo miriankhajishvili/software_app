@@ -16,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmDialogComponent } from '../../shared/components/delete-confirm-dialog/delete-confirm-dialog.component';
 import { AddEditFormComponent } from '../../shared/components/add-edit-form/add-edit-form.component';
 import { FilterComponent } from '../../shared/components/filter/filter.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-managers',
@@ -29,6 +30,7 @@ import { FilterComponent } from '../../shared/components/filter/filter.component
     MatButtonModule,
     MatIconModule,
     NavigationComponent,
+    TranslateModule
   ],
   templateUrl: './managers.component.html',
   styleUrl: './managers.component.scss',

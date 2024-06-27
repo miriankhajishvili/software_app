@@ -6,11 +6,12 @@ import { RouterModule } from '@angular/router';
 import { AddEditFormComponent } from '../add-edit-form/add-edit-form.component';
 import { Store } from '@ngrx/store';
 import { IPageRequest } from '../../interfaces/product-listinterface';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatButtonModule],
+  imports: [CommonModule, RouterModule, MatButtonModule, TranslateModule],
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.scss',
 })

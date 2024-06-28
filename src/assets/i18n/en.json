@@ -42,5 +42,15 @@
   "Log-out User:": "Log-out User",
   "Are you sure you want to Log-out?": "Are you sure you want to Log-out?",
   "Total price": "Total price",
-  "Sold Data": "Sold Data"
+  "Sold Data": "Sold Data",
+  "First Name" :"First Name" ,
+  "Filter Options":"Filter Options",
+  "Last Name" :"Last Name" ,
+  "Registration Date From":"Registration Date From",
+  "Registration Date To":"Registration Date To",
+  "Sold Product Amount From:":"Sold Product Amount From:",
+  "Sold Product Amount To":"Sold Product Amount To",
+  "Apply Filters" :"Apply Filters" ,
+  "Clear Filters":"Clear Filters",
+ 
 }

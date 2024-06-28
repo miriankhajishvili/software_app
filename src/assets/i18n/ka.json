@@ -42,5 +42,14 @@
   "Log-out User": "მომხმარებლის გასვლა",
   "Are you sure you want to Log-out?": "დარწმუნებული ხართ რომ გასვლა გსურთ?",
   "Total price": "ჯამური ღირებულება",
-  "Sold Data": "გაყიდვის თარიღი"
+  "Sold Data": "გაყიდვის თარიღი",
+  "First Name" : "სახელი",
+  "Filter Options": "ფილტრი",
+  "Last Name" : "გვარი",
+  "Registration Date From" :"რეგისტრაციის თარიღი-დან",
+  "Registration Date To": "რეგისტრაციის თარიღი-მდე",
+  "Sold Product Amount From:" : "გაყიდული პროდუქტის ღირებულება-დან",
+  "Sold Product Amount To": "გაყიდული პროდუქტის ღირებულება-მდე",
+  "Apply Filters" : "გაფილტვრა",
+  "Clear Filters" :"ფილტრის გასუფთავება"
 }

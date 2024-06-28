@@ -3,18 +3,18 @@
 <div class="form-field-container">
   @if (data.onManagerFilterClick) {
   <div [formGroup]="managerForm" class="filter-popup">
-    <h2>Filter Options</h2>
+    <h2>{{"Filter Options" | translate}}</h2>
     <form>
       <div class="form-group">
-        <label for="firstName">First Name:</label>
+        <label for="firstName">{{"First Name" |translate}}:</label>
         <input formControlName="firstNameSearch" type="text" id="firstName"  />
       </div>
       <div class="form-group">
-        <label for="lastName">Last Name:</label>
+        <label for="lastName">{{"Last Name" | translate}}:</label>
         <input  formControlName="lastNameSearch" type="text" id="lastName"  />
       </div>
       <div class="form-group">
-        <label for="registrationDateStart">Registration Date From:</label>
+        <label for="registrationDateStart">{{"Registration Date From" | translate}}:</label>
         <input
 
           type="date"
@@ -24,7 +24,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="registrationDateEnd">Registration Date To:</label>
+        <label for="registrationDateEnd">{{"Registration Date To" | translate}}:</label>
         <input
           type="date"
           id="registrationDateEnd"
@@ -33,16 +33,16 @@
         />
       </div>
       <div class="form-group">
-        <label for="soldAmountFrom">Sold Product Amount From:</label>
+        <label for="soldAmountFrom">{{"Sold Product Amount From:" | translate}}:</label>
         <input  formControlName="totalPriceMin" type="number" name="soldAmountFrom" />
       </div>
       <div class="form-group">
-        <label for="soldAmountTo">Sold Product Amount To:</label>
+        <label for="soldAmountTo">{{"Sold Product Amount To" | translate}}:</label>
         <input formControlName="totalPriceMax" type="number"  name="soldAmountTo" />
       </div>
       <div class="form-actions">
-        <button (click)="onManagerFilter()" type="button" class="apply-button">Apply Filters</button>
-        <button type="button" class="clear-button">Clear Filters</button>
+        <button (click)="onManagerFilter()" type="button" class="apply-button">{{"Apply Filters" | translate}}</button>
+        <button type="button" class="clear-button">{{"Clear Filters" | translate}}</button>
       </div>
     </form>
   </div>
@@ -52,15 +52,15 @@
   } @if (data.onProductFilterClick) {
 
     <div class="filter-popup">
-      <h2>Filter Options</h2>
+      <h2>{{"Filter Options" | translate}}</h2>
       <form>
         <div class="form-group">
-          <label for="productName">Product Name:</label>
+          <label for="productName">{{"Product Name" | translate}}:</label>
           <input [formControl]="productControl" type="text" id="productName" />
         </div>
         <div class="form-actions">
-          <button (click)="onProductFilter()" type="button" class="apply-button">Apply Filters</button>
-          <button (click)="onClearFilters()" type="button" class="clear-button">Clear Filters</button>
+          <button (click)="onProductFilter()" type="button" class="apply-button">{{"Apply Filters" | translate}}</button>
+          <button (click)="onClearFilters()" type="button" class="clear-button">{{"Clear Filters" | translate}}</button>
         </div>
       </form>
     </div>

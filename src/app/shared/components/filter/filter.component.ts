@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { IGetAllProducts,  IGetAllProductsList,  IPageRequest } from '../../interfaces/product-listinterface';
 import { Store } from '@ngrx/store';
 import { getAllManagers, getAllProducts } from '../../../store/action';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-filter',
@@ -26,6 +27,7 @@ import { getAllManagers, getAllProducts } from '../../../store/action';
     MatInputModule,
     MatCardModule,
     MatDialogModule,
+    TranslateModule
   ],
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],

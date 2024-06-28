@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NavigationComponent } from '../../shared/components/navigation/navigation.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { IPageRequest } from '../../shared/interfaces/product-listinterface';
 import { Store } from '@ngrx/store';
@@ -59,7 +59,7 @@ export class SoldProductComponent implements OnInit {
 
   onEdit() {}
 
-  onPageChange($event: any) {
+  onPageChange($event: PageEvent) {
     this.pagination = {
       ...this.pagination,
       page: $event.pageIndex + 1,

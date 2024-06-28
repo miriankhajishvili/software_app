@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
@@ -62,7 +62,7 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  onPageChange($event: any) {
+  onPageChange($event: PageEvent) {
     this.pagination = {
       ...this.pagination,
       page: $event.pageIndex + 1,

@@ -8,7 +8,7 @@ export interface IGetAllProducts {
   total: number;
   perPage: number;
   currentPage: number;
-  nextPage: any;
+  nextPage: number;
 }
 
 export interface IProduct {

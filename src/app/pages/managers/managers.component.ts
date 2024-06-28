@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -81,7 +81,7 @@ export class ManagersComponent implements OnInit {
     });
   }
 
-  onPageChange($event: any) {
+  onPageChange($event: PageEvent) {
     this.pagination = {
       ...this.pagination,
       page: $event.pageIndex + 1,

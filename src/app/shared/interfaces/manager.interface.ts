@@ -5,7 +5,7 @@ export interface IGetAllManagers {
   total: number;
   perPage: number;
   currentPage: number;
-  nextPage: any;
+  nextPage: number;
 }
 
 export interface IManagers {

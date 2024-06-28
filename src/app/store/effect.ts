@@ -437,7 +437,8 @@ export const editManagerEffect = createEffect(
   (
     action$ = inject(Actions),
     managerService = inject(ManagerService),
-    ngToastService = inject(NgToastService)
+    ngToastService = inject(NgToastService),
+    
   ) => {
     return action$.pipe(
       ofType(editManager.editManagerAction),
@@ -445,7 +446,7 @@ export const editManagerEffect = createEffect(
         return managerService.editManager(form.id, form).pipe(
           map((data) => {
             ngToastService.success({
-              detail: 'Success Message',
+              detail: "Success Message",
               summary: 'Manager edited successfully',
             });
             return editManager.editManagerSuccess({
